@@ -8,9 +8,7 @@
   "scripts": {
     "clean": "npm run test:clean",
     "format": "sort-package-json && eslint --fix",
-    "postinstall": "npm run postinstall:husky",
     "lint": "eslint",
-    "postinstall:husky": "husky install",
     "test": "jest src/",
     "test:clean": "rimraf coverage/",
     "test:coverage": "jest --coverage src/",
