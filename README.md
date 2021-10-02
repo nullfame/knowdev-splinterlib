@@ -25,7 +25,8 @@ npm install --save @knowdev/splinterlib
 
 ## 🛣 Roadmap
 
-* 0.1.0: Battle history
+* 0.1.0: Battle history API
+* 0.2.0: Battle history iterator
 
 ### Wishlist 🌠
 
