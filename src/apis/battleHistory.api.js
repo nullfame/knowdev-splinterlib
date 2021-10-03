@@ -31,20 +31,20 @@ const battleHistoryApi = async (
 
   //
   // Setup
-  const queryParams = {
+  const params = {
     before_block: beforeBlock,
     limit,
     types,
     username: player,
     ...additionalParameters,
   };
-  log.debug.var({ queryParams });
+  log.debug.var({ battleHistoryApiParams: params });
 
   //
   // Preprocess
   const request = {
     method: HTTP.METHOD.GET,
-    params: queryParams,
+    params,
     url: ENDPOINT.LEGACY.BATTLE_HISTORY,
   };
 
