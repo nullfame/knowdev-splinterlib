@@ -12,8 +12,10 @@ Splinterlib.setLogger(log);
 //
 
 const TEST = {
+  BEFORE_BLOCK: 100,
   LIMIT: 12,
   PLAYER: "testPlayer",
+  TYPES: "testTypes",
 };
 
 //
@@ -70,7 +72,25 @@ describe("Battle History API", () => {
       url: ENDPOINT.LEGACY.BATTLE_HISTORY,
     });
   });
-  it.todo("Allows overriding known parameters");
+  it("Allows overriding known parameters", async () => {
+    await Splinterlib.battleHistoryApi(TEST.PLAYER, {
+      beforeBlock: TEST.BEFORE_BLOCK,
+      limit: TEST.LIMIT,
+      types: TEST.TYPES,
+    });
+    expect(mockAxios).toBeCalled();
+    const call = mockAxios.mock.calls[0][0];
+    expect(call).toEqual({
+      method: HTTP.METHOD.GET,
+      params: {
+        before_block: TEST.BEFORE_BLOCK,
+        limit: TEST.LIMIT,
+        types: TEST.TYPES,
+        username: TEST.PLAYER,
+      },
+      url: ENDPOINT.LEGACY.BATTLE_HISTORY,
+    });
+  });
   it.todo("Allows overriding additional parameters");
   it.todo("Returns raw results");
   it.todo("Returns parsed results");
