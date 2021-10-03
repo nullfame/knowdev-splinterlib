@@ -1,6 +1,6 @@
 {
   "name": "@knowdev/splinterlib",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Helper library for Splinterlands APIs",
   "license": "UNLICENSED",
   "author": "Adam Finlayson",
