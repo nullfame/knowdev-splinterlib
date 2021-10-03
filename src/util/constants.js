@@ -4,16 +4,24 @@
 //
 
 // Hosts
-const LEGACY_API_HOST = "api.steemmonsters.io";
-const MODERN_API_HOST = "api2.splinterlands.com";
+const HOST = {
+  LEGACY_API: "https://api.steemmonsters.io",
+  MODERN_API: "https://api2.splinterlands.com",
+};
 
 // Endpoints
 const ENDPOINT = {
-  LEGACY_BATTLE_HISTORY: "/players/history",
+  LEGACY: {
+    BATTLE_HISTORY: `${HOST.LEGACY_API}/players/history`,
+  },
 };
 
 // Battle History
-const BATTLE_HISTORY_LIMIT = 50;
+const BATTLE_HISTORY = {
+  BEFORE_BLOCK: -1,
+  LIMIT: 50,
+  TYPES: "sm_battle,battle",
+};
 
 //
 //
@@ -21,8 +29,6 @@ const BATTLE_HISTORY_LIMIT = 50;
 //
 
 module.exports = {
-  BATTLE_HISTORY_LIMIT,
+  BATTLE_HISTORY,
   ENDPOINT,
-  LEGACY_API_HOST,
-  MODERN_API_HOST,
 };
