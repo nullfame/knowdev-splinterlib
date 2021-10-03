@@ -91,7 +91,27 @@ describe("Battle History API", () => {
       url: ENDPOINT.LEGACY.BATTLE_HISTORY,
     });
   });
-  it.todo("Allows overriding additional parameters");
+  it("Allows overriding additional parameters", async () => {
+    await Splinterlib.battleHistoryApi(TEST.PLAYER, {
+      queryParams: {
+        before_block: TEST.BEFORE_BLOCK,
+        hello: "world",
+      },
+    });
+    expect(mockAxios).toBeCalled();
+    const call = mockAxios.mock.calls[0][0];
+    expect(call).toEqual({
+      method: HTTP.METHOD.GET,
+      params: {
+        before_block: TEST.BEFORE_BLOCK,
+        hello: "world",
+        limit: BATTLE_HISTORY.LIMIT,
+        types: BATTLE_HISTORY.TYPES,
+        username: TEST.PLAYER,
+      },
+      url: ENDPOINT.LEGACY.BATTLE_HISTORY,
+    });
+  });
   it.todo("Returns raw results");
   it.todo("Returns parsed results");
 });
