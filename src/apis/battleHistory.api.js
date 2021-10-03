@@ -16,8 +16,8 @@ const battleHistoryApi = async (
     beforeBlock = BATTLE_HISTORY.BEFORE_BLOCK,
     limit = BATTLE_HISTORY.LIMIT,
     types = BATTLE_HISTORY.TYPES,
-  } = {},
-  additionalParameters = {}
+    queryParams = {},
+  } = {}
 ) => {
   //
   // Local import
@@ -36,7 +36,7 @@ const battleHistoryApi = async (
     limit,
     types,
     username: player,
-    ...additionalParameters,
+    ...queryParams,
   };
   log.debug.var({ battleHistoryApiParams: params });
 
