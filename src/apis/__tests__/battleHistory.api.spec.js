@@ -1,8 +1,10 @@
 const HTTP = require("@knowdev/http");
 const log = require("@knowdev/log");
+const cloneDeep = require("lodash.clonedeep");
 
 const Splinterlib = require("../..");
 const { BATTLE_HISTORY, ENDPOINT } = require("../../util/constants");
+const FIXTURE_BATTLE_HISTORY_RESULTS = require("./fixtures/battleHistory.results.json");
 
 Splinterlib.setLogger(log);
 
@@ -40,7 +42,7 @@ jest.mock("axios", () => ({
 const DEFAULT_ENV = process.env;
 beforeEach(() => {
   process.env = { ...process.env };
-  mockAxiosResponseData = [];
+  mockAxiosResponseData = cloneDeep(FIXTURE_BATTLE_HISTORY_RESULTS);
 });
 afterEach(() => {
   process.env = DEFAULT_ENV;
@@ -112,6 +114,24 @@ describe("Battle History API", () => {
       url: ENDPOINT.LEGACY.BATTLE_HISTORY,
     });
   });
-  it.todo("Returns raw results");
-  it.todo("Returns parsed results");
+  it("Returns parsed results by default", async () => {
+    const response = await Splinterlib.battleHistoryApi(TEST.PLAYER);
+    response.forEach((battle) => {
+      expect(battle.created_date).toBeDate();
+      expect(battle.data).toBeObject();
+      expect(battle.result).toBeObject();
+    });
+    expect(response).toBeArray();
+  });
+  it("Returns raw results when passed", async () => {
+    const response = await Splinterlib.battleHistoryApi(TEST.PLAYER, {
+      raw: true,
+    });
+    response.forEach((battle) => {
+      expect(battle.created_date).toBeString();
+      expect(battle.data).toBeString();
+      expect(battle.result).toBeString();
+    });
+    expect(response).toBeArray();
+  });
 });

@@ -1,6 +1,7 @@
 const validate = require("@knowdev/arguments");
 const HTTP = require("@knowdev/http");
 const axios = require("axios").default;
+const cloneDeep = require("lodash.clonedeep");
 
 const { configuration } = require("../core");
 const { BATTLE_HISTORY, ENDPOINT } = require("../util/constants");
@@ -15,6 +16,7 @@ const battleHistoryApi = async (
   {
     beforeBlock = BATTLE_HISTORY.BEFORE_BLOCK,
     limit = BATTLE_HISTORY.LIMIT,
+    raw = false,
     types = BATTLE_HISTORY.TYPES,
     queryParams = {},
   } = {}
@@ -54,12 +56,20 @@ const battleHistoryApi = async (
 
   //
   // Postprocess
-
-  // TODO: parse results
+  const returnResults = cloneDeep(response.data);
+  if (!raw) {
+    returnResults.forEach((battle) => {
+      /* eslint-disable no-param-reassign */
+      battle.created_date = new Date(battle.created_date);
+      battle.data = JSON.parse(battle.data);
+      battle.result = JSON.parse(battle.result);
+      /* eslint-enable no-param-reassign */
+    });
+  }
 
   //
   // Return
-  return response.data;
+  return returnResults;
 };
 
 //
