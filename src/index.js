@@ -1,5 +1,6 @@
 const { Splinterlib } = require("./core");
 const battleHistoryApi = require("./apis/battleHistory.api");
+const battleHistoryAsyncIterator = require("./functions/battleHistoryAsyncIterator.function");
 
 //
 //
@@ -7,6 +8,7 @@ const battleHistoryApi = require("./apis/battleHistory.api");
 //
 
 Splinterlib.battleHistoryApi = battleHistoryApi;
+Splinterlib.battleHistoryAsyncIterator = battleHistoryAsyncIterator;
 
 //
 //
