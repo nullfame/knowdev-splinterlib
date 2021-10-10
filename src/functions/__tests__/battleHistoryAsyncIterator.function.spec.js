@@ -20,13 +20,16 @@ const MOCK = {
 
 const mockBattleHistoryApi = jest.fn();
 let mockBattleHistoryApiResponse;
-jest.mock("../../apis/battleHistory.api", () => (...params) => {
-  mockBattleHistoryApi(...params);
-  return mockBattleHistoryApiResponse;
-});
+jest.mock(
+  "../../apis/battleHistory.api",
+  () =>
+    (...params) =>
+      mockBattleHistoryApi(...params)
+);
 
 beforeEach(() => {
   mockBattleHistoryApiResponse = cloneDeep(battleHistoryResults);
+  mockBattleHistoryApi.mockReturnValue(mockBattleHistoryApiResponse);
 });
 afterEach(() => {
   jest.clearAllMocks();
