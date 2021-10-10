@@ -50,6 +50,21 @@ afterEach(() => {
 
 //
 //
+// Helpers
+//
+
+// TODO: make @knowdev/exercise
+async function exerciseAsyncIterator(iterator) {
+  let count = 0;
+  // eslint-disable-next-line no-unused-vars
+  for await (const result of iterator) {
+    count += 1;
+  }
+  return { count };
+}
+
+//
+//
 // Run tests
 //
 
@@ -76,11 +91,7 @@ describe("BattleHistoryAsyncIterator function", () => {
   });
   it("Allows max responses to be specified", async () => {
     const response = await battleHistoryAsyncIterator(MOCK.PLAYER, { max: 4 });
-    let count = 0;
-    for await (const result of response) {
-      expect(result).toBeObject();
-      count += 1;
-    }
+    const { count } = await exerciseAsyncIterator(response);
     expect(count).toBe(4);
   });
   it("Calls API multiple times to get results (1 over length)", async () => {
@@ -89,11 +100,7 @@ describe("BattleHistoryAsyncIterator function", () => {
     const response = await battleHistoryAsyncIterator(MOCK.PLAYER, {
       max: resultMax,
     });
-    let count = 0;
-    for await (const result of response) {
-      expect(result).toBeObject();
-      count += 1;
-    }
+    const { count } = await exerciseAsyncIterator(response);
     expect(mockBattleHistoryApi).toBeCalledTimes(callCount);
     expect(count).toBe(resultMax);
   });
@@ -103,11 +110,7 @@ describe("BattleHistoryAsyncIterator function", () => {
     const response = await battleHistoryAsyncIterator(MOCK.PLAYER, {
       max: resultMax,
     });
-    let count = 0;
-    for await (const result of response) {
-      expect(result).toBeObject();
-      count += 1;
-    }
+    const { count } = await exerciseAsyncIterator(response);
     expect(mockBattleHistoryApi).toBeCalledTimes(callCount);
     expect(count).toBe(resultMax);
   });
@@ -125,11 +128,7 @@ describe("BattleHistoryAsyncIterator function", () => {
     const response = await battleHistoryAsyncIterator(MOCK.PLAYER, {
       max: resultMax,
     });
-    let count = 0;
-    for await (const result of response) {
-      expect(result).toBeObject();
-      count += 1;
-    }
+    const { count } = await exerciseAsyncIterator(response);
     expect(mockBattleHistoryApi).toBeCalledTimes(callsWithData + 1);
     expect(count).toBe(actualResults);
   });
@@ -144,11 +143,7 @@ describe("BattleHistoryAsyncIterator function", () => {
       .mockReturnValueOnce(mockBattleHistoryApiResponse);
 
     const response = await battleHistoryAsyncIterator(MOCK.PLAYER);
-    let count = 0;
-    for await (const result of response) {
-      expect(result).toBeObject();
-      count += 1;
-    }
+    const { count } = await exerciseAsyncIterator(response);
     expect(mockBattleHistoryApi).toBeCalledTimes(callsWithData + 1);
     expect(count).toBe(actualResults);
   });
