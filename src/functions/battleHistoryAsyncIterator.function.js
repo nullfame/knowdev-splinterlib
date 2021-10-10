@@ -37,8 +37,6 @@ const battleHistoryAsyncIterator = async (player, { max = undefined } = {}) => {
     beforeBlock: undefined,
     callIndex: undefined,
     callResults: undefined,
-    i: 0,
-    items: ["one", "two", "three"],
     requestLimit: undefined,
     resultsIndex: 0,
     resultsMax: max,
