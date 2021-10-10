@@ -201,7 +201,32 @@ describe("BattleHistoryAsyncIterator function", () => {
     expect(mockBattleHistoryApi).toBeCalledTimes(2);
     expect(mockBattleHistoryApi.mock.calls).toBeArrayOfSize(2);
   });
-  it.todo("Allows a request limit to be specified");
+  it("Allows a request limit to be specified", async () => {
+    const response = await battleHistoryAsyncIterator(MOCK.PLAYER, {
+      max: 4,
+      limit: 2,
+    });
+    await exerciseAsyncIterator(response);
+    expect(mockBattleHistoryApi).toBeCalledTimes(1);
+    expect(mockBattleHistoryApi.mock.calls).toBeArrayOfSize(1);
+    expect(mockBattleHistoryApi.mock.calls[0]).toIncludeSameMembers([
+      MOCK.PLAYER,
+      { beforeBlock: undefined, limit: 2 },
+    ]);
+  });
+  it("Allows before block to be passed for results", async () => {
+    const response = await battleHistoryAsyncIterator(MOCK.PLAYER, {
+      max: 4,
+      beforeBlock: 12,
+    });
+    await exerciseAsyncIterator(response);
+    expect(mockBattleHistoryApi).toBeCalledTimes(1);
+    expect(mockBattleHistoryApi.mock.calls).toBeArrayOfSize(1);
+    expect(mockBattleHistoryApi.mock.calls[0]).toIncludeSameMembers([
+      MOCK.PLAYER,
+      { beforeBlock: 12 },
+    ]);
+  });
   it.todo("Allows a constructor to be passed for results");
   it.todo("Allows a filter to be passed");
 });

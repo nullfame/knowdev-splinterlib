@@ -19,7 +19,10 @@ const battleHistoryApi = require("../apis/battleHistory.api");
 // Main
 //
 
-const battleHistoryAsyncIterator = async (player, { max = undefined } = {}) => {
+const battleHistoryAsyncIterator = async (
+  player,
+  { beforeBlock = undefined, limit = undefined, max = undefined } = {}
+) => {
   const { log } = configuration;
 
   //
@@ -35,7 +38,9 @@ const battleHistoryAsyncIterator = async (player, { max = undefined } = {}) => {
   //
   const asyncIterator = {
     beforeBlock: undefined,
+    beforeBlockParam: beforeBlock,
     callIndex: undefined,
+    callLimit: limit,
     callResults: undefined,
     lastBeforeBlock: undefined,
     requestLimit: undefined,
@@ -60,9 +65,16 @@ const battleHistoryAsyncIterator = async (player, { max = undefined } = {}) => {
         this.callResults = [];
         return;
       }
+      // If this is the very first call, use beforeBlockParam
+      if (this.lastBeforeBlock === undefined) {
+        this.beforeBlock = this.beforeBlockParam;
+      }
       // Get new results
       this.callResults = cloneDeep(
-        await battleHistoryApi(player, { beforeBlock: this.beforeBlock })
+        await battleHistoryApi(player, {
+          beforeBlock: this.beforeBlock,
+          limit: this.callLimit,
+        })
       );
     },
 
