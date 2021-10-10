@@ -83,6 +83,34 @@ describe("BattleHistoryAsyncIterator function", () => {
     }
     expect(count).toBe(4);
   });
+  it("Calls API multiple times to get results (1 over length)", async () => {
+    const callCount = 2;
+    const resultMax = mockBattleHistoryApiResponse.length * (callCount - 1) + 1;
+    const response = await battleHistoryAsyncIterator(MOCK.PLAYER, {
+      max: resultMax,
+    });
+    let count = 0;
+    for await (const result of response) {
+      expect(result).toBeObject();
+      count += 1;
+    }
+    expect(mockBattleHistoryApi).toBeCalledTimes(callCount);
+    expect(count).toBe(resultMax);
+  });
+  it("Calls API multiple times to get results (exact length)", async () => {
+    const callCount = 3;
+    const resultMax = mockBattleHistoryApiResponse.length * callCount;
+    const response = await battleHistoryAsyncIterator(MOCK.PLAYER, {
+      max: resultMax,
+    });
+    let count = 0;
+    for await (const result of response) {
+      expect(result).toBeObject();
+      count += 1;
+    }
+    expect(mockBattleHistoryApi).toBeCalledTimes(callCount);
+    expect(count).toBe(resultMax);
+  });
   it.todo("Continues until there are no results if no max is specified");
   it.todo("Allows a request limit to be specified");
   it.todo("Allows a constructor to be passed for results");

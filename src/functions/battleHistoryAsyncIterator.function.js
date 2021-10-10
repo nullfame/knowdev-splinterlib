@@ -49,15 +49,17 @@ const battleHistoryAsyncIterator = async (player, { max = undefined } = {}) => {
 
     // asyncIterator Interface, called to pull the next result
     async next() {
-      // Do we need to call more results?
-      if (!this.callResults) await this.callBattleResultsApi();
-
       // Have we hit the max number of results to return?
       if (
         this.resultsIndex >= this.resultsMax &&
         this.resultsMax !== undefined
       ) {
         return { done: true };
+      }
+
+      // Do we need to call more results?
+      if (!this.callResults || this.callIndex >= this.callResults.length) {
+        await this.callBattleResultsApi();
       }
 
       // Still here?  Okay, let's build a response
