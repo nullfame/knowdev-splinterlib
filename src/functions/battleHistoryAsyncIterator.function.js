@@ -37,6 +37,7 @@ const battleHistoryAsyncIterator = async (player, { max = undefined } = {}) => {
     beforeBlock: undefined,
     callIndex: undefined,
     callResults: undefined,
+    lastBeforeBlock: undefined,
     requestLimit: undefined,
     resultsIndex: 0,
     resultsMax: max,
@@ -45,10 +46,19 @@ const battleHistoryAsyncIterator = async (player, { max = undefined } = {}) => {
       // Reset call index
       this.callIndex = 0;
       // Reset before block
+      this.lastBeforeBlock = this.beforeBlock;
       this.beforeBlock = undefined;
       if (this.callResults && this.callResults.length > 0) {
         this.beforeBlock =
           this.callResults[this.callResults.length - 1].block_num - 1;
+      }
+      // If beforeBlock is not lower than before, we are probably in an infinite loop
+      if (
+        this.lastBeforeBlock !== undefined &&
+        this.lastBeforeBlock <= this.beforeBlock
+      ) {
+        this.callResults = [];
+        return;
       }
       // Get new results
       this.callResults = cloneDeep(

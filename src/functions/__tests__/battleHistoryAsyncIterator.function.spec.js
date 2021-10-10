@@ -107,6 +107,19 @@ describe("BattleHistoryAsyncIterator function", () => {
   it("Calls API multiple times to get results (exact length)", async () => {
     const callCount = 3;
     const resultMax = mockBattleHistoryApiResponse.length * callCount;
+
+    // Subsequent responses must be different to not trigger infinite loop prevention
+    const secondResponse = cloneDeep(mockBattleHistoryApiResponse);
+    secondResponse[secondResponse.length - 1].block_num -= 1234;
+    const thirdResponse = cloneDeep(secondResponse);
+    thirdResponse[thirdResponse.length - 1].block_num -= 1234;
+
+    // Only return results twice
+    mockBattleHistoryApi
+      .mockReturnValueOnce(mockBattleHistoryApiResponse)
+      .mockReturnValueOnce(secondResponse)
+      .mockReturnValueOnce(thirdResponse);
+
     const response = await battleHistoryAsyncIterator(MOCK.PLAYER, {
       max: resultMax,
     });
@@ -119,11 +132,15 @@ describe("BattleHistoryAsyncIterator function", () => {
     const actualResults = mockBattleHistoryApiResponse.length * callsWithData;
     const resultMax = actualResults * 2;
 
+    // Second response must be different to not trigger infinite loop prevention
+    const secondResponse = cloneDeep(mockBattleHistoryApiResponse);
+    secondResponse[secondResponse.length - 1].block_num -= 1234;
+
     // Only return results twice
     mockBattleHistoryApi
       .mockReturnValue([])
       .mockReturnValueOnce(mockBattleHistoryApiResponse)
-      .mockReturnValueOnce(mockBattleHistoryApiResponse);
+      .mockReturnValueOnce(secondResponse);
 
     const response = await battleHistoryAsyncIterator(MOCK.PLAYER, {
       max: resultMax,
@@ -136,11 +153,15 @@ describe("BattleHistoryAsyncIterator function", () => {
     const callsWithData = 2;
     const actualResults = mockBattleHistoryApiResponse.length * callsWithData;
 
+    // Second response must be different to not trigger infinite loop prevention
+    const secondResponse = cloneDeep(mockBattleHistoryApiResponse);
+    secondResponse[secondResponse.length - 1].block_num -= 1234;
+
     // Only return results twice
     mockBattleHistoryApi
       .mockReturnValue([])
       .mockReturnValueOnce(mockBattleHistoryApiResponse)
-      .mockReturnValueOnce(mockBattleHistoryApiResponse);
+      .mockReturnValueOnce(secondResponse);
 
     const response = await battleHistoryAsyncIterator(MOCK.PLAYER);
     const { count } = await exerciseAsyncIterator(response);
@@ -169,9 +190,17 @@ describe("BattleHistoryAsyncIterator function", () => {
       },
     ]);
   });
-  it.todo(
-    "Makes sure last block is lower than previous call (prevents infinite loops)"
-  );
+  it("Makes sure last block is lower than previous call (prevents infinite loops)", async () => {
+    // This test works because the mock returns the same results over and over again
+    const callCount = 3;
+    const resultMax = mockBattleHistoryApiResponse.length * callCount;
+    const response = await battleHistoryAsyncIterator(MOCK.PLAYER, {
+      max: resultMax,
+    });
+    await exerciseAsyncIterator(response);
+    expect(mockBattleHistoryApi).toBeCalledTimes(2);
+    expect(mockBattleHistoryApi.mock.calls).toBeArrayOfSize(2);
+  });
   it.todo("Allows a request limit to be specified");
   it.todo("Allows a constructor to be passed for results");
   it.todo("Allows a filter to be passed");
