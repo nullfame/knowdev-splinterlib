@@ -62,6 +62,11 @@ const battleHistoryAsyncIterator = async (player, { max = undefined } = {}) => {
         await this.callBattleResultsApi();
       }
 
+      // Are we out of results?
+      if (!this.callResults || this.callResults.length === 0) {
+        return { done: true };
+      }
+
       // Still here?  Okay, let's build a response
       const response = {};
       // Value is next thing in the results

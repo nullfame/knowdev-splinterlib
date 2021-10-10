@@ -111,7 +111,48 @@ describe("BattleHistoryAsyncIterator function", () => {
     expect(mockBattleHistoryApi).toBeCalledTimes(callCount);
     expect(count).toBe(resultMax);
   });
-  it.todo("Continues until there are no results if no max is specified");
+  it("Stops when there are no results if reached before max", async () => {
+    const callsWithData = 2;
+    const actualResults = mockBattleHistoryApiResponse.length * callsWithData;
+    const resultMax = actualResults * 2;
+
+    // Only return results twice
+    mockBattleHistoryApi
+      .mockReturnValue([])
+      .mockReturnValueOnce(mockBattleHistoryApiResponse)
+      .mockReturnValueOnce(mockBattleHistoryApiResponse);
+
+    const response = await battleHistoryAsyncIterator(MOCK.PLAYER, {
+      max: resultMax,
+    });
+    let count = 0;
+    for await (const result of response) {
+      expect(result).toBeObject();
+      count += 1;
+    }
+    expect(mockBattleHistoryApi).toBeCalledTimes(callsWithData + 1);
+    expect(count).toBe(actualResults);
+  });
+  it("Continues until there are no results if no max is specified", async () => {
+    const callsWithData = 2;
+    const actualResults = mockBattleHistoryApiResponse.length * callsWithData;
+
+    // Only return results twice
+    mockBattleHistoryApi
+      .mockReturnValue([])
+      .mockReturnValueOnce(mockBattleHistoryApiResponse)
+      .mockReturnValueOnce(mockBattleHistoryApiResponse);
+
+    const response = await battleHistoryAsyncIterator(MOCK.PLAYER);
+    let count = 0;
+    for await (const result of response) {
+      expect(result).toBeObject();
+      count += 1;
+    }
+    expect(mockBattleHistoryApi).toBeCalledTimes(callsWithData + 1);
+    expect(count).toBe(actualResults);
+  });
+  it.todo("Increments last block as calls increase");
   it.todo("Allows a request limit to be specified");
   it.todo("Allows a constructor to be passed for results");
   it.todo("Allows a filter to be passed");
