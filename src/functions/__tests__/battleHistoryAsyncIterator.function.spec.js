@@ -147,7 +147,31 @@ describe("BattleHistoryAsyncIterator function", () => {
     expect(mockBattleHistoryApi).toBeCalledTimes(callsWithData + 1);
     expect(count).toBe(actualResults);
   });
-  it.todo("Increments last block as calls increase");
+  it("Decrements last block as calls increase", async () => {
+    const callCount = 2;
+    const resultMax = mockBattleHistoryApiResponse.length * callCount;
+    const response = await battleHistoryAsyncIterator(MOCK.PLAYER, {
+      max: resultMax,
+    });
+    await exerciseAsyncIterator(response);
+    expect(mockBattleHistoryApi).toBeCalledTimes(callCount);
+    expect(mockBattleHistoryApi.mock.calls).toBeArrayOfSize(2);
+    expect(mockBattleHistoryApi.mock.calls[0]).toIncludeSameMembers([
+      MOCK.PLAYER,
+      { beforeBlock: undefined },
+    ]);
+    expect(mockBattleHistoryApi.mock.calls[1]).toIncludeSameMembers([
+      MOCK.PLAYER,
+      {
+        beforeBlock:
+          mockBattleHistoryApiResponse[mockBattleHistoryApiResponse.length - 1]
+            .block_num - 1,
+      },
+    ]);
+  });
+  it.todo(
+    "Makes sure last block is lower than previous call (prevents infinite loops)"
+  );
   it.todo("Allows a request limit to be specified");
   it.todo("Allows a constructor to be passed for results");
   it.todo("Allows a filter to be passed");

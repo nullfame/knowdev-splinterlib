@@ -34,6 +34,7 @@ const battleHistoryAsyncIterator = async (player, { max = undefined } = {}) => {
   // Create Iterator
   //
   const asyncIterator = {
+    beforeBlock: undefined,
     callIndex: undefined,
     callResults: undefined,
     i: 0,
@@ -43,8 +44,18 @@ const battleHistoryAsyncIterator = async (player, { max = undefined } = {}) => {
     resultsMax: max,
 
     async callBattleResultsApi() {
+      // Reset call index
       this.callIndex = 0;
-      this.callResults = cloneDeep(await battleHistoryApi(player));
+      // Reset before block
+      this.beforeBlock = undefined;
+      if (this.callResults && this.callResults.length > 0) {
+        this.beforeBlock =
+          this.callResults[this.callResults.length - 1].block_num - 1;
+      }
+      // Get new results
+      this.callResults = cloneDeep(
+        await battleHistoryApi(player, { beforeBlock: this.beforeBlock })
+      );
     },
 
     // asyncIterator Interface, called to pull the next result
