@@ -66,7 +66,10 @@ const battleHistoryAsyncIterator = async (
         return;
       }
       // If this is the very first call, use beforeBlockParam
-      if (this.lastBeforeBlock === undefined) {
+      if (
+        this.beforeBlock === undefined &&
+        this.lastBeforeBlock === undefined
+      ) {
         this.beforeBlock = this.beforeBlockParam;
       }
       // Get new results
