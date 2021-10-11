@@ -118,9 +118,8 @@ const battleHistoryAsyncIterator = async (
         // eslint-disable-next-line new-cap
         response.value = new this._resultsClass(response.value);
       }
-      // Increment our indexes
+      // Increment our index
       this._callIndex += 1;
-      this._resultsIndex += 1;
       // Assume we are not done
       response.done = false;
       // If there is a maximum number of result, have we hit it?
@@ -133,17 +132,23 @@ const battleHistoryAsyncIterator = async (
 
     async next() {
       // If we're not using a filter, return
-      if (this._resultsFilter === undefined) return this._next();
+      if (this._resultsFilter === undefined) {
+        const response = await this._next();
+        this._resultsIndex += 1;
+        return response;
+      }
 
       // If we're using a filter, iterate until we have a result
       let result = await this._next();
       while (result.done === false) {
         if (this._resultsFilter(result.value)) {
+          this._resultsIndex += 1;
           return result;
         }
         // eslint-disable-next-line no-await-in-loop
         result = await this._next();
       }
+      this._resultsIndex += 1;
       return result;
     },
   };

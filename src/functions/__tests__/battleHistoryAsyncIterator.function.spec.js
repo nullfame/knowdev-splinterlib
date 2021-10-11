@@ -239,7 +239,8 @@ describe("BattleHistoryAsyncIterator function", () => {
       max: 4,
       resultsClass,
     });
-    await exerciseAsyncIterator(response);
+    const { count } = await exerciseAsyncIterator(response);
+    expect(count).toBe(4);
     expect(classConstructor).toBeCalledTimes(4);
   });
   it("Allows a filter to be passed (zero when always false)", async () => {
@@ -263,6 +264,7 @@ describe("BattleHistoryAsyncIterator function", () => {
   it("Allows a filter to be passed (half when half true)", async () => {
     const filter = jest.fn();
     filter
+      .mockReturnValue(true)
       .mockReturnValueOnce(false)
       .mockReturnValueOnce(true)
       .mockReturnValueOnce(false)
@@ -272,7 +274,11 @@ describe("BattleHistoryAsyncIterator function", () => {
       max: 4,
       filter,
     });
-    const { count } = await exerciseAsyncIterator(response);
-    expect(count).toBe(2);
+    const { count, results } = await exerciseAsyncIterator(response);
+    expect(count).toBe(4);
+    expect(results[0].block_num).toBe(battleHistoryResults[1].block_num);
+    expect(results[1].block_num).toBe(battleHistoryResults[3].block_num);
+    expect(results[2].block_num).toBe(battleHistoryResults[4].block_num);
+    expect(results[3].block_num).toBe(battleHistoryResults[5].block_num);
   });
 });
