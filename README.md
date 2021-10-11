@@ -47,7 +47,23 @@ More convenient set of functions that interact with the underlying API
 
 #### Async Battle History Iterator
 
-N/A
+``` javascript
+/** Returns asyncIterator (see below) */
+const battleHistory = await Splinterlib.battleHistoryAsyncIterator(
+  player,         // Required string
+  {
+    beforeBlock,  // Optional integer, starting Hive block to retrieve backwards from (defaults to current block)
+    filter,       // Optional function returning true or false as to whether to include this battle in results
+    limit,        // Optional integer, number of results per API call
+    max,          // Optional integer, maximum results to return
+    resultsClass, // Optional class, used to instantiate each result
+  }
+)
+
+for await (const battle of battleHistory) {
+  //
+}
+```
 
 ### Direct API 🌐
 
@@ -75,11 +91,12 @@ const results = await Splinterlib.battleHistoryApi(
 
 ## 📝 Changelog
 
+* 0.2.0: Battle history iterator
 * 0.1.0: Battle history API
 
 ## 🛣 Roadmap
 
-* 0.2.0: Battle history iterator
+* Battle result class
 
 ### Wishlist 🌠
 
