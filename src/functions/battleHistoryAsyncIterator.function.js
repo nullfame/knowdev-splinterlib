@@ -21,7 +21,12 @@ const battleHistoryApi = require("../apis/battleHistory.api");
 
 const battleHistoryAsyncIterator = async (
   player,
-  { beforeBlock = undefined, limit = undefined, max = undefined } = {}
+  {
+    beforeBlock = undefined,
+    limit = undefined,
+    max = undefined,
+    resultsClass = undefined,
+  } = {}
 ) => {
   const { log } = configuration;
 
@@ -44,6 +49,7 @@ const battleHistoryAsyncIterator = async (
     callResults: undefined,
     lastBeforeBlock: undefined,
     requestLimit: undefined,
+    resultsClass,
     resultsIndex: 0,
     resultsMax: max,
 
@@ -105,6 +111,11 @@ const battleHistoryAsyncIterator = async (
       const response = {};
       // Value is next thing in the results
       response.value = this.callResults[this.callIndex];
+      // Are we using a class wrapper?
+      if (this.resultsClass) {
+        // eslint-disable-next-line new-cap
+        response.value = new this.resultsClass(response.value);
+      }
       // Increment our indexes
       this.callIndex += 1;
       this.resultsIndex += 1;

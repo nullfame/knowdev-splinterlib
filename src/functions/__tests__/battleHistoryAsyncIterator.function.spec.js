@@ -227,6 +227,19 @@ describe("BattleHistoryAsyncIterator function", () => {
       { beforeBlock: 12 },
     ]);
   });
-  it.todo("Allows a constructor to be passed for results");
+  it("Allows a constructor to be passed for results", async () => {
+    const classConstructor = jest.fn();
+    const resultsClass = class {
+      constructor(...params) {
+        classConstructor(...params);
+      }
+    };
+    const response = await battleHistoryAsyncIterator(MOCK.PLAYER, {
+      max: 4,
+      resultsClass,
+    });
+    await exerciseAsyncIterator(response);
+    expect(classConstructor).toBeCalledTimes(4);
+  });
   it.todo("Allows a filter to be passed");
 });
