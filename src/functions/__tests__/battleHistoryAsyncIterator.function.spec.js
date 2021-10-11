@@ -241,5 +241,37 @@ describe("BattleHistoryAsyncIterator function", () => {
     await exerciseAsyncIterator(response);
     expect(classConstructor).toBeCalledTimes(4);
   });
-  it.todo("Allows a filter to be passed");
+  it("Allows a filter to be passed (zero when always false)", async () => {
+    const filter = jest.fn(() => false);
+    const response = await battleHistoryAsyncIterator(MOCK.PLAYER, {
+      max: 4,
+      filter,
+    });
+    const { count } = await exerciseAsyncIterator(response);
+    expect(count).toBe(0);
+  });
+  it("Allows a filter to be passed (all when always true)", async () => {
+    const filter = jest.fn(() => true);
+    const response = await battleHistoryAsyncIterator(MOCK.PLAYER, {
+      max: 4,
+      filter,
+    });
+    const { count } = await exerciseAsyncIterator(response);
+    expect(count).toBe(4);
+  });
+  it("Allows a filter to be passed (half when half true)", async () => {
+    const filter = jest.fn();
+    filter
+      .mockReturnValueOnce(false)
+      .mockReturnValueOnce(true)
+      .mockReturnValueOnce(false)
+      .mockReturnValueOnce(true);
+
+    const response = await battleHistoryAsyncIterator(MOCK.PLAYER, {
+      max: 4,
+      filter,
+    });
+    const { count } = await exerciseAsyncIterator(response);
+    expect(count).toBe(2);
+  });
 });

@@ -23,6 +23,7 @@ const battleHistoryAsyncIterator = async (
   player,
   {
     beforeBlock = undefined,
+    filter = undefined,
     limit = undefined,
     max = undefined,
     resultsClass = undefined,
@@ -51,6 +52,7 @@ const battleHistoryAsyncIterator = async (
     _lastBeforeBlock: undefined,
     _requestLimit: undefined,
     _resultsClass: resultsClass,
+    _resultsFilter: filter,
     _resultsIndex: 0,
     _resultsMax: max,
 
@@ -130,7 +132,19 @@ const battleHistoryAsyncIterator = async (
     }, // async _next()
 
     async next() {
-      return this._next();
+      // If we're not using a filter, return
+      if (this._resultsFilter === undefined) return this._next();
+
+      // If we're using a filter, iterate until we have a result
+      let result = await this._next();
+      while (result.done === false) {
+        if (this._resultsFilter(result.value)) {
+          return result;
+        }
+        // eslint-disable-next-line no-await-in-loop
+        result = await this._next();
+      }
+      return result;
     },
   };
   /* eslint-enable no-underscore-dangle */
