@@ -56,11 +56,12 @@ afterEach(() => {
 // TODO: make @knowdev/exercise
 async function exerciseAsyncIterator(iterator) {
   let count = 0;
-  // eslint-disable-next-line no-unused-vars
+  const results = [];
   for await (const result of iterator) {
     count += 1;
+    results.push(result);
   }
-  return { count };
+  return { count, results };
 }
 
 //
