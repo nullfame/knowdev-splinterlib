@@ -41,94 +41,99 @@ const battleHistoryAsyncIterator = async (
   //
   // Create Iterator
   //
+  /* eslint-disable no-underscore-dangle */
   const asyncIterator = {
-    beforeBlock: undefined,
-    beforeBlockParam: beforeBlock,
-    callIndex: undefined,
-    callLimit: limit,
-    callResults: undefined,
-    lastBeforeBlock: undefined,
-    requestLimit: undefined,
-    resultsClass,
-    resultsIndex: 0,
-    resultsMax: max,
+    _beforeBlock: undefined,
+    _beforeBlockParam: beforeBlock,
+    _callIndex: undefined,
+    _callLimit: limit,
+    _callResults: undefined,
+    _lastBeforeBlock: undefined,
+    _requestLimit: undefined,
+    _resultsClass: resultsClass,
+    _resultsIndex: 0,
+    _resultsMax: max,
 
-    async callBattleResultsApi() {
+    async _callBattleResultsApi() {
       // Reset call index
-      this.callIndex = 0;
+      this._callIndex = 0;
       // Reset before block
-      this.lastBeforeBlock = this.beforeBlock;
-      this.beforeBlock = undefined;
-      if (this.callResults && this.callResults.length > 0) {
-        this.beforeBlock =
-          this.callResults[this.callResults.length - 1].block_num - 1;
+      this._lastBeforeBlock = this._beforeBlock;
+      this._beforeBlock = undefined;
+      if (this._callResults && this._callResults.length > 0) {
+        this._beforeBlock =
+          this._callResults[this._callResults.length - 1].block_num - 1;
       }
       // If beforeBlock is not lower than before, we are probably in an infinite loop
       if (
-        this.lastBeforeBlock !== undefined &&
-        this.lastBeforeBlock <= this.beforeBlock
+        this._lastBeforeBlock !== undefined &&
+        this._lastBeforeBlock <= this._beforeBlock
       ) {
-        this.callResults = [];
+        this._callResults = [];
         return;
       }
       // If this is the very first call, use beforeBlockParam
       if (
-        this.beforeBlock === undefined &&
-        this.lastBeforeBlock === undefined
+        this._beforeBlock === undefined &&
+        this._lastBeforeBlock === undefined
       ) {
-        this.beforeBlock = this.beforeBlockParam;
+        this._beforeBlock = this._beforeBlockParam;
       }
       // Get new results
-      this.callResults = cloneDeep(
+      this._callResults = cloneDeep(
         await battleHistoryApi(player, {
-          beforeBlock: this.beforeBlock,
-          limit: this.callLimit,
+          beforeBlock: this._beforeBlock,
+          limit: this._callLimit,
         })
       );
     },
 
-    // asyncIterator Interface, called to pull the next result
-    async next() {
+    async _next() {
       // Have we hit the max number of results to return?
       if (
-        this.resultsIndex >= this.resultsMax &&
-        this.resultsMax !== undefined
+        this._resultsIndex >= this._resultsMax &&
+        this._resultsMax !== undefined
       ) {
         return { done: true };
       }
 
       // Do we need to call more results?
-      if (!this.callResults || this.callIndex >= this.callResults.length) {
-        await this.callBattleResultsApi();
+      if (!this._callResults || this._callIndex >= this._callResults.length) {
+        await this._callBattleResultsApi();
       }
 
       // Are we out of results?
-      if (!this.callResults || this.callResults.length === 0) {
+      if (!this._callResults || this._callResults.length === 0) {
         return { done: true };
       }
 
       // Still here?  Okay, let's build a response
       const response = {};
       // Value is next thing in the results
-      response.value = this.callResults[this.callIndex];
+      response.value = this._callResults[this._callIndex];
       // Are we using a class wrapper?
-      if (this.resultsClass) {
+      if (this._resultsClass) {
         // eslint-disable-next-line new-cap
-        response.value = new this.resultsClass(response.value);
+        response.value = new this._resultsClass(response.value);
       }
       // Increment our indexes
-      this.callIndex += 1;
-      this.resultsIndex += 1;
+      this._callIndex += 1;
+      this._resultsIndex += 1;
       // Assume we are not done
       response.done = false;
       // If there is a maximum number of result, have we hit it?
-      if (this.resultsMax !== undefined) {
-        response.done = this.resultsIndex > this.resultsMax;
+      if (this._resultsMax !== undefined) {
+        response.done = this._resultsIndex > this._resultsMax;
       }
       // Return!
       return response;
-    }, // async next()
+    }, // async _next()
+
+    async next() {
+      return this._next();
+    },
   };
+  /* eslint-enable no-underscore-dangle */
 
   //
   //
