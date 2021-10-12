@@ -14,6 +14,7 @@
     "test:coverage": "jest --coverage src/",
     "test:spec:battleHistory.api": "jest ./src/apis/__tests__/battleHistory.api.spec.js",
     "test:spec:battleHistoryAsyncIterator.function": "jest ./src/functions/__tests__/battleHistoryAsyncIterator.function.spec.js",
+    "test:spec:cardUniverse.collection": "jest ./src/collections/__tests__/cardUniverse.collection.spec.js",
     "test:spec:index": "jest ./src/__tests__/index.spec.js",
     "postversion": "npm publish"
   },
