@@ -3,6 +3,32 @@
 // Constants
 //
 
+// Cards
+const CARD = {
+  EDITION: {
+    ALPHA: 0,
+    BETA: 1,
+    PROMO: 2,
+    REWARD: 3,
+    UNTAMED: 4,
+    DICE: 5,
+    GLADIUS: 6,
+    0: "ALPHA",
+    1: "BETA",
+    2: "PROMO",
+    3: "REWARD",
+    4: "UNTAMED",
+    5: "DICE",
+    6: "GLADIUS",
+  },
+  RARITY: {
+    COMMON: 1,
+    RARE: 2,
+    EPIC: 3,
+    LEGENDARY: 4,
+  },
+};
+
 // Hosts
 const HOST = {
   LEGACY_API: "https://api.steemmonsters.io",
@@ -30,5 +56,6 @@ const BATTLE_HISTORY = {
 
 module.exports = {
   BATTLE_HISTORY,
+  CARD,
   ENDPOINT,
 };
