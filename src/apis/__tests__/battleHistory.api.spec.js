@@ -4,7 +4,7 @@ const cloneDeep = require("lodash.clonedeep");
 
 const Splinterlib = require("../..");
 const { BATTLE_HISTORY, ENDPOINT } = require("../../util/constants");
-const FIXTURE_BATTLE_HISTORY_RESULTS = require("./fixtures/battleHistory.results.json");
+const FIXTURE_BATTLE_HISTORY_RESULTS = require("../../__tests__/fixtures/battleHistory.results.json");
 
 Splinterlib.setLogger(log);
 
