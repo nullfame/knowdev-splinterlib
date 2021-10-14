@@ -3,6 +3,15 @@
 // Constants
 //
 
+// Battle
+const BATTLE = {
+  TYPE: {
+    TOURNAMENT: "Tournament",
+    BRAWL: "Brawl",
+    Ranked: "Ranked",
+  },
+};
+
 // Cards
 const CARD = {
   EDITION: {
@@ -80,6 +89,7 @@ const MAP = {
 //
 
 module.exports = {
+  BATTLE,
   BATTLE_HISTORY,
   CARD,
   ENDPOINT,
