@@ -13,13 +13,6 @@ const CARD = {
     UNTAMED: 4,
     DICE: 5,
     GLADIUS: 6,
-    0: "ALPHA",
-    1: "BETA",
-    2: "PROMO",
-    3: "REWARD",
-    4: "UNTAMED",
-    5: "DICE",
-    6: "GLADIUS",
   },
   RARITY: {
     COMMON: 1,
@@ -51,6 +44,38 @@ const BATTLE_HISTORY = {
 
 //
 //
+// Maps
+//
+
+const MAP = {
+  COLOR: {
+    Black: "Death",
+    Blue: "Water",
+    Gold: "Dragon",
+    Green: "Earth",
+    Red: "Fire",
+    White: "Life",
+  },
+  EDITION: {
+    0: "Alpha",
+    "0,1": "Alpha/Beta",
+    1: "Beta",
+    2: "Promo",
+    3: "Reward",
+    4: "Untamed",
+    5: "Dice",
+    6: "Gladius",
+  },
+  RARITY_LEVEL: {
+    1: "Common",
+    2: "Rare",
+    3: "Epic",
+    4: "Legendary",
+  },
+};
+
+//
+//
 // Export
 //
 
@@ -58,4 +83,5 @@ module.exports = {
   BATTLE_HISTORY,
   CARD,
   ENDPOINT,
+  MAP,
 };
