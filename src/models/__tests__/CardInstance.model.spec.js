@@ -54,4 +54,9 @@ describe("CardInstance model", () => {
     expect(card.id).toBe(TEST.SUMMONER.card_detail_id);
     expect(card.template).toBeObject();
   });
+  it("Merges template data", () => {
+    const card = new CardInstance(TEST.SUMMONER);
+    expect(card).toBeObject();
+    expect(card.name).toBeString();
+  });
 });

@@ -26,6 +26,11 @@ class CardInstance {
     this.level = level;
     this.edition = edition;
     this.template = CardTemplate.get(this.id);
+
+    // Merge template where there are no conflicts
+    Object.keys(this.template).forEach((key) => {
+      if (this[key] === undefined) this[key] = this.template[key];
+    });
   }
 }
 
