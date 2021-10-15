@@ -2,7 +2,7 @@
 const cloneDeep = require("lodash.clonedeep");
 
 const battleHistoryAsyncIterator = require("../battleHistoryAsyncIterator.function");
-const battleHistoryResults = require("../../apis/__tests__/fixtures/battleHistory.results.json");
+const battleHistoryResults = require("../../__tests__/fixtures/battleHistory.results.json");
 
 //
 //
