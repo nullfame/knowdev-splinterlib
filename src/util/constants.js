@@ -46,6 +46,16 @@ const CARD = {
     RARE: 2,
     EPIC: 3,
     LEGENDARY: 4,
+    KEY: {
+      Common: "COMMON",
+      Rare: "RARE",
+      Epic: "EPIC",
+      Legendary: "LEGENDARY",
+    },
+  },
+  TYPE: {
+    MONSTER: "Monster",
+    SUMMONER: "Summoner",
   },
 };
 
@@ -58,12 +68,112 @@ const ENDPOINT = {
 
 // League
 const LEAGUE = {
+  // Keys
   NOVICE: "Novice",
   BRONZE: "Bronze",
   SILVER: "Silver",
   GOLD: "Gold",
   DIAMOND: "Diamond",
   CHAMPION: "Champion",
+  // Maps
+  SUMMONER_CAPS: {
+    NOVICE: {
+      COMMON: 1,
+      RARE: 1,
+      EPIC: 1,
+      LEGENDARY: 1,
+    },
+    BRONZE: {
+      COMMON: 3,
+      RARE: 2,
+      EPIC: 2,
+      LEGENDARY: 1,
+    },
+    SILVER: {
+      COMMON: 5,
+      RARE: 4,
+      EPIC: 3,
+      LEGENDARY: 2,
+    },
+    GOLD: {
+      COMMON: 8,
+      RARE: 6,
+      EPIC: 5,
+      LEGENDARY: 3,
+    },
+    DIAMOND: {
+      COMMON: 10,
+      RARE: 8,
+      EPIC: 6,
+      LEGENDARY: 4,
+    },
+    CHAMPION: {
+      COMMON: 10,
+      RARE: 8,
+      EPIC: 6,
+      LEGENDARY: 4,
+    },
+    COMMON: {
+      NOVICE: 1,
+      BRONZE: 3,
+      SILVER: 5,
+      GOLD: 8,
+      DIAMOND: 10,
+      CHAMPION: 10,
+    },
+    RARE: {
+      NOVICE: 1,
+      BRONZE: 2,
+      SILVER: 4,
+      GOLD: 6,
+      DIAMOND: 8,
+      CHAMPION: 8,
+    },
+    EPIC: {
+      NOVICE: 1,
+      BRONZE: 2,
+      SILVER: 3,
+      GOLD: 5,
+      DIAMOND: 6,
+      CHAMPION: 6,
+    },
+    LEGENDARY: {
+      NOVICE: 1,
+      BRONZE: 1,
+      SILVER: 2,
+      GOLD: 3,
+      DIAMOND: 4,
+      CHAMPION: 4,
+    },
+  },
+  KEY: {
+    Novice: "NOVICE",
+    Bronze: "BRONZE",
+    Silver: "SILVER",
+    Gold: "GOLD",
+    Diamond: "DIAMOND",
+    Champion: "CHAMPION",
+  },
+  LEVEL: {
+    0: "Novice",
+    1: "Bronze",
+    2: "Silver",
+    3: "Gold",
+    4: "Diamond",
+    5: "Champion",
+    NOVICE: 0,
+    BRONZE: 1,
+    SILVER: 2,
+    GOLD: 3,
+    DIAMOND: 4,
+    CHAMPION: 5,
+    Novice: 0,
+    Bronze: 1,
+    Silver: 2,
+    Gold: 3,
+    Diamond: 4,
+    Champion: 5,
+  },
 };
 
 //
