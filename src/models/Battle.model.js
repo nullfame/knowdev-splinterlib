@@ -14,6 +14,7 @@ const { BATTLE, LEAGUE, MAP } = require("../util/constants");
 //
 
 function getTeam(team) {
+  if (team === null) return null;
   const returnTeam = {};
   returnTeam.rating = team.rating;
   returnTeam.color = team.color;
@@ -54,18 +55,21 @@ class Battle {
       this.rulesets = result.ruleset.split("|");
       this.type = result.match_type;
       if (result.details.is_brawl) this.type = BATTLE.TYPE.BRAWL;
+      if (result.details.type === BATTLE.TYPE.SURRENDER) this.surrender = true;
       const player1 = result.players[0].name;
       const player2 = result.players[1].name;
       this.players = [player1, player2];
       this.teams = {};
       this.teams[player1] = getTeam(result.details.team1);
       this.teams[player2] = getTeam(result.details.team2);
-      this.league = this.teams[player1].summoner.league;
-      if (
-        LEAGUE.LEVEL[this.teams[player2].summoner.league] >
-        LEAGUE.LEVEL[this.teams[player1].summoner.league]
-      ) {
-        this.league = this.teams[player2].summoner.league;
+      if (this.teams[player1] !== null && this.teams[player2] !== null) {
+        this.league = this.teams[player1].summoner.league;
+        if (
+          LEAGUE.LEVEL[this.teams[player2].summoner.league] >
+          LEAGUE.LEVEL[this.teams[player1].summoner.league]
+        ) {
+          this.league = this.teams[player2].summoner.league;
+        }
       }
     }
   }

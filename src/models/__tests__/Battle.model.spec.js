@@ -80,4 +80,8 @@ describe("Battle model", () => {
     expect(battle.teams[player2].monsters).toBeArray();
     expect(battle.teams[player2].monsters[0]).toBeObject();
   });
+  it("Handles surrender", () => {
+    const battle = new Battle(FIXTURE_BATTLE_HISTORY_RESULTS[4]);
+    expect(battle.surrender).toBeTrue();
+  });
 });
