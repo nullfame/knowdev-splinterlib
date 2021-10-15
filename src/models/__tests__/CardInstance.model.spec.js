@@ -1,4 +1,5 @@
 const CardInstance = require("../CardInstance.model");
+const { LEAGUE } = require("../../util/constants");
 
 //
 //
@@ -58,5 +59,11 @@ describe("CardInstance model", () => {
     const card = new CardInstance(TEST.SUMMONER);
     expect(card).toBeObject();
     expect(card.name).toBeString();
+  });
+  describe("Determine card instance leagues", () => {
+    it("Determines card instance league", () => {
+      const card = new CardInstance(TEST.SUMMONER);
+      expect(card.league).toBe(LEAGUE.SILVER);
+    });
   });
 });

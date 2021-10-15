@@ -1,4 +1,5 @@
 const CardTemplate = require("./CardTemplate.model");
+const { CARD, LEAGUE } = require("../util/constants");
 
 //
 //
@@ -9,6 +10,18 @@ const CardTemplate = require("./CardTemplate.model");
 //
 // Helper Functions
 //
+
+function determineSummonerLeague(card) {
+  const rarityKey = CARD.RARITY.KEY[card.rarity];
+  const league = Object.keys(LEAGUE.SUMMONER_CAPS[rarityKey]).reduce(
+    (lastLeague, leagueCandidate) => {
+      if (card.level >= LEAGUE.SUMMONER_CAPS[rarityKey][leagueCandidate])
+        return leagueCandidate;
+      return lastLeague;
+    }
+  );
+  return LEAGUE[league];
+}
 
 //
 //
@@ -31,6 +44,11 @@ class CardInstance {
     Object.keys(this.template).forEach((key) => {
       if (this[key] === undefined) this[key] = this.template[key];
     });
+
+    // Get summoner league
+    if (this.type === CARD.TYPE.SUMMONER) {
+      this.league = determineSummonerLeague(this);
+    }
   }
 }
 
