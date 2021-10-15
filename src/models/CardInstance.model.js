@@ -20,6 +20,8 @@ function determineSummonerLeague(card) {
       return lastLeague;
     }
   );
+  // Always return "Diamond" over "Champion"
+  if (LEAGUE[league] === LEAGUE.CHAMPION) return LEAGUE.DIAMOND;
   return LEAGUE[league];
 }
 
