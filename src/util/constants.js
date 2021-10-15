@@ -56,6 +56,16 @@ const ENDPOINT = {
   },
 };
 
+// League
+const LEAGUE = {
+  NOVICE: "Novice",
+  BRONZE: "Bronze",
+  SILVER: "Silver",
+  GOLD: "Gold",
+  DIAMOND: "Diamond",
+  CHAMPION: "Champion",
+};
+
 //
 //
 // Maps
@@ -98,5 +108,6 @@ module.exports = {
   BATTLE_HISTORY,
   CARD,
   ENDPOINT,
+  LEAGUE,
   MAP,
 };
