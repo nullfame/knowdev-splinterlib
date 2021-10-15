@@ -13,6 +13,7 @@
     "test:clean": "rimraf coverage/",
     "test:coverage": "jest --coverage src/",
     "test:spec:Battle.model": "jest ./src/models/__tests__/Battle.model.spec.js",
+    "test:spec:CardInstance.model": "jest ./src/models/__tests__/CardInstance.model.spec.js",
     "test:spec:CardTemplate.model": "jest ./src/models/__tests__/CardTemplate.model.spec.js",
     "test:spec:battleHistory.api": "jest ./src/apis/__tests__/battleHistory.api.spec.js",
     "test:spec:battleHistoryAsyncIterator.function": "jest ./src/functions/__tests__/battleHistoryAsyncIterator.function.spec.js",
