@@ -1,3 +1,4 @@
+const cards = require("../collections/cardUniverse.collection");
 const { MAP } = require("../util/constants");
 
 //
@@ -30,6 +31,13 @@ class CardTemplate {
     this.edition = MAP.EDITION[cardDetails.editions];
   }
 }
+
+//
+//
+// Static
+//
+
+CardTemplate.get = (id) => new CardTemplate(cards.get(id));
 
 //
 //
