@@ -38,4 +38,5 @@ describe("SiteSettings collection", () => {
   it.todo(
     "Will pull from live data based on env (SPLINTERLIB_FETCH_SETTINGS=true)"
   );
+  it.todo("Will pull from live data based on env (SPLINTERLIB_FETCH=true)");
 });

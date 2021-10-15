@@ -52,4 +52,5 @@ describe("Battle model", () => {
     expect(battle.teams).toBeObject();
     // console.log("battle :>> ", battle);
   });
+  it.todo("Determines the battle league");
 });
