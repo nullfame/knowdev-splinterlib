@@ -17,9 +17,9 @@ const HOST = {
 // Battle
 const BATTLE = {
   TYPE: {
-    TOURNAMENT: "Tournament",
     BRAWL: "Brawl",
     Ranked: "Ranked",
+    TOURNAMENT: "Tournament",
   },
 };
 
