@@ -1,5 +1,8 @@
+const cloneDeep = require("lodash.clonedeep");
+
 const Battle = require("../Battle.model");
 const FIXTURE_BATTLE_HISTORY_RESULTS = require("../../__tests__/fixtures/battleHistory.results.json");
+const { LEAGUE } = require("../../util/constants");
 
 //
 //
@@ -52,5 +55,11 @@ describe("Battle model", () => {
     expect(battle.teams).toBeObject();
     // console.log("battle :>> ", battle);
   });
-  it.todo("Determines the battle league");
+  it("Determines the battle league", () => {
+    const results = cloneDeep(FIXTURE_BATTLE_HISTORY_RESULTS[0]);
+    results.result = JSON.parse(results.result);
+    results.result.details.team2.summoner.level = 4;
+    const battle = new Battle(results);
+    expect(battle.league).toBe(LEAGUE.DIAMOND);
+  });
 });

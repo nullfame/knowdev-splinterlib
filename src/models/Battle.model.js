@@ -1,6 +1,7 @@
 const cloneDeep = require("lodash.clonedeep");
 
-const { BATTLE } = require("../util/constants");
+const CardInstance = require("./CardInstance.model");
+const { BATTLE, LEAGUE } = require("../util/constants");
 
 //
 //
@@ -45,8 +46,12 @@ class Battle {
       this.players = [player1, player2];
       this.teams = {};
       this.teams[player1] = {};
-      // this.teams[player1].summoner = ;
-      // console.log("team summoner :>> ", result.details.team1.summoner);
+      const summoner1 = new CardInstance(result.details.team1.summoner);
+      const summoner2 = new CardInstance(result.details.team2.summoner);
+      this.league = summoner1.league;
+      if (LEAGUE.LEVEL[summoner2.league] > LEAGUE.LEVEL[summoner1.league]) {
+        this.league = summoner2.league;
+      }
     }
   }
 }
