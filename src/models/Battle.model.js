@@ -60,11 +60,12 @@ class Battle {
       this.teams = {};
       this.teams[player1] = getTeam(result.details.team1);
       this.teams[player2] = getTeam(result.details.team2);
-      const summoner1 = new CardInstance(result.details.team1.summoner);
-      const summoner2 = new CardInstance(result.details.team2.summoner);
-      this.league = summoner1.league;
-      if (LEAGUE.LEVEL[summoner2.league] > LEAGUE.LEVEL[summoner1.league]) {
-        this.league = summoner2.league;
+      this.league = this.teams[player1].summoner.league;
+      if (
+        LEAGUE.LEVEL[this.teams[player2].summoner.league] >
+        LEAGUE.LEVEL[this.teams[player1].summoner.league]
+      ) {
+        this.league = this.teams[player2].summoner.league;
       }
     }
   }
