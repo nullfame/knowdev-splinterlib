@@ -53,7 +53,6 @@ describe("Battle model", () => {
     expect(battle.type).toBeString();
     expect(battle.players).toBeArray();
     expect(battle.teams).toBeObject();
-    // console.log("battle :>> ", battle);
   });
   it("Determines the battle league", () => {
     const results = cloneDeep(FIXTURE_BATTLE_HISTORY_RESULTS[0]);
@@ -61,5 +60,24 @@ describe("Battle model", () => {
     results.result.details.team2.summoner.level = 4;
     const battle = new Battle(results);
     expect(battle.league).toBe(LEAGUE.DIAMOND);
+  });
+  it("Instantiates both teams", () => {
+    const battle = new Battle(FIXTURE_BATTLE_HISTORY_RESULTS[1]);
+    const player1 = battle.players[0];
+    const player2 = battle.players[1];
+    expect(battle.teams[player1]).toBeObject();
+    expect(battle.teams[player1].rating).toBeNumber();
+    expect(battle.teams[player1].color).toBeString();
+    expect(battle.teams[player1].splinter).toBeString();
+    expect(battle.teams[player1].summoner).toBeObject();
+    expect(battle.teams[player1].monsters).toBeArray();
+    expect(battle.teams[player1].monsters[0]).toBeObject();
+    expect(battle.teams[player2]).toBeObject();
+    expect(battle.teams[player2].rating).toBeNumber();
+    expect(battle.teams[player2].color).toBeString();
+    expect(battle.teams[player2].splinter).toBeString();
+    expect(battle.teams[player2].summoner).toBeObject();
+    expect(battle.teams[player2].monsters).toBeArray();
+    expect(battle.teams[player2].monsters[0]).toBeObject();
   });
 });
