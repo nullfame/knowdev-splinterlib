@@ -276,9 +276,9 @@ describe("BattleHistoryAsyncIterator function", () => {
     });
     const { count, results } = await exerciseAsyncIterator(response);
     expect(count).toBe(4);
-    expect(results[0].block_num).toBe(battleHistoryResults[1].block_num);
-    expect(results[1].block_num).toBe(battleHistoryResults[3].block_num);
-    expect(results[2].block_num).toBe(battleHistoryResults[4].block_num);
-    expect(results[3].block_num).toBe(battleHistoryResults[5].block_num);
+    expect(results[0].block).toBe(battleHistoryResults[1].block_num);
+    expect(results[1].block).toBe(battleHistoryResults[3].block_num);
+    expect(results[2].block).toBe(battleHistoryResults[4].block_num);
+    expect(results[3].block).toBe(battleHistoryResults[5].block_num);
   });
 });

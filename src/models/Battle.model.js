@@ -36,6 +36,7 @@ class Battle {
   constructor(battle = {}) {
     // eslint-disable-next-line no-underscore-dangle
     this._raw = cloneDeep(battle);
+    this.block = battle.block_num;
     if (battle.created_date !== undefined) {
       if (typeof battle.created_date === "string") {
         this.createdDate = new Date(battle.created_date);
