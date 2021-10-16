@@ -214,6 +214,22 @@ const RULESET = {
   WEAK_MAGIC: "Weak Magic",
 };
 
+// Splinters
+const SPLINTER = {
+  DEATH: "Death",
+  DRAGON: "Dragon",
+  EARTH: "Earth",
+  FIRE: "Fire",
+  LIFE: "Life",
+  WATER: "Water",
+  BLACK: "Death",
+  BLUE: "Water",
+  GOLD: "Dragon",
+  GREEN: "Earth",
+  RED: "Fire",
+  WHITE: "Life",
+};
+
 //
 //
 // Maps
@@ -259,4 +275,5 @@ module.exports = {
   LEAGUE,
   MAP,
   RULESET,
+  SPLINTER,
 };
