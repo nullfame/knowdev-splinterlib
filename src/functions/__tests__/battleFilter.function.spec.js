@@ -119,4 +119,35 @@ describe("BattleFilter function", () => {
     });
     expect(filter(battle)).toBeTrue();
   });
+  it("Filters on loser (return true)", () => {
+    const battle = new Battle(FIXTURE_BATTLE_HISTORY_RESULTS[0]);
+    battle.loser = "taco";
+    const filter = battleFilter({
+      loser: "taco",
+    });
+    expect(filter(battle)).toBeTrue();
+  });
+  it("Filters on loser (return false)", () => {
+    const battle = new Battle(FIXTURE_BATTLE_HISTORY_RESULTS[0]);
+    const filter = battleFilter({
+      loser: "taco",
+    });
+    expect(filter(battle)).toBeFalse();
+  });
+  it("Filters on winner (return true)", () => {
+    const battle = new Battle(FIXTURE_BATTLE_HISTORY_RESULTS[0]);
+    battle.winner = "taco";
+    const filter = battleFilter({
+      winner: "taco",
+    });
+    expect(filter(battle)).toBeTrue();
+  });
+  it("Filters on winner (return false)", () => {
+    const battle = new Battle(FIXTURE_BATTLE_HISTORY_RESULTS[0]);
+    const filter = battleFilter({
+      winner: "taco",
+    });
+    expect(filter(battle)).toBeFalse();
+  });
+  it.todo("Filters on battle formats");
 });

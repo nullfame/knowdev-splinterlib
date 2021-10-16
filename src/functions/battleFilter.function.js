@@ -16,11 +16,13 @@
 const battleFilter =
   ({
     league = undefined,
+    loser = undefined,
     mana = undefined,
     manaPlusMinus = 0,
     rulesets = [],
     rulesetsAnd = false,
     splinters = [],
+    winner = undefined,
   } = {}) =>
   (battle) => {
     // Filter league
@@ -68,6 +70,10 @@ const battleFilter =
       });
       if (!matchedBoth) return false;
     }
+
+    // Winner and Loser
+    if (loser && battle.loser !== loser) return false;
+    if (winner && battle.winner !== winner) return false;
 
     // Return true by default
     return true;
