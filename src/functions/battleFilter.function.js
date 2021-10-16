@@ -15,6 +15,7 @@
 
 const battleFilter =
   ({
+    ignoreSurrender = true,
     league = undefined,
     loser = undefined,
     mana = undefined,
@@ -74,6 +75,9 @@ const battleFilter =
     // Winner and Loser
     if (loser && battle.loser !== loser) return false;
     if (winner && battle.winner !== winner) return false;
+
+    // Ignore surrender
+    if (ignoreSurrender && battle.surrender) return false;
 
     // Return true by default
     return true;

@@ -149,5 +149,20 @@ describe("BattleFilter function", () => {
     });
     expect(filter(battle)).toBeFalse();
   });
+  it("Ignores surrenders by default (true)", () => {
+    const battle = new Battle(FIXTURE_BATTLE_HISTORY_RESULTS[0]);
+    const filter = battleFilter();
+    expect(filter(battle)).toBeTrue();
+  });
+  it("Ignores surrenders by default (false)", () => {
+    const battle = new Battle(FIXTURE_BATTLE_HISTORY_RESULTS[4]);
+    const filter = battleFilter();
+    expect(filter(battle)).toBeFalse();
+  });
+  it("Includes surrenders when set (true)", () => {
+    const battle = new Battle(FIXTURE_BATTLE_HISTORY_RESULTS[4]);
+    const filter = battleFilter({ ignoreSurrender: false });
+    expect(filter(battle)).toBeTrue();
+  });
   it.todo("Filters on battle formats");
 });
