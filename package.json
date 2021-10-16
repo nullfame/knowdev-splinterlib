@@ -29,7 +29,8 @@
     "@knowdev/jest": "^0.2.1",
     "@knowdev/log": "^0.2.1",
     "axios": "^0.22.0",
-    "lodash.clonedeep": "^4.5.0"
+    "lodash.clonedeep": "^4.5.0",
+    "luxon": "^2.0.2"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
