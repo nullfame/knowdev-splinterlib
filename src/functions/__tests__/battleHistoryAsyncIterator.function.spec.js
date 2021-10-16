@@ -281,4 +281,16 @@ describe("BattleHistoryAsyncIterator function", () => {
     expect(results[2].block).toBe(battleHistoryResults[4].block_num);
     expect(results[3].block).toBe(battleHistoryResults[5].block_num);
   });
+  it("Can return raw results", async () => {
+    const response = await battleHistoryAsyncIterator(MOCK.PLAYER, {
+      max: 4,
+      raw: true,
+    });
+    const { count, results } = await exerciseAsyncIterator(response);
+    expect(count).toBe(4);
+    expect(results[0].block_num).toBe(battleHistoryResults[0].block_num);
+    expect(results[1].block_num).toBe(battleHistoryResults[1].block_num);
+    expect(results[2].block_num).toBe(battleHistoryResults[2].block_num);
+    expect(results[3].block_num).toBe(battleHistoryResults[3].block_num);
+  });
 });

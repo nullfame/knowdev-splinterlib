@@ -3,6 +3,7 @@ const cloneDeep = require("lodash.clonedeep");
 
 const { configuration } = require("../core");
 const battleHistoryApi = require("../apis/battleHistory.api");
+const Battle = require("../models/Battle.model");
 
 //
 //
@@ -26,7 +27,8 @@ const battleHistoryAsyncIterator = async (
     filter = undefined,
     limit = undefined,
     max = undefined,
-    resultsClass = undefined,
+    raw = false,
+    resultsClass = Battle,
   } = {}
 ) => {
   const { log } = configuration;
@@ -50,6 +52,7 @@ const battleHistoryAsyncIterator = async (
     _callLimit: limit,
     _callResults: undefined,
     _lastBeforeBlock: undefined,
+    _raw: raw,
     _requestLimit: undefined,
     _resultsClass: resultsClass,
     _resultsFilter: filter,
@@ -114,7 +117,7 @@ const battleHistoryAsyncIterator = async (
       // Value is next thing in the results
       response.value = this._callResults[this._callIndex];
       // Are we using a class wrapper?
-      if (this._resultsClass) {
+      if (!this._raw) {
         // eslint-disable-next-line new-cap
         response.value = new this._resultsClass(response.value);
       }
