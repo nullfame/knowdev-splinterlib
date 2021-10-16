@@ -35,6 +35,17 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
+// Return null, which disables the comparison
+jest.mock("luxon", () => ({
+  DateTime: {
+    now: () => ({
+      minus: () => ({
+        toJSDate: () => null,
+      }),
+    }),
+  },
+}));
+
 //
 //
 // Mock environment
@@ -289,5 +300,14 @@ describe("BattleHistoryAsyncIterator function", () => {
     expect(results[1].block_num).toBe(battleHistoryResults[1].block_num);
     expect(results[2].block_num).toBe(battleHistoryResults[2].block_num);
     expect(results[3].block_num).toBe(battleHistoryResults[3].block_num);
+  });
+  it("Stops querying old events", async () => {
+    // If today is passed, none of the events pass
+    const response = await battleHistoryAsyncIterator(MOCK.PLAYER, {
+      afterDate: new Date(),
+    });
+    const { count } = await exerciseAsyncIterator(response);
+    expect(count).toBe(0);
+    expect(mockBattleHistoryApi).toBeCalledTimes(1);
   });
 });

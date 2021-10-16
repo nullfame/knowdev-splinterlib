@@ -1,5 +1,6 @@
 const validate = require("@knowdev/arguments");
 const cloneDeep = require("lodash.clonedeep");
+const { DateTime } = require("luxon");
 
 const { configuration } = require("../core");
 const battleHistoryApi = require("../apis/battleHistory.api");
@@ -23,6 +24,7 @@ const Battle = require("../models/Battle.model");
 const battleHistoryAsyncIterator = async (
   player,
   {
+    afterDate = DateTime.now().minus({ days: 3 }).toJSDate(),
     beforeBlock = undefined,
     filter = undefined,
     limit = undefined,
@@ -109,6 +111,14 @@ const battleHistoryAsyncIterator = async (
 
       // Are we out of results?
       if (!this._callResults || this._callResults.length === 0) {
+        return { done: true };
+      }
+
+      // If this result is before the after date, we are done
+      const resultDate = new Date(
+        this._callResults[this._callIndex].created_date
+      );
+      if (afterDate !== null && resultDate < afterDate) {
         return { done: true };
       }
 
