@@ -177,6 +177,43 @@ const LEAGUE = {
   },
 };
 
+// Ruleset
+const RULESET = {
+  AIM_TRUE: "Aim True",
+  ARMORED_UP: "Armored Up",
+  BACK_TO_BASICS: "Back to Basics",
+  BROKEN_ARROWS: "Broken Arrows",
+  CLOSE_RANGE: "Close Range",
+  EARTHQUAKE: "Earthquake",
+  EQUAL_OPPORTUNITY: "Equal Opportunity",
+  EQUALIZER: "Equalizer",
+  EVEN_STEVENS: "Even Stevens",
+  EXPLOSIVE_WEAPONRY: "Explosive Weaponry",
+  FOG_OF_WAR: "Fog of War",
+  HEALED_OUT: "Healed Out",
+  HEAVY_HITTERS: "Heavy Hitters",
+  HOLY_PROTECTION: "Holy Protection",
+  KEEP_YOUR_DISTANCE: "Keep Your Distance",
+  LITTLE_LEAGUE: "Little League",
+  LOST_LEGENDARIES: "Lost Legendaries",
+  LOST_MAGIC: "Lost Magic",
+  MELEE_MAYHEM: "Melee Mayhem",
+  NOXIOUS_FUMES: "Noxious Fumes",
+  ODD_ONES_OUT: "Odd Ones Out",
+  REVERSE_SPEED: "Reverse Speed",
+  RISE_OF_THE_COMMONS: "Rise of the Commons",
+  SILENCED_SUMMONERS: "Silenced Summoners",
+  SPREADING_FURY: "Spreading Fury",
+  STAMPEDE: "Stampede",
+  STANDARD: "Standard",
+  SUPER_SNEAK: "Super Sneak",
+  TAKING_SIDES: "Taking Sides",
+  TARGET_PRACTICE: "Target Practice",
+  UNPROTECTED: "Unprotected",
+  UP_CLOSE_AND_PERSONAL: "Up Close & Personal",
+  WEAK_MAGIC: "Weak Magic",
+};
+
 //
 //
 // Maps
@@ -221,4 +258,5 @@ module.exports = {
   ENDPOINT,
   LEAGUE,
   MAP,
+  RULESET,
 };
