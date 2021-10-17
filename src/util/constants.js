@@ -61,11 +61,19 @@ const CARD = {
     },
   },
   RARITY: {
-    COMMON: 1,
-    RARE: 2,
-    EPIC: 3,
-    LEGENDARY: 4,
+    COMMON: "Common",
+    RARE: "Rare",
+    EPIC: "Epic",
+    LEGENDARY: "Legendary",
+    1: "Common",
+    2: "Rare",
+    3: "Epic",
+    4: "Legendary",
     KEY: {
+      1: "COMMON",
+      2: "RARE",
+      3: "EPIC",
+      4: "LEGENDARY",
       Common: "COMMON",
       Rare: "RARE",
       Epic: "EPIC",
@@ -256,20 +264,6 @@ const SPLINTER = {
 
 //
 //
-// Maps
-//
-
-const MAP = {
-  RARITY_LEVEL: {
-    1: "Common",
-    2: "Rare",
-    3: "Epic",
-    4: "Legendary",
-  },
-};
-
-//
-//
 // Export
 //
 
@@ -279,7 +273,6 @@ module.exports = {
   CARD,
   ENDPOINT,
   LEAGUE,
-  MAP,
   RULESET,
   SPLINTER,
 };
