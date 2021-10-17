@@ -11,6 +11,15 @@ const HOST = {
 
 //
 //
+// Core Constants
+//
+
+const CORE = {
+  MODERN_FLOOR: 135,
+};
+
+//
+//
 // Exported Constants
 //
 
@@ -271,6 +280,7 @@ module.exports = {
   BATTLE,
   BATTLE_HISTORY,
   CARD,
+  CORE,
   ENDPOINT,
   LEAGUE,
   RULESET,
