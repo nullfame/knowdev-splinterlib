@@ -25,6 +25,17 @@ const CORE = {
 
 // Battle
 const BATTLE = {
+  FORMAT: {
+    ALPHA: "Alpha Edition Only",
+    ALPHA_BETA: "Alpha, Beta Allowed",
+    GOLD: "Gold Cards Only",
+    MODERN: "Modern Format",
+    NO_LEGENDARIES: "No Legendaries",
+    NO_LEGENDARY_SUMMONERS: "No Legendary Summoners",
+    UNTAMED: "Untamed Edition Only",
+    UNTAMED_DICE: "Untamed, Dice Allowed",
+    WILD: "Wild Format",
+  },
   TYPE: {
     BRAWL: "Brawl",
     Ranked: "Ranked",
