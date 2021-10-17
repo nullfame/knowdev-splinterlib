@@ -1,5 +1,5 @@
 const cards = require("../collections/cardUniverse.collection");
-const { MAP } = require("../util/constants");
+const { CARD, MAP } = require("../util/constants");
 
 //
 //
@@ -28,7 +28,7 @@ class CardTemplate {
     this.rarityLevel = cardDetails.rarity;
     this.rarity = MAP.RARITY_LEVEL[cardDetails.rarity];
     this.isStarter = cardDetails.is_starter;
-    this.edition = MAP.EDITION[cardDetails.editions];
+    this.edition = CARD.EDITION.LEVEL[cardDetails.editions];
   }
 }
 
