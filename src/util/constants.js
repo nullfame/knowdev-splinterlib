@@ -15,6 +15,11 @@ const HOST = {
 //
 
 const CORE = {
+  ENDPOINT: {
+    LEGACY: {
+      BATTLE_HISTORY: `${HOST.LEGACY_API}/players/history`,
+    },
+  },
   MODERN_FLOOR: 135,
 };
 
@@ -103,13 +108,6 @@ const CARD = {
   TYPE: {
     MONSTER: "Monster",
     SUMMONER: "Summoner",
-  },
-};
-
-// Endpoints
-const ENDPOINT = {
-  LEGACY: {
-    BATTLE_HISTORY: `${HOST.LEGACY_API}/players/history`,
   },
 };
 
@@ -292,7 +290,6 @@ module.exports = {
   BATTLE_HISTORY,
   CARD,
   CORE,
-  ENDPOINT,
   LEAGUE,
   RULESET,
   SPLINTER,

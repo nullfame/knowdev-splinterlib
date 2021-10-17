@@ -4,7 +4,7 @@ const axios = require("axios").default;
 const cloneDeep = require("lodash.clonedeep");
 
 const { configuration } = require("../core");
-const { BATTLE_HISTORY, ENDPOINT } = require("../util/constants");
+const { BATTLE_HISTORY, CORE } = require("../util/constants");
 
 //
 //
@@ -47,7 +47,7 @@ const battleHistoryApi = async (
   const request = {
     method: HTTP.METHOD.GET,
     params,
-    url: ENDPOINT.LEGACY.BATTLE_HISTORY,
+    url: CORE.ENDPOINT.LEGACY.BATTLE_HISTORY,
   };
 
   //

@@ -3,7 +3,7 @@ const log = require("@knowdev/log");
 const cloneDeep = require("lodash.clonedeep");
 
 const Splinterlib = require("../..");
-const { BATTLE_HISTORY, ENDPOINT } = require("../../util/constants");
+const { BATTLE_HISTORY, CORE } = require("../../util/constants");
 const FIXTURE_BATTLE_HISTORY_RESULTS = require("../../__tests__/fixtures/battleHistory.results.json");
 
 Splinterlib.setLogger(log);
@@ -71,7 +71,7 @@ describe("Battle History API", () => {
         types: BATTLE_HISTORY.TYPES,
         username: TEST.PLAYER,
       },
-      url: ENDPOINT.LEGACY.BATTLE_HISTORY,
+      url: CORE.ENDPOINT.LEGACY.BATTLE_HISTORY,
     });
   });
   it("Allows overriding known parameters", async () => {
@@ -90,7 +90,7 @@ describe("Battle History API", () => {
         types: TEST.TYPES,
         username: TEST.PLAYER,
       },
-      url: ENDPOINT.LEGACY.BATTLE_HISTORY,
+      url: CORE.ENDPOINT.LEGACY.BATTLE_HISTORY,
     });
   });
   it("Allows overriding additional parameters", async () => {
@@ -111,7 +111,7 @@ describe("Battle History API", () => {
         types: BATTLE_HISTORY.TYPES,
         username: TEST.PLAYER,
       },
-      url: ENDPOINT.LEGACY.BATTLE_HISTORY,
+      url: CORE.ENDPOINT.LEGACY.BATTLE_HISTORY,
     });
   });
   it("Returns parsed results by default", async () => {
