@@ -246,6 +246,12 @@ const SPLINTER = {
   GREEN: "Earth",
   RED: "Fire",
   WHITE: "Life",
+  Black: "Death",
+  Blue: "Water",
+  Gold: "Dragon",
+  Green: "Earth",
+  Red: "Fire",
+  White: "Life",
 };
 
 //
@@ -254,14 +260,6 @@ const SPLINTER = {
 //
 
 const MAP = {
-  COLOR: {
-    Black: "Death",
-    Blue: "Water",
-    Gold: "Dragon",
-    Green: "Earth",
-    Red: "Fire",
-    White: "Life",
-  },
   RARITY_LEVEL: {
     1: "Common",
     2: "Rare",

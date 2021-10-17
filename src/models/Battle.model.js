@@ -1,7 +1,7 @@
 const cloneDeep = require("lodash.clonedeep");
 
 const CardInstance = require("./CardInstance.model");
-const { BATTLE, LEAGUE, MAP } = require("../util/constants");
+const { BATTLE, LEAGUE, SPLINTER } = require("../util/constants");
 
 //
 //
@@ -18,7 +18,7 @@ function getTeam(team) {
   const returnTeam = {};
   returnTeam.rating = team.rating;
   returnTeam.color = team.color;
-  returnTeam.splinter = MAP.COLOR[returnTeam.color];
+  returnTeam.splinter = SPLINTER[returnTeam.color];
   returnTeam.summoner = new CardInstance(team.summoner);
   returnTeam.monsters = [];
   team.monsters.forEach((monster) => {

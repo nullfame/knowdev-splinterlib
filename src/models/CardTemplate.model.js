@@ -1,5 +1,5 @@
 const cards = require("../collections/cardUniverse.collection");
-const { CARD, MAP } = require("../util/constants");
+const { CARD, MAP, SPLINTER } = require("../util/constants");
 
 //
 //
@@ -23,7 +23,7 @@ class CardTemplate {
     this.id = cardDetails.id;
     this.name = cardDetails.name;
     this.color = cardDetails.color;
-    this.splinter = MAP.COLOR[cardDetails.color];
+    this.splinter = SPLINTER[cardDetails.color];
     this.type = cardDetails.type;
     this.rarityLevel = cardDetails.rarity;
     this.rarity = MAP.RARITY_LEVEL[cardDetails.rarity];
