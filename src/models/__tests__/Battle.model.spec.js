@@ -2,7 +2,7 @@ const cloneDeep = require("lodash.clonedeep");
 
 const Battle = require("../Battle.model");
 const FIXTURE_BATTLE_HISTORY_RESULTS = require("../../__tests__/fixtures/battleHistory.results.json");
-const { LEAGUE } = require("../../util/constants");
+const { BATTLE, LEAGUE } = require("../../util/constants");
 
 //
 //
@@ -83,5 +83,14 @@ describe("Battle model", () => {
   it("Handles surrender", () => {
     const battle = new Battle(FIXTURE_BATTLE_HISTORY_RESULTS[4]);
     expect(battle.surrender).toBeTrue();
+  });
+  it("Shows eligible formats", () => {
+    const battle = new Battle(FIXTURE_BATTLE_HISTORY_RESULTS[0]);
+    expect(battle.formats).toBeArray();
+    expect(battle.formats).toIncludeSameMembers([
+      BATTLE.FORMAT.MODERN,
+      BATTLE.FORMAT.UNTAMED_DICE,
+      BATTLE.FORMAT.WILD,
+    ]);
   });
 });
