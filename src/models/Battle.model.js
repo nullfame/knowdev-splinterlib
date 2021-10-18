@@ -66,7 +66,6 @@ function getEligibleFormats(teams) {
   teams.forEach((team) => {
     removeIneligibleCardFormats(team.summoner, formats);
     team.monsters.forEach((monster) => {
-      console.log("monster :>> ", monster);
       removeIneligibleCardFormats(monster, formats);
     });
   });
