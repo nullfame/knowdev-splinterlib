@@ -48,7 +48,7 @@ const BATTLE = {
   },
   TYPE: {
     BRAWL: "Brawl",
-    Ranked: "Ranked",
+    RANKED: "Ranked",
     SURRENDER: "Surrender",
     TOURNAMENT: "Tournament",
   },
