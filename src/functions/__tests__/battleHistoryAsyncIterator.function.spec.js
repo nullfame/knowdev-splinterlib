@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 const cloneDeep = require("lodash.clonedeep");
 
+const battleFilter = require("../battleFilter.function");
 const battleHistoryAsyncIterator = require("../battleHistoryAsyncIterator.function");
 const battleHistoryResults = require("../../__tests__/fixtures/battleHistory.results.json");
 
@@ -309,5 +310,16 @@ describe("BattleHistoryAsyncIterator function", () => {
     const { count } = await exerciseAsyncIterator(response);
     expect(count).toBe(0);
     expect(mockBattleHistoryApi).toBeCalledTimes(1);
+  });
+  it("Uses the battle filter", async () => {
+    mockBattleHistoryApi
+      .mockReturnValue([])
+      .mockReturnValueOnce(mockBattleHistoryApiResponse);
+    const filter = battleFilter();
+    const response = await battleHistoryAsyncIterator(MOCK.PLAYER, {
+      filter,
+    });
+    const { count } = await exerciseAsyncIterator(response);
+    expect(count).toBe(11);
   });
 });
