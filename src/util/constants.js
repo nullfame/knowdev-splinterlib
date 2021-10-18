@@ -15,6 +15,11 @@ const HOST = {
 //
 
 const CORE = {
+  BATTLE_HISTORY: {
+    BEFORE_BLOCK: -1,
+    LIMIT: 50,
+    TYPES: "sm_battle,battle",
+  },
   ENDPOINT: {
     LEGACY: {
       BATTLE_HISTORY: `${HOST.LEGACY_API}/players/history`,
@@ -47,13 +52,6 @@ const BATTLE = {
     SURRENDER: "Surrender",
     TOURNAMENT: "Tournament",
   },
-};
-
-// Battle History
-const BATTLE_HISTORY = {
-  BEFORE_BLOCK: -1,
-  LIMIT: 50,
-  TYPES: "sm_battle,battle",
 };
 
 // Cards
@@ -287,7 +285,6 @@ const SPLINTER = {
 
 module.exports = {
   BATTLE,
-  BATTLE_HISTORY,
   CARD,
   CORE,
   LEAGUE,

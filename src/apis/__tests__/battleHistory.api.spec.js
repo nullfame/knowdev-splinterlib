@@ -3,7 +3,7 @@ const log = require("@knowdev/log");
 const cloneDeep = require("lodash.clonedeep");
 
 const Splinterlib = require("../..");
-const { BATTLE_HISTORY, CORE } = require("../../util/constants");
+const { CORE } = require("../../util/constants");
 const FIXTURE_BATTLE_HISTORY_RESULTS = require("../../__tests__/fixtures/battleHistory.results.json");
 
 Splinterlib.setLogger(log);
@@ -66,9 +66,9 @@ describe("Battle History API", () => {
     expect(call).toEqual({
       method: HTTP.METHOD.GET,
       params: {
-        before_block: BATTLE_HISTORY.BEFORE_BLOCK,
-        limit: BATTLE_HISTORY.LIMIT,
-        types: BATTLE_HISTORY.TYPES,
+        before_block: CORE.BATTLE_HISTORY.BEFORE_BLOCK,
+        limit: CORE.BATTLE_HISTORY.LIMIT,
+        types: CORE.BATTLE_HISTORY.TYPES,
         username: TEST.PLAYER,
       },
       url: CORE.ENDPOINT.LEGACY.BATTLE_HISTORY,
@@ -107,8 +107,8 @@ describe("Battle History API", () => {
       params: {
         before_block: TEST.BEFORE_BLOCK,
         hello: "world",
-        limit: BATTLE_HISTORY.LIMIT,
-        types: BATTLE_HISTORY.TYPES,
+        limit: CORE.BATTLE_HISTORY.LIMIT,
+        types: CORE.BATTLE_HISTORY.TYPES,
         username: TEST.PLAYER,
       },
       url: CORE.ENDPOINT.LEGACY.BATTLE_HISTORY,

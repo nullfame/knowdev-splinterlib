@@ -4,7 +4,7 @@ const axios = require("axios").default;
 const cloneDeep = require("lodash.clonedeep");
 
 const { configuration } = require("../core");
-const { BATTLE_HISTORY, CORE } = require("../util/constants");
+const { CORE } = require("../util/constants");
 
 //
 //
@@ -14,10 +14,10 @@ const { BATTLE_HISTORY, CORE } = require("../util/constants");
 const battleHistoryApi = async (
   player,
   {
-    beforeBlock = BATTLE_HISTORY.BEFORE_BLOCK,
-    limit = BATTLE_HISTORY.LIMIT,
+    beforeBlock = CORE.BATTLE_HISTORY.BEFORE_BLOCK,
+    limit = CORE.BATTLE_HISTORY.LIMIT,
     raw = false,
-    types = BATTLE_HISTORY.TYPES,
+    types = CORE.BATTLE_HISTORY.TYPES,
     queryParams = {},
   } = {}
 ) => {
