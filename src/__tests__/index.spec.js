@@ -21,4 +21,9 @@ describe("Splinterlib", () => {
     expect(Splinterlib.CORE).not.toBeObject();
     expect(Splinterlib.CORE).toBeUndefined();
   });
+  it("Exposes functions", () => {
+    expect(Splinterlib.battleFilter).toBeFunction();
+    expect(Splinterlib.battleHistoryApi).toBeFunction();
+    expect(Splinterlib.battleHistoryAsyncIterator).toBeFunction();
+  });
 });
