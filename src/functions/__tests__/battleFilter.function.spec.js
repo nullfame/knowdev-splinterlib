@@ -2,7 +2,7 @@ const battleFilter = require("../battleFilter.function");
 
 const Battle = require("../../models/Battle.model");
 const FIXTURE_BATTLE_HISTORY_RESULTS = require("../../__tests__/fixtures/battleHistory.results.json");
-const { LEAGUE, RULESET, SPLINTER } = require("../../util/constants");
+const { BATTLE, LEAGUE, RULESET, SPLINTER } = require("../../util/constants");
 
 //
 //
@@ -164,5 +164,14 @@ describe("BattleFilter function", () => {
     const filter = battleFilter({ ignoreSurrender: false });
     expect(filter(battle)).toBeTrue();
   });
-  it.todo("Filters on battle formats");
+  it("Filters on battle formats (true)", () => {
+    const battle = new Battle(FIXTURE_BATTLE_HISTORY_RESULTS[0]);
+    const filter = battleFilter({ format: BATTLE.FORMAT.MODERN });
+    expect(filter(battle)).toBeTrue();
+  });
+  it("Filters on battle formats (false)", () => {
+    const battle = new Battle(FIXTURE_BATTLE_HISTORY_RESULTS[0]);
+    const filter = battleFilter({ format: BATTLE.FORMAT.ALPHA });
+    expect(filter(battle)).toBeFalse();
+  });
 });

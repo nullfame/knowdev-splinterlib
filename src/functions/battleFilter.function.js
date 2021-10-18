@@ -15,6 +15,7 @@
 
 const battleFilter =
   ({
+    format = undefined,
     ignoreSurrender = true,
     league = undefined,
     loser = undefined,
@@ -26,6 +27,9 @@ const battleFilter =
     winner = undefined,
   } = {}) =>
   (battle) => {
+    // Format
+    if (format !== undefined && !battle.formats.includes(format)) return false;
+
     // Filter league
     if (league !== undefined) {
       if (battle.league !== league) return false;
