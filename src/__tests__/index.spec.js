@@ -20,6 +20,5 @@ describe("Splinterlib", () => {
   it("Exposes constants but not CORE", () => {
     expect(Splinterlib.CORE).not.toBeObject();
     expect(Splinterlib.CORE).toBeUndefined();
-    console.log("Splinterlib :>> ", Splinterlib);
   });
 });
