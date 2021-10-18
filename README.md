@@ -233,6 +233,8 @@ Each key contains an object with `COMMON`, `RARE`, `EPIC`, and `LEGENDARY`
 
 ## 🛣 Roadmap
 
+* Card images
+  * Crop
 * Battle Summary
   * Mana
   * Rulesets
