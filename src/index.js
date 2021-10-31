@@ -5,6 +5,7 @@ const CONSTANTS = require("./util/constants");
 const battleFilter = require("./functions/battleFilter.function");
 const battleHistoryApi = require("./apis/battleHistory.api");
 const battleHistoryAsyncIterator = require("./functions/battleHistoryAsyncIterator.function");
+const cardDetailsApi = require("./apis/cardDetails.api");
 
 //
 //
@@ -14,6 +15,7 @@ const battleHistoryAsyncIterator = require("./functions/battleHistoryAsyncIterat
 Splinterlib.battleFilter = battleFilter;
 Splinterlib.battleHistoryApi = battleHistoryApi;
 Splinterlib.battleHistoryAsyncIterator = battleHistoryAsyncIterator;
+Splinterlib.cardDetailsApi = cardDetailsApi;
 
 //
 //

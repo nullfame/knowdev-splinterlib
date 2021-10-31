@@ -21,6 +21,7 @@ const CORE = {
     TYPES: "sm_battle,battle",
   },
   ENDPOINT: {
+    CARD_DETAILS: `${HOST.LEGACY_API}/cards/get_details`,
     LEGACY: {
       BATTLE_HISTORY: `${HOST.LEGACY_API}/players/history`,
     },

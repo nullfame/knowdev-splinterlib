@@ -18,6 +18,7 @@
     "test:spec:battleFilter.function": "jest ./src/functions/__tests__/battleFilter.function.spec.js",
     "test:spec:battleHistory.api": "jest ./src/apis/__tests__/battleHistory.api.spec.js",
     "test:spec:battleHistoryAsyncIterator.function": "jest ./src/functions/__tests__/battleHistoryAsyncIterator.function.spec.js",
+    "test:spec:cardDetails.api": "jest ./src/apis/__tests__/cardDetails.api.spec.js",
     "test:spec:cardUniverse.collection": "jest ./src/collections/__tests__/cardUniverse.collection.spec.js",
     "test:spec:index": "jest ./src/__tests__/index.spec.js",
     "test:spec:siteSettings.collection": "jest ./src/collections/__tests__/siteSettings.collection.spec.js",
