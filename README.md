@@ -233,8 +233,17 @@ Each key contains an object with `COMMON`, `RARE`, `EPIC`, and `LEGENDARY`
 
 ## 🛣 Roadmap
 
-* Card images
-  * Crop
+* Card Universe
+  * Refresh
+    * API Call
+  * SPLINTERLIB_FETCH_CARDS
+  * SPLINTERLIB_FETCH
+  * Iterator
+    * Card Filter
+  * Card images
+    * Crop
+* Player collection
+  * Card filter
 * Battle Summary
   * Mana
   * Rulesets
