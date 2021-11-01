@@ -10,6 +10,24 @@ const rawCardArray = require("../../data/cardDetails.json");
 // Helper Functions
 //
 
+function mapCardsByIdFromArray(cardArray) {
+  const newCards = {};
+
+  cardArray.forEach((card) => {
+    // TODO: new CardTemplate(card);
+    newCards[card.id] = card;
+  });
+
+  return newCards;
+}
+
+//
+//
+// Local Variables
+//
+
+let cards;
+
 //
 //
 // Main
@@ -21,15 +39,7 @@ class Cards {
   // Constructor
   //
   constructor() {
-    const cards = {};
-
-    rawCardArray.forEach((card) => {
-      // TODO: new CardTemplate(card);
-      cards[card.id] = card;
-    });
-
-    this.private = new WeakMap();
-    this.private.set(this, { cards });
+    cards = mapCardsByIdFromArray(rawCardArray);
   }
 
   //
@@ -37,8 +47,8 @@ class Cards {
   // Functions
   //
 
+  // eslint-disable-next-line class-methods-use-this
   get(id) {
-    const { cards } = this.private.get(this);
     return cards[id];
   }
 }
