@@ -41,6 +41,21 @@ Splinterlib.setLogger(log);
 
 ## 📖 Reference
 
+* [Wrapped Functions](#wrapped-functions-) 🪄
+  * [Async Battle History Iterator](#async-battle-history-iterator) (`battleHistoryAsyncIterator`)
+* [Helper Functions](#helper-functions-) 💁
+  * [Battle Filter](#battle-filter) (`battleFilter`)
+* [Direct API](#direct-api-) 🌐
+  * [Battle History](#battle-history) (`battleHistoryApi`)
+  * [Card Details](#card-details) (`cardDetailsApi`)
+* [Constants](#constants-) 💬
+  * [`BATTLE`](#battle)
+  * [`CARD`](#card)
+  * [`LEAGUE`](#league)
+    * [`SUMMONER_CAPS`](#leaguesummoner_caps)
+  * [`RULESET`](#ruleset)
+  * [`SPLINTER`](#splinter)
+
 ### Wrapped Functions 🪄
 
 More convenient set of functions that interact with the underlying API
@@ -103,6 +118,13 @@ const results = await Splinterlib.battleHistoryApi(
     queryParams,  // Advanced: optional object of additional parameters to pass to endpoint
   }
 );
+```
+
+#### Card Details
+
+``` javascript
+/** Returns array of card details */
+const results = await Splinterlib.cardDetailsApi();
 ```
 
 ### Constants 💬
