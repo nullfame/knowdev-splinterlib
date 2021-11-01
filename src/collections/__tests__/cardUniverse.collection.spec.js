@@ -1,4 +1,7 @@
+const cloneDeep = require("lodash.clonedeep");
+
 const cards = require("../cardUniverse.collection");
+const rawCardArray = require("../../../data/cardDetails.json");
 
 //
 //
@@ -10,6 +13,9 @@ const cards = require("../cardUniverse.collection");
 // Mock modules
 //
 
+const mockCardDetailsApi = jest.fn();
+jest.mock("../../apis/cardDetails.api", () => () => mockCardDetailsApi());
+
 //
 //
 // Mock environment
@@ -17,6 +23,8 @@ const cards = require("../cardUniverse.collection");
 
 const DEFAULT_ENV = process.env;
 beforeEach(() => {
+  jest.clearAllMocks();
+  mockCardDetailsApi.mockReturnValue(cloneDeep(rawCardArray));
   process.env = { ...process.env };
 });
 afterEach(() => {
@@ -37,7 +45,14 @@ describe("Cards collection", () => {
     expect(card).toBeObject();
     expect(card.name).toBe("Pirate Captain");
   });
-  it.todo("Can refresh from live data (cards.refresh())");
+  it("Can refresh from live data (cards.refresh())", async () => {
+    mockCardDetailsApi.mockReturnValue([{ id: 12, name: "Haunted Goose" }]);
+    await cards.refresh();
+    expect(mockCardDetailsApi).toBeCalled();
+    const card = cards.get(12);
+    expect(card).toBeObject();
+    expect(card.name).toBe("Haunted Goose");
+  });
   it.todo(
     "Will pull from live data based on env (SPLINTERLIB_FETCH_CARDS=true)"
   );

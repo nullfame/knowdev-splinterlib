@@ -1,4 +1,6 @@
+/* eslint-disable class-methods-use-this */
 const rawCardArray = require("../../data/cardDetails.json");
+const cardDetailsApi = require("../apis/cardDetails.api");
 
 //
 //
@@ -47,9 +49,12 @@ class Cards {
   // Functions
   //
 
-  // eslint-disable-next-line class-methods-use-this
   get(id) {
     return cards[id];
+  }
+
+  async refresh() {
+    cards = mapCardsByIdFromArray(await cardDetailsApi());
   }
 }
 
