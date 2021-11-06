@@ -1,4 +1,5 @@
 /* eslint-disable no-restricted-syntax */
+const { exerciseAsyncIterator } = require("@knowdev/exercise");
 const cloneDeep = require("lodash.clonedeep");
 
 const battleFilter = require("../battleFilter.function");
@@ -59,22 +60,6 @@ beforeEach(() => {
 afterEach(() => {
   process.env = DEFAULT_ENV;
 });
-
-//
-//
-// Helpers
-//
-
-// TODO: make @knowdev/exercise
-async function exerciseAsyncIterator(iterator) {
-  let count = 0;
-  const results = [];
-  for await (const result of iterator) {
-    count += 1;
-    results.push(result);
-  }
-  return { count, results };
-}
 
 //
 //
