@@ -53,8 +53,32 @@ describe("Cards collection", () => {
     expect(card).toBeObject();
     expect(card.name).toBe("Haunted Goose");
   });
-  it.todo(
-    "Will pull from live data based on env (SPLINTERLIB_FETCH_CARDS=true)"
-  );
-  it.todo("Will pull from live data based on env (SPLINTERLIB_FETCH=true)");
+  it("Will pull from live data based on env (SPLINTERLIB_FETCH_CARDS=true)", async () => {
+    expect(mockCardDetailsApi).not.toBeCalled();
+    process.env.SPLINTERLIB_FETCH_CARDS = true;
+    // Reset the module cache, re-require the module, and see if we have a different outcome
+    jest.resetModules();
+    // eslint-disable-next-line global-require
+    require("../cardUniverse.collection");
+    expect(mockCardDetailsApi).toBeCalled();
+  });
+  it("Will pull from live data based on env (SPLINTERLIB_FETCH=true)", async () => {
+    expect(mockCardDetailsApi).not.toBeCalled();
+    process.env.SPLINTERLIB_FETCH = true;
+    // Reset the module cache, re-require the module, and see if we have a different outcome
+    jest.resetModules();
+    // eslint-disable-next-line global-require
+    require("../cardUniverse.collection");
+    expect(mockCardDetailsApi).toBeCalled();
+  });
+  it("Won't pull live data if SPLINTERLIB_FETCH_CARDS=false", async () => {
+    expect(mockCardDetailsApi).not.toBeCalled();
+    process.env.SPLINTERLIB_FETCH = true;
+    process.env.SPLINTERLIB_FETCH_CARDS = false;
+    // Reset the module cache, re-require the module, and see if we have a different outcome
+    jest.resetModules();
+    // eslint-disable-next-line global-require
+    require("../cardUniverse.collection");
+    expect(mockCardDetailsApi).not.toBeCalled();
+  });
 });

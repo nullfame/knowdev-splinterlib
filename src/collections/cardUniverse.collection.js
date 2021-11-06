@@ -1,6 +1,9 @@
 /* eslint-disable class-methods-use-this */
-const rawCardArray = require("../../data/cardDetails.json");
+const { envBoolean } = require("@knowdev/functions");
+
 const cardDetailsApi = require("../apis/cardDetails.api");
+const rawCardArray = require("../../data/cardDetails.json");
+const { CORE } = require("../util/constants");
 
 //
 //
@@ -42,6 +45,17 @@ class Cards {
   //
   constructor() {
     cards = mapCardsByIdFromArray(rawCardArray);
+
+    // If SPLINTERLIB_FETCH_CARDS, otherwise SPLINTERLIB_FETCH, refresh cards
+    if (
+      envBoolean(CORE.KEY.SPLINTERLIB_FETCH_CARDS, {
+        defaultValue: envBoolean(CORE.KEY.SPLINTERLIB_FETCH, {
+          defaultValue: false,
+        }),
+      })
+    ) {
+      this.refresh();
+    }
   }
 
   //

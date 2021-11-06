@@ -256,10 +256,10 @@ Each key contains an object with `COMMON`, `RARE`, `EPIC`, and `LEGENDARY`
 ## 🛣 Roadmap
 
 * Card Universe
-  * Refresh
-    * API Call
-  * SPLINTERLIB_FETCH_CARDS
-  * SPLINTERLIB_FETCH
+  * x-Refresh
+    * x-API Call
+  * x-SPLINTERLIB_FETCH_CARDS
+  * x-SPLINTERLIB_FETCH
   * Iterator
     * Card Filter
   * Card images
