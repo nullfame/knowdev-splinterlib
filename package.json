@@ -37,6 +37,7 @@
     "luxon": "^2.0.2"
   },
   "devDependencies": {
+    "@knowdev/exercise": "^0.1.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.3.0",
