@@ -1,3 +1,3 @@
 module.exports = {
-  setupFilesAfterEnv: ["jest-extended", "@knowdev/jest"],
+  setupFilesAfterEnv: ["jest-extended/all", "@knowdev/jest"],
 };
