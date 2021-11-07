@@ -248,6 +248,7 @@ Each key contains an object with `COMMON`, `RARE`, `EPIC`, and `LEGENDARY`
 
 ## 📝 Changelog
 
+* 0.4.0: Breaking change: rename parameters 💥
 * 0.3.0: Battle filter
 * 0.2.1: Constants
 * 0.2.0: Battle history iterator
