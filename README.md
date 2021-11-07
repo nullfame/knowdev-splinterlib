@@ -93,9 +93,9 @@ const filter = Splinterlib.battleFilter({
   loser,            // Optional string, losing player
   mana,             // Optional integer, mana cap of match
   manaPlusMinus,    // Optional integer, range around mana to include, default 0
-  rulesets,         // Optional array, from RULESET constant (below)
-  rulesetsAnd,      // Optional boolean, require all rulesets, default false
-  splinters,        // Optional array, from SPLINTER constant (below)
+  ruleset,          // Optional array, from RULESET constant (below)
+  rulesetAnd,       // Optional boolean, require all rulesets, default false
+  splinter,         // Optional array, from SPLINTER constant (below)
   winner,           // Optional string, winning player
 })
 ```
@@ -260,8 +260,9 @@ Each key contains an object with `COMMON`, `RARE`, `EPIC`, and `LEGENDARY`
     * x-API Call
   * x-SPLINTERLIB_FETCH_CARDS
   * x-SPLINTERLIB_FETCH
-  * Iterator
+  * x-Iterator
     * Card Filter
+    * Card Sort
   * Card images
     * Crop
 * Player collection

@@ -75,7 +75,7 @@ describe("BattleFilter function", () => {
   });
   it("Filters on rulesets (return false)", () => {
     const battle = new Battle(FIXTURE_BATTLE_HISTORY_RESULTS[0]);
-    const filter = battleFilter({ rulesets: [RULESET.STANDARD] });
+    const filter = battleFilter({ ruleset: [RULESET.STANDARD] });
     expect(filter(battle)).toBeFalse();
   });
   it("Filters on rulesets (return true)", () => {
@@ -93,22 +93,22 @@ describe("BattleFilter function", () => {
   it("Filters on rulesets (and; return false)", () => {
     const battle = new Battle(FIXTURE_BATTLE_HISTORY_RESULTS[0]);
     const filter = battleFilter({
-      rulesets: [RULESET.STANDARD, RULESET.TARGET_PRACTICE],
-      rulesetsAnd: true,
+      ruleset: [RULESET.STANDARD, RULESET.TARGET_PRACTICE],
+      rulesetAnd: true,
     });
     expect(filter(battle)).toBeFalse();
   });
   it("Filters on splinters (return false)", () => {
     const battle = new Battle(FIXTURE_BATTLE_HISTORY_RESULTS[0]);
     const filter = battleFilter({
-      splinters: [SPLINTER.FIRE],
+      splinter: [SPLINTER.FIRE],
     });
     expect(filter(battle)).toBeFalse();
   });
   it("Filters on splinters (return false)", () => {
     const battle = new Battle(FIXTURE_BATTLE_HISTORY_RESULTS[0]);
     const filter = battleFilter({
-      splinters: [SPLINTER.DEATH],
+      splinter: [SPLINTER.DEATH],
     });
     expect(filter(battle)).toBeFalse();
   });
