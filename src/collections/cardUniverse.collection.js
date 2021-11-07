@@ -1,4 +1,5 @@
 /* eslint-disable class-methods-use-this */
+const cloneDeep = require("lodash.clonedeep");
 const { envBoolean } = require("@knowdev/functions");
 
 const cardDetailsApi = require("../apis/cardDetails.api");
@@ -62,6 +63,10 @@ class Cards {
   //
   // Functions
   //
+
+  all() {
+    return Object.values(cloneDeep(cards));
+  }
 
   get(id) {
     return cards[id];

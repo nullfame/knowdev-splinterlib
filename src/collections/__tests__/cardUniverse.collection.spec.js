@@ -1,4 +1,5 @@
 const cloneDeep = require("lodash.clonedeep");
+const { exerciseIterator } = require("@knowdev/exercise");
 
 const cards = require("../cardUniverse.collection");
 const rawCardArray = require("../../../data/cardDetails.json");
@@ -39,6 +40,14 @@ afterEach(() => {
 describe("Cards collection", () => {
   it("Works", () => {
     expect(cards).toBeObject();
+  });
+  describe("All", () => {
+    it("Is an array of cards", () => {
+      const items = cards.all();
+      expect(items).toBeArray();
+      const { count } = exerciseIterator(items);
+      expect(count).toBePositive();
+    });
   });
   describe("Get function", () => {
     it("Card template can be looked up by id", () => {
