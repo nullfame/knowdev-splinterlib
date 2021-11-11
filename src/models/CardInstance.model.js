@@ -42,12 +42,14 @@ class CardInstance {
     this.level = level;
     this.template = CardTemplate.get(this.id);
     this.edition = CARD.EDITION.INDEX[edition];
-    this.formats = getCardFormats(this);
 
     // Merge template where there are no conflicts
     Object.keys(this.template).forEach((key) => {
       if (this[key] === undefined) this[key] = this.template[key];
     });
+
+    // Override formats that came from the template (it will be more specific because the instance knows the difference between alpha and beta)
+    this.formats = getCardFormats(this);
 
     // Get summoner league
     if (this.type === CARD.TYPE.SUMMONER) {

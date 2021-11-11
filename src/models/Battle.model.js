@@ -2,7 +2,7 @@ const cloneDeep = require("lodash.clonedeep");
 
 const CardInstance = require("./CardInstance.model");
 const { BATTLE, LEAGUE, SPLINTER } = require("../util/constants");
-const getTeamFormats = require("../functions/helpers/getTeamFormats.function");
+const intersectTeamFormats = require("../functions/helpers/intersectTeamFormats.function");
 
 //
 //
@@ -72,7 +72,10 @@ class Battle {
         ) {
           this.league = this.teams[player2].summoner.league;
         }
-        this.formats = getTeamFormats(this.teams[player1], this.teams[player2]);
+        this.formats = intersectTeamFormats(
+          this.teams[player1],
+          this.teams[player2]
+        );
       }
     }
   }
