@@ -28,7 +28,7 @@ class CardTemplate {
     this.rarityLevel = cardDetails.rarity;
     this.rarity = CARD.RARITY[cardDetails.rarity];
     this.isStarter = cardDetails.is_starter;
-    this.edition = CARD.EDITION.LEVEL[cardDetails.editions];
+    this.edition = CARD.EDITION.INDEX[cardDetails.editions];
   }
 }
 

@@ -70,14 +70,7 @@ const CARD = {
     UNTAMED: "Untamed",
     DICE: "Dice",
     GLADIUS: "Gladius",
-    LEVEL: {
-      ALPHA: 0,
-      BETA: 1,
-      PROMO: 2,
-      REWARD: 3,
-      UNTAMED: 4,
-      DICE: 5,
-      GLADIUS: 6,
+    INDEX: {
       0: "Alpha",
       "0,1": "Alpha/Beta",
       1: "Beta",
@@ -86,6 +79,15 @@ const CARD = {
       4: "Untamed",
       5: "Dice",
       6: "Gladius",
+    },
+    KEY: {
+      ALPHA: 0,
+      BETA: 1,
+      PROMO: 2,
+      REWARD: 3,
+      UNTAMED: 4,
+      DICE: 5,
+      GLADIUS: 6,
     },
   },
   RARITY: {
