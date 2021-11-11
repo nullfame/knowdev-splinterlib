@@ -161,7 +161,7 @@ const {
 
 * `CARD.EDITION`
   * `CARD.EDITION.ALPHA`
-  * `CARD.EDITION.ALPHA_BETA`
+  * `CARD.EDITION.ALPHA_BETA` _(interpreted to mean cards from alpha or beta)_
   * `CARD.EDITION.BETA`
   * `CARD.EDITION.PROMO`
   * `CARD.EDITION.REWARD`
