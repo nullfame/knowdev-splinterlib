@@ -13,10 +13,14 @@ const { BATTLE, CARD, CORE } = require("../../util/constants");
 function removeIneligibleCardFormats(card, formats) {
   if (
     card.edition !== CARD.EDITION.ALPHA &&
+    card.edition !== CARD.EDITION.ALPHA_BETA &&
     card.edition !== CARD.EDITION.GLADIUS
   ) {
     pull(formats, BATTLE.FORMAT.ALPHA);
-    if (card.edition !== CARD.EDITION.BETA) {
+    if (
+      card.edition !== CARD.EDITION.ALPHA_BETA &&
+      card.edition !== CARD.EDITION.BETA
+    ) {
       pull(formats, BATTLE.FORMAT.ALPHA_BETA);
     }
   }

@@ -46,4 +46,9 @@ describe("CardTemplate model", () => {
     expect(pirateCaptain).toBeObject();
     expect(pirateCaptain.name).toBe("Pirate Captain");
   });
+  it("Has formats", () => {
+    const pirateCaptain = CardTemplate.get(12);
+    expect(pirateCaptain).toBeObject();
+    expect(pirateCaptain.formats).toBeArrayOfSize(5);
+  });
 });

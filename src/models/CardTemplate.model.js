@@ -1,4 +1,5 @@
 const cards = require("../collections/cardUniverse.collection");
+const getCardFormats = require("../functions/helpers/getCardFormats.function");
 const { CARD, SPLINTER } = require("../util/constants");
 
 //
@@ -29,6 +30,7 @@ class CardTemplate {
     this.rarity = CARD.RARITY[cardDetails.rarity];
     this.isStarter = cardDetails.is_starter;
     this.edition = CARD.EDITION.INDEX[cardDetails.editions];
+    this.formats = getCardFormats(this);
   }
 }
 
