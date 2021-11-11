@@ -32,7 +32,7 @@ function determineSummonerLeague(card) {
 
 class CardInstance {
   // eslint-disable-next-line camelcase
-  constructor({ uid, xp, gold, card_detail_id, level } = {}) {
+  constructor({ uid, xp, gold, card_detail_id, level, edition } = {}) {
     this.uid = uid;
     this.xp = xp;
     this.gold = gold;
@@ -40,7 +40,7 @@ class CardInstance {
     this.id = card_detail_id;
     this.level = level;
     this.template = CardTemplate.get(this.id);
-    this.edition = this.template.edition;
+    this.edition = CARD.EDITION.INDEX[edition];
 
     // Merge template where there are no conflicts
     Object.keys(this.template).forEach((key) => {

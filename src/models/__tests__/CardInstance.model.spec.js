@@ -1,5 +1,5 @@
 const CardInstance = require("../CardInstance.model");
-const { LEAGUE } = require("../../util/constants");
+const { CARD, LEAGUE } = require("../../util/constants");
 
 //
 //
@@ -7,6 +7,14 @@ const { LEAGUE } = require("../../util/constants");
 //
 
 const TEST = {
+  BETA_MONSTER: {
+    uid: "C1-1-97ZL2ZO9DC",
+    xp: 765,
+    gold: false,
+    card_detail_id: 1,
+    level: 6,
+    edition: 1,
+  },
   SUMMONER: {
     uid: "C5-259-006S6VV700",
     xp: 115,
@@ -54,6 +62,11 @@ describe("CardInstance model", () => {
     expect(card.id).toBeNumber();
     expect(card.id).toBe(TEST.SUMMONER.card_detail_id);
     expect(card.template).toBeObject();
+  });
+  it("Beta card returns correct edition", () => {
+    const card = new CardInstance(TEST.BETA_MONSTER);
+    expect(card).toBeObject();
+    expect(card.edition).toBe(CARD.EDITION.BETA);
   });
   it("Merges template data", () => {
     const card = new CardInstance(TEST.SUMMONER);
