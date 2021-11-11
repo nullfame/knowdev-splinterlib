@@ -34,6 +34,7 @@
     "@knowdev/log": "^0.2.1",
     "axios": "^0.24.0",
     "lodash.clonedeep": "^4.5.0",
+    "lodash.intersection": "^4.4.0",
     "lodash.pull": "^4.1.0",
     "luxon": "^2.0.2"
   },
