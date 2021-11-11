@@ -8,7 +8,7 @@ const { BATTLE, CARD, CORE } = require("../../util/constants");
 
 /**
  * Evaluates `card` and removes ineligible `formats`
- * * Has side effects on `formats
+ * * Has side effects on `formats`
  */
 function removeIneligibleCardFormats(card, formats) {
   if (
