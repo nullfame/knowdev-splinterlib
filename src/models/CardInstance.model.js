@@ -1,5 +1,6 @@
 const CardTemplate = require("./CardTemplate.model");
 const { CARD, LEAGUE } = require("../util/constants");
+const getCardFormats = require("../functions/helpers/getCardFormats.function");
 
 //
 //
@@ -41,6 +42,7 @@ class CardInstance {
     this.level = level;
     this.template = CardTemplate.get(this.id);
     this.edition = CARD.EDITION.INDEX[edition];
+    this.formats = getCardFormats(this);
 
     // Merge template where there are no conflicts
     Object.keys(this.template).forEach((key) => {

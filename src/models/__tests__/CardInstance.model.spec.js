@@ -1,5 +1,5 @@
 const CardInstance = require("../CardInstance.model");
-const { CARD, LEAGUE } = require("../../util/constants");
+const { BATTLE, CARD, LEAGUE } = require("../../util/constants");
 
 //
 //
@@ -67,6 +67,13 @@ describe("CardInstance model", () => {
     const card = new CardInstance(TEST.BETA_MONSTER);
     expect(card).toBeObject();
     expect(card.edition).toBe(CARD.EDITION.BETA);
+  });
+  it("Beta card returns correct formats", () => {
+    const card = new CardInstance(TEST.BETA_MONSTER);
+    expect(card).toBeObject();
+    expect(card.formats).toBeArray();
+    expect(card.formats).toContain(BATTLE.FORMAT.ALPHA_BETA);
+    expect(card.formats).not.toContain(BATTLE.FORMAT.ALPHA);
   });
   it("Merges template data", () => {
     const card = new CardInstance(TEST.SUMMONER);
