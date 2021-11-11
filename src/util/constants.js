@@ -287,10 +287,21 @@ const SPLINTER = {
 
 //
 //
+// Derived Constants
+//
+
+const ALL = {
+  BATTLE: {},
+};
+ALL.BATTLE.FORMATS = Object.values(BATTLE.FORMAT);
+
+//
+//
 // Export
 //
 
 module.exports = {
+  ALL,
   BATTLE,
   CARD,
   CORE,
