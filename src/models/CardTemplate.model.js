@@ -11,6 +11,42 @@ const { CARD, SPLINTER } = require("../util/constants");
 // Helper Functions
 //
 
+function getStatRangeFromCardDetails(stat, cardDetails) {
+  const attributeStats = cardDetails.stats[stat];
+
+  // Some cards (summoners) don't have levels so don't have an array
+  if (!Array.isArray(attributeStats)) {
+    return {
+      high: attributeStats,
+      low: attributeStats,
+    };
+  }
+
+  // Reduce the array of stats to a single { high, low } object
+  return attributeStats.reduce(
+    (currentRange, myStat) => {
+      /* eslint-disable no-param-reassign */
+      if (myStat > currentRange.high) currentRange.high = myStat;
+      if (myStat < currentRange.low) currentRange.low = myStat;
+      return currentRange;
+      /* eslint-enable no-param-reassign */
+    },
+    {
+      high: attributeStats[0],
+      low: attributeStats[0],
+    }
+  );
+}
+
+function getAllStatRanges(cardDetails) {
+  const stats = Object.values(CARD.STAT);
+  return stats.reduce((ranges, stat) => {
+    // eslint-disable-next-line no-param-reassign
+    ranges[stat] = getStatRangeFromCardDetails(stat, cardDetails);
+    return ranges;
+  }, {});
+}
+
 //
 //
 // Main
@@ -33,6 +69,7 @@ class CardTemplate {
     this.isStarter = cardDetails.is_starter;
     this.edition = CARD.EDITION.INDEX[cardDetails.editions];
     this.formats = getCardFormats(this);
+    this.statRange = getAllStatRanges(cardDetails);
   }
 }
 

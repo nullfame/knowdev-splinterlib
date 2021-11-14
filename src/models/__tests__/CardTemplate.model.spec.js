@@ -1,5 +1,6 @@
 const CardTemplate = require("../CardTemplate.model");
 const rawCardArray = require("../../../data/cardDetails.json");
+const { CARD } = require("../../util/constants");
 
 //
 //
@@ -44,5 +45,21 @@ describe("CardTemplate model", () => {
   it("Has formats", () => {
     const pirateCaptain = new CardTemplate(rawCardArray[11]);
     expect(pirateCaptain.formats).toBeArrayOfSize(5);
+  });
+  it("Monsters have stat ranges", () => {
+    const pirateCaptain = new CardTemplate(rawCardArray[11]);
+    expect(pirateCaptain.statRange).toBeObject();
+    expect(pirateCaptain.statRange[CARD.STAT.MANA]).toBeObject();
+    expect(pirateCaptain.statRange[CARD.STAT.MANA].high).toBe(3);
+    expect(pirateCaptain.statRange[CARD.STAT.SPEED].low).toBe(2);
+    expect(pirateCaptain.statRange[CARD.STAT.SPEED].high).toBe(6);
+  });
+  it("Summoners have stat ranges", () => {
+    const malricInferno = new CardTemplate(rawCardArray[4]);
+    expect(malricInferno.statRange).toBeObject();
+    expect(malricInferno.statRange[CARD.STAT.MANA]).toBeObject();
+    expect(malricInferno.statRange[CARD.STAT.MANA].high).toBe(3);
+    expect(malricInferno.statRange[CARD.STAT.SPEED].low).toBe(0);
+    expect(malricInferno.statRange[CARD.STAT.SPEED].high).toBe(0);
   });
 });
