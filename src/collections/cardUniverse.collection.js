@@ -1,9 +1,11 @@
 /* eslint-disable class-methods-use-this */
 const cloneDeep = require("lodash.clonedeep");
+const isNumber = require("lodash.isnumber");
 const { envBoolean } = require("@knowdev/functions");
 
 const cardDetailsApi = require("../apis/cardDetails.api");
 const rawCardArray = require("../../data/cardDetails.json");
+const CardTemplate = require("../models/CardTemplate.model");
 const { CORE } = require("../util/constants");
 
 //
@@ -20,8 +22,8 @@ function mapCardsByIdFromArray(cardArray) {
   const newCards = {};
 
   cardArray.forEach((card) => {
-    // TODO: new CardTemplate(card);
-    newCards[card.id] = card;
+    // newCards[card.id] = card;
+    newCards[card.id] = new CardTemplate(card);
   });
 
   return newCards;
@@ -68,7 +70,11 @@ class Cards {
     return Object.values(cloneDeep(cards));
   }
 
-  get(id) {
+  getTemplate(id) {
+    if (!id) return new CardTemplate();
+    // eslint-disable-next-line no-param-reassign
+    if (isNumber(id)) id = String(id);
+    if (!Object.keys(cards).includes(id)) return new CardTemplate();
     return cards[id];
   }
 

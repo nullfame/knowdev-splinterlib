@@ -100,6 +100,30 @@ const filter = Splinterlib.battleFilter({
 })
 ```
 
+### Collections 🗂
+
+#### Card Universe
+
+#### Player Cards
+
+_TBD: card instances?_
+
+#### Site Settings
+
+### Models 🧱
+
+#### Battle
+
+An instance of a particular battle that was waged or fled.
+
+#### Card Instance
+
+Full characteristics about this particular instance of the card.  In addition to template attributes this would include level, foil, alpha/beta edition.
+
+#### Card Template
+
+Partial characteristics about the card regardless of it's particular instance.  E.g., type, splinter.
+
 ### Direct API 🌐
 
 Direct implementations of the Splinterlands API with minimal parsing of encoded types

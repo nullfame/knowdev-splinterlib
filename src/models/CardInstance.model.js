@@ -1,4 +1,4 @@
-const CardTemplate = require("./CardTemplate.model");
+const cards = require("../collections/cardUniverse.collection");
 const { CARD, LEAGUE } = require("../util/constants");
 const getCardFormats = require("../functions/helpers/getCardFormats.function");
 
@@ -33,14 +33,15 @@ function determineSummonerLeague(card) {
 
 class CardInstance {
   // eslint-disable-next-line camelcase
-  constructor({ uid, xp, gold, card_detail_id, level, edition } = {}) {
+  constructor({ uid, xp, gold, card_detail_id = 0, level, edition } = {}) {
     this.uid = uid;
     this.xp = xp;
     this.gold = gold;
     // eslint-disable-next-line camelcase
     this.id = card_detail_id;
     this.level = level;
-    this.template = CardTemplate.get(this.id);
+    // eslint-disable-next-line camelcase
+    this.template = cards.getTemplate(card_detail_id);
     this.edition = CARD.EDITION.INDEX[edition];
 
     // Merge template where there are no conflicts

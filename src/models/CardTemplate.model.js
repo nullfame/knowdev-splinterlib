@@ -1,4 +1,3 @@
-const cards = require("../collections/cardUniverse.collection");
 const getCardFormats = require("../functions/helpers/getCardFormats.function");
 const { CARD, SPLINTER } = require("../util/constants");
 
@@ -33,13 +32,6 @@ class CardTemplate {
     this.formats = getCardFormats(this);
   }
 }
-
-//
-//
-// Static
-//
-
-CardTemplate.get = (id) => new CardTemplate(cards.get(id));
 
 //
 //
