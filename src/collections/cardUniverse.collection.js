@@ -70,10 +70,6 @@ class Cards {
     return Object.values(cloneDeep(cards));
   }
 
-  get(id) {
-    return cards[id];
-  }
-
   getTemplate(id) {
     if (!id) return new CardTemplate();
     // eslint-disable-next-line no-param-reassign

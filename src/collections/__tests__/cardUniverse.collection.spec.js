@@ -51,7 +51,7 @@ describe("Cards collection", () => {
   });
   describe("Get function", () => {
     it("Card template can be looked up by id", () => {
-      const card = cards.get(12);
+      const card = cards.getTemplate(12);
       expect(card).toBeObject();
       expect(card.name).toBe("Pirate Captain");
     });
@@ -61,7 +61,7 @@ describe("Cards collection", () => {
       mockCardDetailsApi.mockReturnValue([{ id: 12, name: "Haunted Goose" }]);
       await cards.refresh();
       expect(mockCardDetailsApi).toBeCalled();
-      const card = cards.get(12);
+      const card = cards.getTemplate(12);
       expect(card).toBeObject();
       expect(card.name).toBe("Haunted Goose");
     });
