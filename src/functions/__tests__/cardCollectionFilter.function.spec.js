@@ -131,9 +131,8 @@ describe("CardCollectionFilter function", () => {
     });
   });
   describe("Format", () => {
-    it.skip("Filters by format", () => {
-      const sample = [cards.get(135), cards.get(297)];
-      console.log("sample :>> ", sample);
+    it("Filters by format", () => {
+      const sample = [cards.getTemplate(135), cards.getTemplate(297)];
       const filtered = sample.filter(
         cardCollectionFilter({ format: BATTLE.FORMAT.UNTAMED })
       );

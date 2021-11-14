@@ -56,7 +56,7 @@ const cardCollectionFilter =
     // ability = [],
     // abilityAnd = false,
     edition = [],
-    // format = undefined,
+    format = undefined,
     // mana = undefined,
     // manaGreaterThan = undefined,
     // manaGreaterThanOrEqual = undefined,
@@ -77,6 +77,11 @@ const cardCollectionFilter =
         }
       }
       return false;
+    }
+
+    // Format
+    if (format) {
+      if (!card.formats.includes(format)) return false;
     }
 
     // Return true by default
