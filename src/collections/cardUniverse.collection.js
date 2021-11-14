@@ -22,7 +22,6 @@ function mapCardsByIdFromArray(cardArray) {
   const newCards = {};
 
   cardArray.forEach((card) => {
-    // newCards[card.id] = card;
     newCards[card.id] = new CardTemplate(card);
   });
 
