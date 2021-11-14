@@ -41,14 +41,8 @@ describe("CardTemplate model", () => {
     const pirateCaptain = new CardTemplate(rawCardArray[11]);
     expect(pirateCaptain).toBeObject();
   });
-  it("Can be instantiated from a static get with an id", () => {
-    const pirateCaptain = CardTemplate.get(12);
-    expect(pirateCaptain).toBeObject();
-    expect(pirateCaptain.name).toBe("Pirate Captain");
-  });
   it("Has formats", () => {
-    const pirateCaptain = CardTemplate.get(12);
-    expect(pirateCaptain).toBeObject();
+    const pirateCaptain = new CardTemplate(rawCardArray[11]);
     expect(pirateCaptain.formats).toBeArrayOfSize(5);
   });
 });
