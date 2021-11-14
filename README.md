@@ -45,11 +45,19 @@ Splinterlib.setLogger(log);
   * [Async Battle History Iterator](#async-battle-history-iterator) (`battleHistoryAsyncIterator`)
 * [Helper Functions](#helper-functions-) 💁
   * [Battle Filter](#battle-filter) (`battleFilter`)
+* [Collections](#collections-) 🗂
+  * [Card Universe](#card-universe)
+  * [Player Cards](#player-cards)
+  * [Site Settings](#site-settings)
+* [Models](#models-) 🧱
+  * [Battle](#battle-model)
+  * [Card Instance](#card-instance)
+  * [Card Template](#card-template)
 * [Direct API](#direct-api-) 🌐
   * [Battle History](#battle-history) (`battleHistoryApi`)
   * [Card Details](#card-details) (`cardDetailsApi`)
 * [Constants](#constants-) 💬
-  * [`BATTLE`](#battle)
+  * [`BATTLE`](#battle-constant)
   * [`CARD`](#card)
   * [`LEAGUE`](#league)
     * [`SUMMONER_CAPS`](#leaguesummoner_caps)
@@ -104,17 +112,43 @@ const filter = Splinterlib.battleFilter({
 
 #### Card Universe
 
+Uses a cached version of card details unless `process.env.SPLINTERLIB_FETCH` or `process.env.SPLINTERLIB_FETCH_CARDS` is `true`.
+
+``` javascript
+const cardArray = Splinterlib.cardUniverse.all();
+
+const card = Splinterlib.cardUniverse.getTemplate(12);
+
+// Pull fresh copy of card database from server
+const cardArray = Splinterlib.cardUniverse.refresh();
+```
+
 #### Player Cards
 
 _TBD: card instances?_
 
 #### Site Settings
 
+_TBD_
+
 ### Models 🧱
 
-#### Battle
+#### Battle (model)
 
 An instance of a particular battle that was waged or fled.
+
+``` javascript
+battle.createdDate;
+battle.id;
+battle.manaCap;
+battle.winner;
+battle.loser;
+battle.rulesets;
+battle.type;
+battle.players;
+battle.teams;
+battle.formats;
+```
 
 #### Card Instance
 
@@ -123,6 +157,25 @@ Full characteristics about this particular instance of the card.  In addition to
 #### Card Template
 
 Partial characteristics about the card regardless of it's particular instance.  E.g., type, splinter.
+
+``` javascript
+const card = Splinterlib.cardUniverse.getTemplate(12);
+
+card.id = 12;
+card.name = "Pirate Captain";
+card.splinter = SPLINTER.WATER;
+card.type = CARD.TYPE.MONSTER;
+card.rarity = CARD.RARITY.COMMON;
+card.isStarter = true;
+card.edition = CARD.EDITION.ALPHA_BETA;
+card.formats = [
+  BATTLE.FORMAT.ALPHA,
+  BATTLE.FORMAT.ALPHA_BETA,
+  BATTLE.FORMAT.NO_LEGENDARIES,
+  BATTLE.FORMAT.NO_LEGENDARY_SUMMONERS,
+  BATTLE.FORMAT.WILD,
+];
+```
 
 ### Direct API 🌐
 
@@ -163,7 +216,7 @@ const {
 } = require("@knowdev/splinterlib");
 ```
 
-#### BATTLE
+#### BATTLE (constant)
 
 * `BATTLE.FORMAT`
   * `BATTLE.FORMAT.ALPHA`
