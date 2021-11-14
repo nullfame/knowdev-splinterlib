@@ -17,7 +17,10 @@ const { CARD, SPLINTER } = require("../util/constants");
 //
 
 class CardTemplate {
-  constructor(cardDetails = {}) {
+  constructor(cardDetails) {
+    // Bail if nothing is passed in
+    if (!cardDetails) return;
+
     // eslint-disable-next-line no-underscore-dangle
     this._raw = cardDetails;
     this.id = cardDetails.id;
