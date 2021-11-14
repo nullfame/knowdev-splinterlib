@@ -3,6 +3,7 @@ const { exerciseIterator } = require("@knowdev/exercise");
 
 const cards = require("../cardUniverse.collection");
 const rawCardArray = require("../../../data/cardDetails.json");
+const { BATTLE, CARD, SPLINTER } = require("../../util/constants");
 
 //
 //
@@ -53,7 +54,23 @@ describe("Cards collection", () => {
     it("Card template can be looked up by id", () => {
       const card = cards.getTemplate(12);
       expect(card).toBeObject();
+      expect(card.id).toBe(12);
       expect(card.name).toBe("Pirate Captain");
+      expect(card.color).toBe("Blue");
+      expect(card.splinter).toBe(SPLINTER.WATER);
+      expect(card.type).toBe(CARD.TYPE.MONSTER);
+      expect(card.rarityLevel).toBe(1);
+      expect(card.rarity).toBe(CARD.RARITY.COMMON);
+      expect(card.isStarter).toBe(true);
+      expect(card.edition).toBe(CARD.EDITION.ALPHA_BETA);
+      expect(card.formats).toBeArray();
+      expect(card.formats).toIncludeSameMembers([
+        BATTLE.FORMAT.ALPHA,
+        BATTLE.FORMAT.ALPHA_BETA,
+        BATTLE.FORMAT.NO_LEGENDARIES,
+        BATTLE.FORMAT.NO_LEGENDARY_SUMMONERS,
+        BATTLE.FORMAT.WILD,
+      ]);
     });
   });
   describe("Refresh function", () => {
