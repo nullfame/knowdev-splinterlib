@@ -110,6 +110,15 @@ const CARD = {
       Legendary: "LEGENDARY",
     },
   },
+  STAT: {
+    MANA: "mana",
+    ATTACK: "attack",
+    RANGED: "ranged",
+    MAGIC: "magic",
+    ARMOR: "armor",
+    HEALTH: "health",
+    SPEED: "speed",
+  },
   TYPE: {
     MONSTER: "Monster",
     SUMMONER: "Summoner",
