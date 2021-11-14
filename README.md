@@ -272,6 +272,7 @@ Each key contains an object with `COMMON`, `RARE`, `EPIC`, and `LEGENDARY`
 
 ## 📝 Changelog
 
+* 0.5.0: Breaking change: rename cardUniverse get to getTemplate 💥
 * 0.4.0: Breaking change: rename parameters 💥
 * 0.3.0: Battle filter
 * 0.2.1: Constants
