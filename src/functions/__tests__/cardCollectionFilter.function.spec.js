@@ -238,6 +238,24 @@ describe("CardCollectionFilter function", () => {
       expect(filtered[1].name).toBe("Maggots");
     });
   });
+  describe("Type", () => {
+    it("Filters by type monster", () => {
+      const sample = [cards.getTemplate(5), cards.getTemplate(297)];
+      const filtered = sample.filter(
+        cardCollectionFilter({ type: CARD.TYPE.MONSTER })
+      );
+      expect(filtered.length).toBe(1);
+      expect(filtered[0].name).toBe("Epona");
+    });
+    it("Filters by type summoner", () => {
+      const sample = [cards.getTemplate(5), cards.getTemplate(297)];
+      const filtered = sample.filter(
+        cardCollectionFilter({ type: CARD.TYPE.SUMMONER })
+      );
+      expect(filtered.length).toBe(1);
+      expect(filtered[0].name).toBe("Malric Inferno");
+    });
+  });
   describe("Multi-filter", () => {
     it("Filters on multiple attributes", () => {
       const sample = [

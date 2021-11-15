@@ -56,7 +56,7 @@ const cardCollectionFilter =
     mana = undefined,
     rarity = [],
     splinter = [],
-    // type = undefined,
+    type = undefined,
   } = {}) =>
   (card) => {
     // Edition
@@ -134,6 +134,11 @@ const cardCollectionFilter =
         if (card.splinter === splinter[i]) match = true;
       }
       if (!match) return false;
+    }
+
+    // Type
+    if (type) {
+      if (card.type !== type) return false;
     }
 
     // Return true by default
