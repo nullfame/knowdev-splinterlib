@@ -63,12 +63,13 @@ const cardCollectionFilter =
     // eslint-disable-next-line no-param-reassign
     edition = force.array(edition);
     if (edition.length > 0) {
+      let match = false;
       for (let i = 0; i < edition.length; i += 1) {
         if (isCardEdition(card, edition[i])) {
-          return true;
+          match = true;
         }
       }
-      return false;
+      if (!match) return false;
     }
 
     // Format

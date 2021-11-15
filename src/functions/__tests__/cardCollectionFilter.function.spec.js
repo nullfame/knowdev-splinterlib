@@ -199,4 +199,22 @@ describe("CardCollectionFilter function", () => {
       expect(filtered[1].name).toBe("Maggots");
     });
   });
+  describe("Multi-filter", () => {
+    it("Filters on multiple attributes", () => {
+      const sample = [
+        cards.getTemplate(6),
+        cards.getTemplate(135),
+        cards.getTemplate(268),
+        cards.getTemplate(297),
+      ];
+      const filtered = sample.filter(
+        cardCollectionFilter({
+          edition: CARD.EDITION.DICE,
+          rarity: CARD.RARITY.LEGENDARY,
+        })
+      );
+      expect(filtered.length).toBe(1);
+      expect(filtered[0].name).toBe("Epona");
+    });
+  });
 });
