@@ -125,6 +125,16 @@ const CARD = {
   },
 };
 
+// Filters
+const FILTER = {
+  EQUALS: "=",
+  IS: "=",
+  LESS_THAN: "<",
+  LESS_THAN_OR_EQUAL: "<=",
+  GREATER_THAN: ">",
+  GREATER_THAN_OR_EQUAL: ">=",
+};
+
 // League
 const LEAGUE = {
   // Keys
@@ -314,6 +324,7 @@ module.exports = {
   BATTLE,
   CARD,
   CORE,
+  FILTER,
   LEAGUE,
   RULESET,
   SPLINTER,

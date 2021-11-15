@@ -1,6 +1,6 @@
 const cardCollectionFilter = require("../cardCollectionFilter.function");
 const cards = require("../../collections/cardUniverse.collection");
-const { BATTLE, CARD } = require("../../util/constants");
+const { BATTLE, CARD, FILTER } = require("../../util/constants");
 
 //
 //
@@ -138,6 +138,78 @@ describe("CardCollectionFilter function", () => {
       );
       expect(filtered.length).toBe(1);
       expect(filtered[0].name).toBe("Maggots");
+    });
+  });
+  describe("Mana", () => {
+    it("Filters by exact mana (Epona)", () => {
+      const sample = [cards.getTemplate(135), cards.getTemplate(297)];
+      const filtered = sample.filter(cardCollectionFilter({ mana: 1 }));
+      expect(filtered.length).toBe(1);
+      expect(filtered[0].name).toBe("Epona");
+    });
+    it("Filters by exact mana (Maggots)", () => {
+      const sample = [cards.getTemplate(135), cards.getTemplate(297)];
+      const filtered = sample.filter(cardCollectionFilter({ mana: 3 }));
+      expect(filtered.length).toBe(1);
+      expect(filtered[0].name).toBe("Maggots");
+    });
+    it("Filters by exact mana (Array)", () => {
+      const sample = [cards.getTemplate(135), cards.getTemplate(297)];
+      const filtered = sample.filter(
+        cardCollectionFilter({ mana: { [FILTER.IS]: 3 } })
+      );
+      expect(filtered.length).toBe(1);
+      expect(filtered[0].name).toBe("Maggots");
+    });
+    it("Filters by mana, greater than", () => {
+      const sample = [
+        cards.getTemplate(6),
+        cards.getTemplate(135),
+        cards.getTemplate(297),
+      ];
+      const filtered = sample.filter(
+        cardCollectionFilter({ mana: { [FILTER.GREATER_THAN]: 3 } })
+      );
+      expect(filtered.length).toBe(1);
+      expect(filtered[0].name).toBe("Serpentine Soldier");
+    });
+    it("Filters by mana, greater than or equal", () => {
+      const sample = [
+        cards.getTemplate(6),
+        cards.getTemplate(135),
+        cards.getTemplate(297),
+      ];
+      const filtered = sample.filter(
+        cardCollectionFilter({ mana: { [FILTER.GREATER_THAN_OR_EQUAL]: 3 } })
+      );
+      expect(filtered.length).toBe(2);
+      expect(filtered[0].name).toBe("Serpentine Soldier");
+      expect(filtered[1].name).toBe("Maggots");
+    });
+    it("Filters by mana, less than", () => {
+      const sample = [
+        cards.getTemplate(6),
+        cards.getTemplate(135),
+        cards.getTemplate(297),
+      ];
+      const filtered = sample.filter(
+        cardCollectionFilter({ mana: { [FILTER.LESS_THAN]: 3 } })
+      );
+      expect(filtered.length).toBe(1);
+      expect(filtered[0].name).toBe("Epona");
+    });
+    it("Filters by mana, less than or equal", () => {
+      const sample = [
+        cards.getTemplate(6),
+        cards.getTemplate(135),
+        cards.getTemplate(297),
+      ];
+      const filtered = sample.filter(
+        cardCollectionFilter({ mana: { [FILTER.LESS_THAN_OR_EQUAL]: 3 } })
+      );
+      expect(filtered.length).toBe(2);
+      expect(filtered[0].name).toBe("Maggots");
+      expect(filtered[1].name).toBe("Epona");
     });
   });
 });

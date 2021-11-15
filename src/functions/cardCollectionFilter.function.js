@@ -1,5 +1,5 @@
 const { force } = require("@knowdev/arguments");
-const { CARD } = require("../util/constants");
+const { CARD, FILTER } = require("../util/constants");
 
 //
 //
@@ -57,11 +57,7 @@ const cardCollectionFilter =
     // abilityAnd = false,
     edition = [],
     format = undefined,
-    // mana = undefined,
-    // manaGreaterThan = undefined,
-    // manaGreaterThanOrEqual = undefined,
-    // manaLessThan = undefined,
-    // manaLessThanOrEqual = undefined,
+    mana = undefined,
     // rarity = [],
     // splinter = [],
     // type = undefined,
@@ -82,6 +78,43 @@ const cardCollectionFilter =
     // Format
     if (format) {
       if (!card.formats.includes(format)) return false;
+    }
+
+    // Mana (exact number)
+    if (mana) {
+      // Mana (exact number)
+      if (typeof mana !== "object") {
+        if (card.statRange.mana.low > mana) return false;
+        if (card.statRange.mana.high < mana) return false;
+      }
+      // Mana (object)
+      if (typeof mana === "object") {
+        const comparisons = Object.keys(mana);
+        for (let i = 0; i < comparisons.length; i += 1) {
+          const comparison = comparisons[i];
+          switch (comparison) {
+            case FILTER.EQUALS:
+              if (card.statRange.mana.low > mana[comparison]) return false;
+              if (card.statRange.mana.high < mana[comparison]) return false;
+              break;
+            case FILTER.GREATER_THAN:
+              if (mana[comparison] >= card.statRange.mana.high) return false;
+              break;
+            case FILTER.GREATER_THAN_OR_EQUAL:
+              if (mana[comparison] > card.statRange.mana.high) return false;
+              break;
+            case FILTER.LESS_THAN:
+              if (mana[comparison] <= card.statRange.mana.low) return false;
+              break;
+            case FILTER.LESS_THAN_OR_EQUAL:
+              if (mana[comparison] < card.statRange.mana.low) return false;
+              break;
+
+            default:
+              break;
+          }
+        }
+      }
     }
 
     // Return true by default
