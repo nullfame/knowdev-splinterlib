@@ -212,4 +212,43 @@ describe("CardCollectionFilter function", () => {
       expect(filtered[1].name).toBe("Epona");
     });
   });
+  describe("Rarity", () => {
+    it("Rarity single", () => {
+      const sample = [
+        cards.getTemplate(6),
+        cards.getTemplate(135),
+        cards.getTemplate(297),
+      ];
+      const filtered = sample.filter(
+        cardCollectionFilter({ rarity: CARD.RARITY.LEGENDARY })
+      );
+      expect(filtered.length).toBe(1);
+      expect(filtered[0].name).toBe("Epona");
+    });
+    it("Rarity array of one", () => {
+      const sample = [
+        cards.getTemplate(6),
+        cards.getTemplate(135),
+        cards.getTemplate(297),
+      ];
+      const filtered = sample.filter(
+        cardCollectionFilter({ rarity: [CARD.RARITY.LEGENDARY] })
+      );
+      expect(filtered.length).toBe(1);
+      expect(filtered[0].name).toBe("Epona");
+    });
+    it("Rarity array of many", () => {
+      const sample = [
+        cards.getTemplate(6),
+        cards.getTemplate(135),
+        cards.getTemplate(297),
+      ];
+      const filtered = sample.filter(
+        cardCollectionFilter({ rarity: [CARD.RARITY.COMMON, CARD.RARITY.RARE] })
+      );
+      expect(filtered.length).toBe(2);
+      expect(filtered[0].name).toBe("Serpentine Soldier");
+      expect(filtered[1].name).toBe("Maggots");
+    });
+  });
 });

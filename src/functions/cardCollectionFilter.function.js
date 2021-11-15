@@ -58,7 +58,7 @@ const cardCollectionFilter =
     edition = [],
     format = undefined,
     mana = undefined,
-    // rarity = [],
+    rarity = [],
     // splinter = [],
     // type = undefined,
   } = {}) =>
@@ -115,6 +115,18 @@ const cardCollectionFilter =
           }
         }
       }
+    }
+
+    // Rarity
+    // eslint-disable-next-line no-param-reassign
+    rarity = force.array(rarity);
+    if (rarity.length > 0) {
+      // if (!card.rarity.includes(rarity)) return false;
+      let match = false;
+      for (let i = 0; i < rarity.length; i += 1) {
+        if (card.rarity === rarity[i]) match = true;
+      }
+      if (!match) return false;
     }
 
     // Return true by default
