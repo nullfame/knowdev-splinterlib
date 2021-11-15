@@ -55,7 +55,7 @@ const cardCollectionFilter =
     format = undefined,
     mana = undefined,
     rarity = [],
-    // splinter = [],
+    splinter = [],
     // type = undefined,
   } = {}) =>
   (card) => {
@@ -121,6 +121,17 @@ const cardCollectionFilter =
       let match = false;
       for (let i = 0; i < rarity.length; i += 1) {
         if (card.rarity === rarity[i]) match = true;
+      }
+      if (!match) return false;
+    }
+
+    // Splinter
+    // eslint-disable-next-line no-param-reassign
+    splinter = force.array(splinter);
+    if (splinter.length > 0) {
+      let match = false;
+      for (let i = 0; i < splinter.length; i += 1) {
+        if (card.splinter === splinter[i]) match = true;
       }
       if (!match) return false;
     }

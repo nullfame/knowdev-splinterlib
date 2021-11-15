@@ -1,6 +1,6 @@
 const cardCollectionFilter = require("../cardCollectionFilter.function");
 const cards = require("../../collections/cardUniverse.collection");
-const { BATTLE, CARD, FILTER } = require("../../util/constants");
+const { BATTLE, CARD, FILTER, SPLINTER } = require("../../util/constants");
 
 //
 //
@@ -193,6 +193,45 @@ describe("CardCollectionFilter function", () => {
       ];
       const filtered = sample.filter(
         cardCollectionFilter({ rarity: [CARD.RARITY.COMMON, CARD.RARITY.RARE] })
+      );
+      expect(filtered.length).toBe(2);
+      expect(filtered[0].name).toBe("Serpentine Soldier");
+      expect(filtered[1].name).toBe("Maggots");
+    });
+  });
+  describe("Splinter", () => {
+    it("Filters on a single splinter", () => {
+      const sample = [
+        cards.getTemplate(6),
+        cards.getTemplate(135),
+        cards.getTemplate(297),
+      ];
+      const filtered = sample.filter(
+        cardCollectionFilter({ splinter: SPLINTER.EARTH })
+      );
+      expect(filtered.length).toBe(1);
+      expect(filtered[0].name).toBe("Epona");
+    });
+    it("Filters on an array of one splinter", () => {
+      const sample = [
+        cards.getTemplate(6),
+        cards.getTemplate(135),
+        cards.getTemplate(297),
+      ];
+      const filtered = sample.filter(
+        cardCollectionFilter({ splinter: [SPLINTER.DEATH] })
+      );
+      expect(filtered.length).toBe(1);
+      expect(filtered[0].name).toBe("Maggots");
+    });
+    it("Filters on an array of several splinters", () => {
+      const sample = [
+        cards.getTemplate(6),
+        cards.getTemplate(135),
+        cards.getTemplate(297),
+      ];
+      const filtered = sample.filter(
+        cardCollectionFilter({ splinter: [SPLINTER.DEATH, SPLINTER.FIRE] })
       );
       expect(filtered.length).toBe(2);
       expect(filtered[0].name).toBe("Serpentine Soldier");
