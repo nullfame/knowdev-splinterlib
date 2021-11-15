@@ -18,31 +18,27 @@ const { CARD, FILTER } = require("../util/constants");
  * @returns boolean
  */
 function isCardEdition(card, edition) {
-  // Determine the "card edition index" (e.g., 1 for beta, 2 for promo, etc...)
-  let cardEditionIndex = Number(card.editions);
-  if (Number.isNaN(cardEditionIndex)) cardEditionIndex = card.editions;
-  const cardEdition = CARD.EDITION.INDEX[cardEditionIndex];
-
   // If the edition parameter matches the card edition, we are good
-  if (edition === cardEdition) return true;
+  if (card.edition === edition) return true;
 
   // If the edition passed in is alpha, match on alpha/beta cards
   if (edition === CARD.EDITION.ALPHA) {
-    if (cardEdition === CARD.EDITION.ALPHA_BETA) return true;
+    if (card.edition === CARD.EDITION.ALPHA_BETA) return true;
   }
 
   // If the edition passed in is alpha/beta, match on alpha or beta cards
   if (edition === CARD.EDITION.ALPHA_BETA) {
-    if (cardEdition === CARD.EDITION.ALPHA) return true;
-    if (cardEdition === CARD.EDITION.BETA) return true;
+    if (card.edition === CARD.EDITION.ALPHA) return true;
+    if (card.edition === CARD.EDITION.BETA) return true;
   }
 
   // If this card is an alpha/beta, match both filters
-  if (cardEdition === CARD.EDITION.ALPHA_BETA) {
+  if (card.edition === CARD.EDITION.ALPHA_BETA) {
     if (edition === CARD.EDITION.ALPHA) return true;
     if (edition === CARD.EDITION.BETA) return true;
   }
 
+  // Default false
   return false;
 }
 

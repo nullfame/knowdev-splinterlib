@@ -44,20 +44,7 @@ describe("CardCollectionFilter function", () => {
   });
   describe("Edition", () => {
     it("Filters by edition (post-beta)", () => {
-      const sample = [
-        {
-          id: 135,
-          name: "Maggots",
-          color: "Black",
-          editions: "4",
-        },
-        {
-          id: 297,
-          name: "Epona",
-          color: "Green",
-          editions: "5",
-        },
-      ];
+      const sample = [cards.getTemplate(135), cards.getTemplate(297)];
       const filtered = sample.filter(
         cardCollectionFilter({ edition: CARD.EDITION.DICE })
       );
@@ -65,20 +52,7 @@ describe("CardCollectionFilter function", () => {
       expect(filtered[0].name).toBe("Epona");
     });
     it("Filters by edition (alpha)", () => {
-      const sample = [
-        {
-          id: 59,
-          name: "Gold Dragon",
-          color: "Gold",
-          editions: "0,1",
-        },
-        {
-          id: 60,
-          name: "Peaceful Giant",
-          color: "Gray",
-          editions: "1",
-        },
-      ];
+      const sample = [cards.getTemplate(59), cards.getTemplate(60)];
       const filtered = sample.filter(
         cardCollectionFilter({ edition: CARD.EDITION.ALPHA })
       );
@@ -86,20 +60,7 @@ describe("CardCollectionFilter function", () => {
       expect(filtered[0].name).toBe("Gold Dragon");
     });
     it("Filters by edition (beta)", () => {
-      const sample = [
-        {
-          id: 59,
-          name: "Gold Dragon",
-          color: "Gold",
-          editions: "0,1",
-        },
-        {
-          id: 60,
-          name: "Peaceful Giant",
-          color: "Gray",
-          editions: "1",
-        },
-      ];
+      const sample = [cards.getTemplate(59), cards.getTemplate(60)];
       const filtered = sample.filter(
         cardCollectionFilter({ edition: CARD.EDITION.BETA })
       );
@@ -108,20 +69,7 @@ describe("CardCollectionFilter function", () => {
       expect(filtered[1].name).toBe("Peaceful Giant");
     });
     it("Filters by edition (alpha,beta; works like beta)", () => {
-      const sample = [
-        {
-          id: 59,
-          name: "Gold Dragon",
-          color: "Gold",
-          editions: "0,1",
-        },
-        {
-          id: 60,
-          name: "Peaceful Giant",
-          color: "Gray",
-          editions: "1",
-        },
-      ];
+      const sample = [cards.getTemplate(59), cards.getTemplate(60)];
       const filtered = sample.filter(
         cardCollectionFilter({ edition: CARD.EDITION.ALPHA_BETA })
       );
