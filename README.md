@@ -334,17 +334,39 @@ Each key contains an object with `COMMON`, `RARE`, `EPIC`, and `LEGENDARY`
 
 ## 🛣 Roadmap
 
-* Card Universe
-  * x-Refresh
-    * x-API Call
-  * x-SPLINTERLIB_FETCH_CARDS
-  * x-SPLINTERLIB_FETCH
-  * x-Iterator
-    * Card Filter
-    * Card Sort
+**1. Card Universe: Filtering**
+2. Interactive Demo of Card Universe
+3. Player Collection: Filtering
+
+### Task List ☑️
+
+* Card Template
+  * ~~Metadata (edition, splinter, etc)~~
+  * Abilities
+  * ~~Stats~~
   * Card images
     * Crop
+  * ...Filter abilities/stats by league caps
+* **Card Universe**
+  * ~~Refresh~~
+    * ~~API Call~~
+  * ~~SPLINTERLIB_FETCH_CARDS~~
+  * ~~SPLINTERLIB_FETCH~~
+  * ~~Iterator~~
+    * **Card Filter**
+      * **Abilities**
+      * ~~Edition~~
+      * ~~Format~~
+      * ~~Mana~~
+      * ~~Rarity~~
+      * ~~Splinter~~
+      * ~~Type~~
+    * ...Card Sort
+      * Stats
 * Player collection
+  * Card instances
+    * Abilities
+    * Stats
   * Card filter
 * Battle Summary
   * Mana
@@ -359,7 +381,10 @@ Each key contains an object with `COMMON`, `RARE`, `EPIC`, and `LEGENDARY`
       * Count
     * Killed (round)
       * Position
-* Multi-filter
+* Interactive Demo
+  * Card universe
+  * Player collection
+  * Battle history
 
 ### Wishlist 🌠
 
