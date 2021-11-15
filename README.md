@@ -340,9 +340,9 @@ Each key contains an object with `COMMON`, `RARE`, `EPIC`, and `LEGENDARY`
 
 ### Task List ☑️
 
-* Card Template
+* **Card Template**
   * ~~Metadata (edition, splinter, etc)~~
-  * Abilities
+  * **Abilities**
   * ~~Stats~~
   * Card images
     * Crop
@@ -358,6 +358,7 @@ Each key contains an object with `COMMON`, `RARE`, `EPIC`, and `LEGENDARY`
       * ~~Edition~~
       * ~~Format~~
       * ~~Mana~~
+      * **Name**
       * ~~Rarity~~
       * ~~Splinter~~
       * ~~Type~~
