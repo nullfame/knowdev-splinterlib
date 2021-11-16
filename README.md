@@ -358,7 +358,7 @@ Each key contains an object with `COMMON`, `RARE`, `EPIC`, and `LEGENDARY`
       * ~~Edition~~
       * ~~Format~~
       * ~~Mana~~
-      * **Name**
+      * ~~Name~~
       * ~~Rarity~~
       * ~~Splinter~~
       * ~~Type~~

@@ -192,6 +192,48 @@ describe("CardCollectionFilter function", () => {
       expect(filtered[1].id).toBe(ID.EPONA);
     });
   });
+  describe("Name", () => {
+    it("Matches name first word", () => {
+      const sample = [
+        cards.getTemplate(ID.GOLD_DRAGON),
+        cards.getTemplate(ID.PEACEFUL_GIANT),
+      ];
+      const filtered = sample.filter(cardCollectionFilter({ name: "Gold" }));
+      expect(filtered.length).toBe(1);
+      expect(filtered[0].id).toBe(ID.GOLD_DRAGON);
+    });
+    it("Matches name partial word", () => {
+      const sample = [
+        cards.getTemplate(ID.GOLD_DRAGON),
+        cards.getTemplate(ID.PEACEFUL_GIANT),
+      ];
+      const filtered = sample.filter(cardCollectionFilter({ name: "Peace" }));
+      expect(filtered.length).toBe(1);
+      expect(filtered[0].id).toBe(ID.PEACEFUL_GIANT);
+    });
+    it("Matches name any word when match any true", () => {
+      const sample = [
+        cards.getTemplate(ID.GOLD_DRAGON),
+        cards.getTemplate(ID.PEACEFUL_GIANT),
+        cards.getTemplate(ID.MAGGOTS),
+      ];
+      const filtered = sample.filter(
+        cardCollectionFilter({ name: "AG", nameMatchAny: true })
+      );
+      expect(filtered.length).toBe(2);
+      expect(filtered[0].id).toBe(ID.GOLD_DRAGON);
+      expect(filtered[1].id).toBe(ID.MAGGOTS);
+    });
+    it("Doesn't match when match any false (default)", () => {
+      const sample = [
+        cards.getTemplate(ID.GOLD_DRAGON),
+        cards.getTemplate(ID.PEACEFUL_GIANT),
+        cards.getTemplate(ID.MAGGOTS),
+      ];
+      const filtered = sample.filter(cardCollectionFilter({ name: "AG" }));
+      expect(filtered.length).toBe(0);
+    });
+  });
   describe("Rarity", () => {
     it("Rarity single", () => {
       const sample = [

@@ -54,6 +54,8 @@ const cardCollectionFilter =
     edition = [],
     format = undefined,
     mana = undefined,
+    name = undefined,
+    nameMatchAny = false,
     rarity = [],
     splinter = [],
     type = undefined,
@@ -112,6 +114,21 @@ const cardCollectionFilter =
           }
         }
       }
+    }
+
+    // Name
+    if (name) {
+      // eslint-disable-next-line no-param-reassign
+      name = name.toLowerCase();
+      const words = card.name.toLowerCase().split(" ");
+      let match = false;
+      for (let i = 0; i < words.length; i += 1) {
+        const word = words[i];
+        if (nameMatchAny) {
+          if (word.includes(name)) match = true;
+        } else if (word.startsWith(name)) match = true;
+      }
+      if (!match) return false;
     }
 
     // Rarity
