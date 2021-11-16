@@ -12,6 +12,7 @@ const { CARD, SPLINTER } = require("../util/constants");
 //
 
 function getStatRangeFromCardDetails(stat, cardDetails) {
+  if (!cardDetails.stats) return {};
   const attributeStats = cardDetails.stats[stat];
 
   // Some cards (summoners) don't have levels so don't have an array
