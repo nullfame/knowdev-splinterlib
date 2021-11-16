@@ -3,7 +3,7 @@ const { exerciseIterator } = require("@knowdev/exercise");
 
 const cards = require("../cardUniverse.collection");
 const rawCardArray = require("../../../data/cardDetails.json");
-const { BATTLE, CARD, SPLINTER } = require("../../util/constants");
+const { ABILITY, BATTLE, CARD, SPLINTER } = require("../../util/constants");
 
 //
 //
@@ -48,6 +48,31 @@ describe("Cards collection", () => {
       expect(items).toBeArray();
       const { count } = exerciseIterator(items);
       expect(count).toBePositive();
+    });
+  });
+  describe("All abilities", () => {
+    it("Finds all abilities", () => {
+      const abilities = cards.all().reduce((abilityCatalog, card) => {
+        // eslint-disable-next-line no-underscore-dangle
+        const cardDetails = card._raw;
+        if (cardDetails.stats.abilities) {
+          for (let i = 0; i < cardDetails.stats.abilities.length; i += 1) {
+            const abilityGained = cardDetails.stats.abilities[i];
+            if (Array.isArray(abilityGained)) {
+              for (let j = 0; j < abilityGained.length; j += 1) {
+                const ability = abilityGained[j];
+                abilityCatalog.add(ability);
+              }
+            } else {
+              abilityCatalog.add(abilityGained);
+            }
+          }
+        }
+        return abilityCatalog;
+      }, new Set());
+      expect(Array.from(abilities)).toIncludeSameMembers(
+        Object.values(ABILITY)
+      );
     });
   });
   describe("Get function", () => {
