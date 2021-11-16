@@ -1,6 +1,6 @@
 const CardTemplate = require("../CardTemplate.model");
 const rawCardArray = require("../../../data/cardDetails.json");
-const { CARD } = require("../../util/constants");
+const { ABILITY, CARD } = require("../../util/constants");
 
 //
 //
@@ -10,6 +10,7 @@ const { CARD } = require("../../util/constants");
 const RAW = {
   MALRIC_INFERNO: rawCardArray[4],
   PIRATE_CAPTAIN: rawCardArray[11],
+  MYLOR_CROWLING: rawCardArray[258],
 };
 
 //
@@ -66,5 +67,18 @@ describe("CardTemplate model", () => {
     expect(malricInferno.statRange[CARD.STAT.MANA].high).toBe(3);
     expect(malricInferno.statRange[CARD.STAT.SPEED].low).toBe(0);
     expect(malricInferno.statRange[CARD.STAT.SPEED].high).toBe(0);
+  });
+  it("Monsters have abilities", () => {
+    const pirateCaptain = new CardTemplate(RAW.PIRATE_CAPTAIN);
+    expect(pirateCaptain.abilities).toBeArray();
+    expect(pirateCaptain.abilities).toIncludeSameMembers([
+      ABILITY.INSPIRE,
+      ABILITY.SNIPE,
+    ]);
+  });
+  it("Summoners grant abilities", () => {
+    const mylorCrowling = new CardTemplate(RAW.MYLOR_CROWLING);
+    expect(mylorCrowling.abilities).toBeArray();
+    expect(mylorCrowling.abilities).toIncludeSameMembers([ABILITY.THORNS]);
   });
 });

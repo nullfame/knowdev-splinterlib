@@ -48,6 +48,27 @@ function getAllStatRanges(cardDetails) {
   }, {});
 }
 
+function getAllAbilities(cardDetails) {
+  // If there are no abilities, return an empty array
+  if (!cardDetails || !cardDetails.stats || !cardDetails.stats.abilities) {
+    return [];
+  }
+  const abilityCatalog = new Set();
+  const { abilities } = cardDetails.stats;
+  for (let i = 0; i < abilities.length; i += 1) {
+    const abilityGained = abilities[i];
+    if (Array.isArray(abilityGained)) {
+      for (let j = 0; j < abilityGained.length; j += 1) {
+        const ability = abilityGained[j];
+        abilityCatalog.add(ability);
+      }
+    } else {
+      abilityCatalog.add(abilityGained);
+    }
+  }
+  return Array.from(abilityCatalog).sort();
+}
+
 //
 //
 // Main
@@ -71,6 +92,7 @@ class CardTemplate {
     this.edition = CARD.EDITION.INDEX[cardDetails.editions];
     this.formats = getCardFormats(this);
     this.statRange = getAllStatRanges(cardDetails);
+    this.abilities = getAllAbilities(cardDetails);
   }
 }
 
