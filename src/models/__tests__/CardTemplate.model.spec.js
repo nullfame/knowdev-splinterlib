@@ -7,6 +7,11 @@ const { CARD } = require("../../util/constants");
 // Mock constants
 //
 
+const RAW = {
+  MALRIC_INFERNO: rawCardArray[4],
+  PIRATE_CAPTAIN: rawCardArray[11],
+};
+
 //
 //
 // Mock modules
@@ -39,15 +44,15 @@ describe("CardTemplate model", () => {
     expect(CardTemplate).toBeClass();
   });
   it("Instantiates card object", () => {
-    const pirateCaptain = new CardTemplate(rawCardArray[11]);
+    const pirateCaptain = new CardTemplate(RAW.PIRATE_CAPTAIN);
     expect(pirateCaptain).toBeObject();
   });
   it("Has formats", () => {
-    const pirateCaptain = new CardTemplate(rawCardArray[11]);
+    const pirateCaptain = new CardTemplate(RAW.PIRATE_CAPTAIN);
     expect(pirateCaptain.formats).toBeArrayOfSize(5);
   });
   it("Monsters have stat ranges", () => {
-    const pirateCaptain = new CardTemplate(rawCardArray[11]);
+    const pirateCaptain = new CardTemplate(RAW.PIRATE_CAPTAIN);
     expect(pirateCaptain.statRange).toBeObject();
     expect(pirateCaptain.statRange[CARD.STAT.MANA]).toBeObject();
     expect(pirateCaptain.statRange[CARD.STAT.MANA].high).toBe(3);
@@ -55,7 +60,7 @@ describe("CardTemplate model", () => {
     expect(pirateCaptain.statRange[CARD.STAT.SPEED].high).toBe(6);
   });
   it("Summoners have stat ranges", () => {
-    const malricInferno = new CardTemplate(rawCardArray[4]);
+    const malricInferno = new CardTemplate(RAW.MALRIC_INFERNO);
     expect(malricInferno.statRange).toBeObject();
     expect(malricInferno.statRange[CARD.STAT.MANA]).toBeObject();
     expect(malricInferno.statRange[CARD.STAT.MANA].high).toBe(3);
