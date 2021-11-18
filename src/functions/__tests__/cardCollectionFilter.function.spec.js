@@ -1,6 +1,12 @@
 const cardCollectionFilter = require("../cardCollectionFilter.function");
 const cards = require("../../collections/cardUniverse.collection");
-const { BATTLE, CARD, FILTER, SPLINTER } = require("../../util/constants");
+const {
+  ABILITY,
+  BATTLE,
+  CARD,
+  FILTER,
+  SPLINTER,
+} = require("../../util/constants");
 
 //
 //
@@ -46,9 +52,56 @@ describe("CardCollectionFilter function", () => {
     expect(cardCollectionFilter()).toBeFunction();
   });
   describe("Abilities", () => {
-    it.todo("Filters by ability");
-    it.todo("Filters by multiple abilities");
-    it.todo("Filters by multiple abilities with 'and'");
+    it("Filters by ability", () => {
+      const sample = [
+        cards.getTemplate(ID.MAGGOTS),
+        cards.getTemplate(ID.EPONA),
+      ];
+      const filtered = sample.filter(
+        cardCollectionFilter({ ability: ABILITY.IMMUNITY })
+      );
+      expect(filtered.length).toBe(1);
+      expect(filtered[0].id).toBe(ID.EPONA);
+    });
+    it("Filters by multiple abilities", () => {
+      const sample = [
+        cards.getTemplate(ID.MAGGOTS),
+        cards.getTemplate(ID.EPONA),
+      ];
+      const filtered = sample.filter(
+        cardCollectionFilter({ ability: [ABILITY.IMMUNITY, ABILITY.SCAVENGER] })
+      );
+      expect(filtered.length).toBe(2);
+      expect(filtered[0].id).toBe(ID.MAGGOTS);
+      expect(filtered[1].id).toBe(ID.EPONA);
+    });
+    it("Filters by multiple abilities with 'and' (return zero)", () => {
+      const sample = [
+        cards.getTemplate(ID.MAGGOTS),
+        cards.getTemplate(ID.EPONA),
+      ];
+      const filtered = sample.filter(
+        cardCollectionFilter({
+          ability: [ABILITY.IMMUNITY, ABILITY.SCAVENGER],
+          abilityAnd: true,
+        })
+      );
+      expect(filtered.length).toBe(0);
+    });
+    it("Filters by multiple abilities with 'and' (return one)", () => {
+      const sample = [
+        cards.getTemplate(ID.MAGGOTS),
+        cards.getTemplate(ID.EPONA),
+      ];
+      const filtered = sample.filter(
+        cardCollectionFilter({
+          ability: [ABILITY.DIVINE_SHIELD, ABILITY.IMMUNITY],
+          abilityAnd: true,
+        })
+      );
+      expect(filtered.length).toBe(1);
+      expect(filtered[0].id).toBe(ID.EPONA);
+    });
   });
   describe("Edition", () => {
     it("Filters by edition (post-beta)", () => {

@@ -49,8 +49,8 @@ function isCardEdition(card, edition) {
 
 const cardCollectionFilter =
   ({
-    // ability = [],
-    // abilityAnd = false,
+    ability = [],
+    abilityAnd = false,
     edition = [],
     format = undefined,
     mana = undefined,
@@ -61,6 +61,20 @@ const cardCollectionFilter =
     type = undefined,
   } = {}) =>
   (card) => {
+    // Ability
+    // eslint-disable-next-line no-param-reassign
+    ability = force.array(ability);
+    if (ability.length > 0) {
+      let match = false;
+      for (let i = 0; i < ability.length; i += 1) {
+        if (card.abilities.includes(ability[i])) {
+          match = true;
+          // if we didn't match and this is an and search, return false
+        } else if (abilityAnd) return false;
+      }
+      if (!match) return false;
+    }
+
     // Edition
     // eslint-disable-next-line no-param-reassign
     edition = force.array(edition);
