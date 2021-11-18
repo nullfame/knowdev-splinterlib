@@ -334,34 +334,18 @@ Each key contains an object with `COMMON`, `RARE`, `EPIC`, and `LEGENDARY`
 
 ## 🛣 Roadmap
 
-**1. Card Universe: Filtering**
-2. Interactive Demo of Card Universe
+1. ~~Card Universe: Filtering~~
+2. **Interactive Demo of Card Universe**
 3. Player Collection: Filtering
+4. Interactive Demo of Player Collections
 
 ### Task List ☑️
 
 * Card Template
-  * ~~Metadata (edition, splinter, etc)~~
-  * ~~Abilities~~
-  * ~~Stats~~
   * Card images
     * Crop
   * ...Filter abilities/stats by league caps
-* **Card Universe**
-  * ~~Refresh~~
-    * ~~API Call~~
-  * ~~SPLINTERLIB_FETCH_CARDS~~
-  * ~~SPLINTERLIB_FETCH~~
-  * ~~Iterator~~
-    * **Card Filter**
-      * **Abilities**
-      * ~~Edition~~
-      * ~~Format~~
-      * ~~Mana~~
-      * ~~Name~~
-      * ~~Rarity~~
-      * ~~Splinter~~
-      * ~~Type~~
+* Card Universe
     * ...Card Sort
       * Stats
 * Player collection
