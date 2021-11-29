@@ -348,6 +348,8 @@ Each key contains an object with `COMMON`, `RARE`, `EPIC`, and `LEGENDARY`
 * Card Universe
     * ...Card Sort
       * Stats
+    * Card filter
+      * Limit to league cap
 * Player collection
   * Card instances
     * Abilities
