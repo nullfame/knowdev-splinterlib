@@ -1,6 +1,6 @@
 const CardTemplate = require("../CardTemplate.model");
 const rawCardArray = require("../../../data/cardDetails.json");
-const { ABILITY, CARD } = require("../../util/constants");
+const { ABILITY, CARD, SPLINTER } = require("../../util/constants");
 
 //
 //
@@ -10,6 +10,7 @@ const { ABILITY, CARD } = require("../../util/constants");
 const RAW = {
   MALRIC_INFERNO: rawCardArray[4],
   PIRATE_CAPTAIN: rawCardArray[11],
+  FURIOUS_CHICKEN: rawCardArray[130],
   MYLOR_CROWLING: rawCardArray[258],
 };
 
@@ -51,6 +52,15 @@ describe("CardTemplate model", () => {
   it("Has formats", () => {
     const pirateCaptain = new CardTemplate(RAW.PIRATE_CAPTAIN);
     expect(pirateCaptain.formats).toBeArrayOfSize(5);
+  });
+  it("Has splinters (water)", () => {
+    const pirateCaptain = new CardTemplate(RAW.PIRATE_CAPTAIN);
+    expect(pirateCaptain.splinter).toBe(SPLINTER.WATER);
+  });
+  it("Has splinters (neutral)", () => {
+    const furiousChicken = new CardTemplate(RAW.FURIOUS_CHICKEN);
+    expect(furiousChicken.splinter).not.toBeUndefined();
+    expect(furiousChicken.splinter).toBe(SPLINTER.NEUTRAL);
   });
   it("Monsters have stat ranges", () => {
     const pirateCaptain = new CardTemplate(RAW.PIRATE_CAPTAIN);
