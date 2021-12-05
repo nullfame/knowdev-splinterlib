@@ -142,6 +142,7 @@ const CARD = {
     UNTAMED: "Untamed",
     DICE: "Dice",
     GLADIUS: "Gladius",
+    CHAOS_LEGION: "Chaos Legion",
     INDEX: {
       0: "Alpha",
       "0,1": "Alpha/Beta",
@@ -151,6 +152,7 @@ const CARD = {
       4: "Untamed",
       5: "Dice",
       6: "Gladius",
+      7: "Chaos Legion",
     },
     KEY: {
       ALPHA: 0,
@@ -160,6 +162,7 @@ const CARD = {
       UNTAMED: 4,
       DICE: 5,
       GLADIUS: 6,
+      CHAOS_LEGION: 7,
     },
   },
   RARITY: {

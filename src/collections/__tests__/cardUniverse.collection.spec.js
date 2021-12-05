@@ -64,4 +64,25 @@ describe("Cards collection", () => {
       ]);
     });
   });
+  describe("Chaos Legion", () => {
+    it.skip("Chaos Legion card template can be looked up by id", () => {
+      const card = cards.getTemplate(436);
+      expect(card).toBeObject();
+      expect(card.id).toBe(436);
+      expect(card.name).toBe("Void Dragon");
+      expect(card.color).toBe("Gold");
+      expect(card.splinter).toBe(SPLINTER.DRAGON);
+      expect(card.type).toBe(CARD.TYPE.MONSTER);
+      expect(card.rarityLevel).toBe(4);
+      expect(card.rarity).toBe(CARD.RARITY.LEGENDARY);
+      expect(card.isStarter).toBe(false);
+      expect(card.edition).toBe(CARD.EDITION.CHAOS_LEGION);
+      expect(card.formats).toBeArray();
+      expect(card.formats).toIncludeSameMembers([
+        BATTLE.FORMAT.MODERN,
+        BATTLE.FORMAT.NO_LEGENDARY_SUMMONERS,
+        BATTLE.FORMAT.WILD,
+      ]);
+    });
+  });
 });
