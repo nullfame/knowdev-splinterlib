@@ -79,6 +79,7 @@ class Cards {
 
   async refresh({ qa = false } = {}) {
     cards = mapCardsByIdFromArray(await cardDetailsApi({ qa }));
+    return Object.values(cloneDeep(cards));
   }
 }
 
