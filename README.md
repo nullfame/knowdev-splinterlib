@@ -120,10 +120,10 @@ const cardArray = Splinterlib.cardUniverse.all();
 const card = Splinterlib.cardUniverse.getTemplate(12);
 
 // Pull fresh copy of card database from server
-const cardArray = Splinterlib.cardUniverse.refresh();
+const cardArray = await Splinterlib.cardUniverse.refresh();
 
 // Pull fresh copy of card database from QA server
-const cardArray = Splinterlib.cardUniverse.refresh({ qa: true });
+const cardArray = await Splinterlib.cardUniverse.refresh({ qa: true });
 ```
 
 #### Player Cards
