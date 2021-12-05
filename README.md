@@ -121,6 +121,9 @@ const card = Splinterlib.cardUniverse.getTemplate(12);
 
 // Pull fresh copy of card database from server
 const cardArray = Splinterlib.cardUniverse.refresh();
+
+// Pull fresh copy of card database from QA server
+const cardArray = Splinterlib.cardUniverse.refresh({ qa: true });
 ```
 
 #### Player Cards
@@ -208,6 +211,7 @@ const results = await Splinterlib.cardDetailsApi();
 
 ``` javascript
 const {
+  ALL,
   BATTLE,
   CARD,
   LEAGUE,
@@ -215,6 +219,15 @@ const {
   SPLINTER,
 } = require("@knowdev/splinterlib");
 ```
+
+#### ALL (constant)
+
+* `ALL.ABILITIES`
+* `ALL.BATTLE.FORMATS`
+* `ALL.CARD.EDITIONS`
+* `ALL.CARD.RARITIES`
+* `ALL.CARD.TYPES`
+* `ALL.SPLINTERS`
 
 #### BATTLE (constant)
 
@@ -325,6 +338,8 @@ Each key contains an object with `COMMON`, `RARE`, `EPIC`, and `LEGENDARY`
 
 ## 📝 Changelog
 
+* 0.6.2: Expand `ALL` constant, allow refresh against QA server
+* 0.6.0: Card universe filtering
 * 0.5.0: Breaking change: rename cardUniverse get to getTemplate 💥
 * 0.4.0: Breaking change: rename parameters 💥
 * 0.3.0: Battle filter
