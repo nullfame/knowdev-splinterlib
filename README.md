@@ -338,6 +338,7 @@ Each key contains an object with `COMMON`, `RARE`, `EPIC`, and `LEGENDARY`
 
 ## 📝 Changelog
 
+* 0.6.3: Card universe returns abilities(), initial Chaos Legion support
 * 0.6.2: Expand `ALL` constant, allow refresh against QA server
 * 0.6.0: Card universe filtering
 * 0.5.0: Breaking change: rename cardUniverse get to getTemplate 💥
