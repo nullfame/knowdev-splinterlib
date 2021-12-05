@@ -7,6 +7,7 @@
 const HOST = {
   LEGACY_API: "https://api.steemmonsters.io",
   MODERN_API: "https://api2.splinterlands.com",
+  QA_API: "https://qa.splinterlands.io",
 };
 
 //
@@ -24,6 +25,9 @@ const CORE = {
     CARD_DETAILS: `${HOST.LEGACY_API}/cards/get_details`,
     LEGACY: {
       BATTLE_HISTORY: `${HOST.LEGACY_API}/players/history`,
+    },
+    QA: {
+      CARD_DETAILS: `${HOST.QA_API}/cards/get_details`,
     },
   },
   KEY: {

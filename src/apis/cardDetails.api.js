@@ -9,16 +9,20 @@ const { CORE } = require("../util/constants");
 // Main
 //
 
-const cardDetailsApi = async () => {
+const cardDetailsApi = async ({ qa = false } = {}) => {
   //
   // Local import
   // const { log } = configuration;
 
   //
+  // Setup
+  const url = qa ? CORE.ENDPOINT.QA.CARD_DETAILS : CORE.ENDPOINT.CARD_DETAILS;
+
+  //
   // Preprocess
   const request = {
     method: HTTP.METHOD.GET,
-    url: CORE.ENDPOINT.CARD_DETAILS,
+    url,
   };
 
   //
