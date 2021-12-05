@@ -77,8 +77,8 @@ class Cards {
     return cards[id];
   }
 
-  async refresh() {
-    cards = mapCardsByIdFromArray(await cardDetailsApi());
+  async refresh({ qa = false } = {}) {
+    cards = mapCardsByIdFromArray(await cardDetailsApi({ qa }));
   }
 }
 

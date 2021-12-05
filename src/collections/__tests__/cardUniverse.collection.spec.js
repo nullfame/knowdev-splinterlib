@@ -16,7 +16,10 @@ const { ABILITY, BATTLE, CARD, SPLINTER } = require("../../util/constants");
 //
 
 const mockCardDetailsApi = jest.fn();
-jest.mock("../../apis/cardDetails.api", () => () => mockCardDetailsApi());
+jest.mock(
+  "../../apis/cardDetails.api",
+  () => (params) => mockCardDetailsApi(params)
+);
 
 //
 //
@@ -31,6 +34,7 @@ beforeEach(() => {
 });
 afterEach(() => {
   process.env = DEFAULT_ENV;
+  jest.clearAllMocks();
 });
 
 //
@@ -106,6 +110,11 @@ describe("Cards collection", () => {
       const card = cards.getTemplate(12);
       expect(card).toBeObject();
       expect(card.name).toBe("Haunted Goose");
+    });
+    it("Can refresh from live qa (cards.refresh({qa:true}))", async () => {
+      mockCardDetailsApi.mockReturnValue([{ id: 12, name: "Haunted Goose" }]);
+      await cards.refresh({ qa: true });
+      expect(mockCardDetailsApi).toHaveBeenCalledWith({ qa: true });
     });
     it("Will pull from live data based on env (SPLINTERLIB_FETCH_CARDS=true)", async () => {
       expect(mockCardDetailsApi).not.toBeCalled();
