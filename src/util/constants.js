@@ -379,8 +379,22 @@ const SPLINTER = {
 
 const ALL = {
   BATTLE: {},
+  CARD: {},
 };
+ALL.ABILITIES = Object.values(ABILITY);
 ALL.BATTLE.FORMATS = Object.values(BATTLE.FORMAT);
+ALL.CARD.EDITIONS = Object.values(CARD.EDITION).filter(
+  (card) => typeof card === "string"
+);
+// Filter out anything that isn't a string from the values, convert that to a Set for unique items only, convert that back to Array
+ALL.CARD.RARITIES = Array.from(
+  new Set(Object.values(CARD.RARITY).filter((card) => typeof card === "string"))
+);
+ALL.CARD.TYPES = Object.values(CARD.TYPE);
+// Filter out anything that isn't a string from the values, convert that to a Set for unique items only, convert that back to Array
+ALL.SPLINTERS = Array.from(
+  new Set(Object.values(SPLINTER).filter((card) => typeof card === "string"))
+);
 
 //
 //
