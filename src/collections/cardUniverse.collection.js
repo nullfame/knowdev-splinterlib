@@ -65,6 +65,29 @@ class Cards {
   // Functions
   //
 
+  abilities() {
+    return Array.from(
+      Object.values(cards).reduce((abilityCatalog, card) => {
+        // eslint-disable-next-line no-underscore-dangle
+        const cardDetails = card._raw;
+        if (cardDetails.stats.abilities) {
+          for (let i = 0; i < cardDetails.stats.abilities.length; i += 1) {
+            const abilityGained = cardDetails.stats.abilities[i];
+            if (Array.isArray(abilityGained)) {
+              for (let j = 0; j < abilityGained.length; j += 1) {
+                const ability = abilityGained[j];
+                abilityCatalog.add(ability);
+              }
+            } else {
+              abilityCatalog.add(abilityGained);
+            }
+          }
+        }
+        return abilityCatalog;
+      }, new Set())
+    );
+  }
+
   all() {
     return Object.values(cloneDeep(cards));
   }
