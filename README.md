@@ -45,6 +45,7 @@ Splinterlib.setLogger(log);
   * [Async Battle History Iterator](#async-battle-history-iterator) (`battleHistoryAsyncIterator`)
 * [Helper Functions](#helper-functions-) 💁
   * [Battle Filter](#battle-filter) (`battleFilter`)
+  * [Card Collection Filter](#card-collection-filter) (`cardCollectionFilter`)
 * [Collections](#collections-) 🗂
   * [Card Universe](#card-universe)
   * [Player Cards](#player-cards)
@@ -57,8 +58,10 @@ Splinterlib.setLogger(log);
   * [Battle History](#battle-history) (`battleHistoryApi`)
   * [Card Details](#card-details) (`cardDetailsApi`)
 * [Constants](#constants-) 💬
+  * [`ALL`](#all)
   * [`BATTLE`](#battle-constant)
   * [`CARD`](#card)
+  * [`FILTER`](#filter)
   * [`LEAGUE`](#league)
     * [`SUMMONER_CAPS`](#leaguesummoner_caps)
   * [`RULESET`](#ruleset)
@@ -106,6 +109,31 @@ const filter = Splinterlib.battleFilter({
   splinter,         // Optional array, from SPLINTER constant (below)
   winner,           // Optional string, winning player
 })
+```
+
+#### Card Collection Filter
+
+``` javascript
+/** Returns function */
+const filter = Splinterlib.cardCollectionFilter({
+  ability,          // Optional string or array of strings from ALL.ABILITIES (below)
+  abilityAnd,       // Optional boolean, whether to require all passed abilities (default false)
+  edition,          // Optional string, from ALL.CARD.EDITIONS (below)
+  format,           // Optional string, from ALL.BATTLE.FORMATS constant (below)
+  mana,             // Optional integer, mana of card; see below for more options
+  name,             // Optional string, match beginning of words in card name
+  nameMatchAny,     // Optional boolean, match anywhere in name (default false)
+  rarity,           // Optional string, from ALL.CARD.RARITIES (below)
+  splinter,         // Optional array, from ALL.SPLINTERS (below)
+  type,             // Optional string, from ALL.CARD.TYPES (below)
+});
+
+const manaFilter = Splinterlib.cardCollectionFilter({
+  mana: {
+    [FILTER.GREATER_THAN_OR_EQUAL]: 3,
+    [FILTER.LESS_THAN_OR_EQUAL]: 6,
+  }
+}).
 ```
 
 ### Collections 🗂
@@ -220,7 +248,7 @@ const {
 } = require("@knowdev/splinterlib");
 ```
 
-#### ALL (constant)
+#### ALL
 
 * `ALL.ABILITIES`
 * `ALL.BATTLE.FORMATS`
@@ -266,6 +294,14 @@ const {
 * `CARD.TYPE`
   * `CARD.TYPE.MONSTER`
   * `CARD.TYPE.SUMMONER`
+
+#### FILTER
+
+* `FILTER.EQUALS`
+* `FILTER.LESS_THAN`
+* `FILTER.LESS_THAN_OR_EQUAL`
+* `FILTER.GREATER_THAN`
+* `FILTER.GREATER_THAN_OR_EQUAL`
 
 #### LEAGUE
 
@@ -338,9 +374,10 @@ Each key contains an object with `COMMON`, `RARE`, `EPIC`, and `LEGENDARY`
 
 ## 📝 Changelog
 
+* 0.6.4: Export cardCollectionFilter
 * 0.6.3: Card universe returns abilities(), initial Chaos Legion support
 * 0.6.2: Expand `ALL` constant, allow refresh against QA server
-* 0.6.0: Card universe filtering
+* 0.6.0: Card collection filtering
 * 0.5.0: Breaking change: rename cardUniverse get to getTemplate 💥
 * 0.4.0: Breaking change: rename parameters 💥
 * 0.3.0: Battle filter
