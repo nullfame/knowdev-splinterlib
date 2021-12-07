@@ -118,13 +118,13 @@ const filter = Splinterlib.battleFilter({
 const filter = Splinterlib.cardCollectionFilter({
   ability,          // Optional string or array of strings from ALL.ABILITIES (below)
   abilityAnd,       // Optional boolean, whether to require all passed abilities (default false)
-  edition,          // Optional string, from ALL.CARD.EDITIONS (below)
-  format,           // Optional string, from ALL.BATTLE.FORMATS constant (below)
+  edition,          // Optional string or array of strings ("or" search), from ALL.CARD.EDITIONS (below)
+  format,           // Optional string or array of strings ("and" search), from ALL.BATTLE.FORMATS constant (below)
   mana,             // Optional integer, mana of card; see below for more options
   name,             // Optional string, match beginning of words in card name
   nameMatchAny,     // Optional boolean, match anywhere in name (default false)
-  rarity,           // Optional string, from ALL.CARD.RARITIES (below)
-  splinter,         // Optional array, from ALL.SPLINTERS (below)
+  rarity,           // Optional string or array of strings ("or" search), from ALL.CARD.RARITIES (below)
+  splinter,         // Optional array or array of strings ("or" search), from ALL.SPLINTERS (below)
   type,             // Optional string, from ALL.CARD.TYPES (below)
 });
 
@@ -374,6 +374,7 @@ Each key contains an object with `COMMON`, `RARE`, `EPIC`, and `LEGENDARY`
 
 ## 📝 Changelog
 
+* 0.6.5: Filter on multiple formats
 * 0.6.4: Export cardCollectionFilter
 * 0.6.3: Card universe returns abilities(), initial Chaos Legion support
 * 0.6.2: Expand `ALL` constant, allow refresh against QA server
