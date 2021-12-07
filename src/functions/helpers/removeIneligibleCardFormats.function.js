@@ -27,7 +27,12 @@ function removeIneligibleCardFormats(card, formats) {
   if (!card.gold) {
     pull(formats, BATTLE.FORMAT.GOLD);
   }
-  if (card.id < CORE.MODERN_FLOOR) {
+  if (card.id < CORE.MODERN_EDITION_FLOOR) {
+    pull(formats, BATTLE.FORMAT.MODERN);
+  } else if (
+    card.edition === CARD.EDITION.REWARD &&
+    card.id < CORE.MODERN_REWARD_FLOOR
+  ) {
     pull(formats, BATTLE.FORMAT.MODERN);
   }
   if (card.rarity === CARD.RARITY.LEGENDARY) {

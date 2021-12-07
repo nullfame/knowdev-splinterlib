@@ -14,6 +14,8 @@ const {
 //
 
 const ID = {
+  BARKING_SPIDER: 225,
+  BOOGEYMAN: 206,
   EPONA: 297,
   GOLD_DRAGON: 59,
   MAGGOTS: 135,
@@ -176,6 +178,22 @@ describe("CardCollectionFilter function", () => {
       );
       expect(filtered.length).toBe(1);
       expect(filtered[0].id).toBe(ID.MAGGOTS);
+    });
+    it("Filters reward modern differently than sets", () => {
+      const sample = [
+        cards.getTemplate(ID.PEACEFUL_GIANT),
+        cards.getTemplate(ID.MAGGOTS),
+        cards.getTemplate(ID.EPONA),
+        cards.getTemplate(ID.BARKING_SPIDER),
+        cards.getTemplate(ID.BOOGEYMAN),
+      ];
+      const filtered = sample.filter(
+        cardCollectionFilter({ format: BATTLE.FORMAT.MODERN })
+      );
+      expect(filtered.length).toBe(3);
+      expect(filtered[0].id).toBe(ID.MAGGOTS);
+      expect(filtered[1].id).toBe(ID.EPONA);
+      expect(filtered[2].id).toBe(ID.BARKING_SPIDER);
     });
   });
   describe("Mana", () => {

@@ -374,6 +374,7 @@ Each key contains an object with `COMMON`, `RARE`, `EPIC`, and `LEGENDARY`
 
 ## 📝 Changelog
 
+* 0.6.6: Fix bug on modern reward definition
 * 0.6.5: Filter on multiple formats
 * 0.6.4: Export cardCollectionFilter
 * 0.6.3: Card universe returns abilities(), initial Chaos Legion support
