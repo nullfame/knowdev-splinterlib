@@ -163,6 +163,20 @@ describe("CardCollectionFilter function", () => {
       expect(filtered.length).toBe(1);
       expect(filtered[0].id).toBe(ID.MAGGOTS);
     });
+    it("Filters by multiple formats", () => {
+      const sample = [
+        cards.getTemplate(ID.PEACEFUL_GIANT),
+        cards.getTemplate(ID.MAGGOTS),
+        cards.getTemplate(ID.EPONA),
+      ];
+      const filtered = sample.filter(
+        cardCollectionFilter({
+          format: [BATTLE.FORMAT.UNTAMED, BATTLE.FORMAT.UNTAMED_DICE],
+        })
+      );
+      expect(filtered.length).toBe(1);
+      expect(filtered[0].id).toBe(ID.MAGGOTS);
+    });
   });
   describe("Mana", () => {
     it("Filters by exact mana (Epona)", () => {

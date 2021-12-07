@@ -52,7 +52,7 @@ const cardCollectionFilter =
     ability = [],
     abilityAnd = false,
     edition = [],
-    format = undefined,
+    format = [],
     mana = undefined,
     name = undefined,
     nameMatchAny = false,
@@ -88,9 +88,15 @@ const cardCollectionFilter =
       if (!match) return false;
     }
 
-    // Format
-    if (format) {
-      if (!card.formats.includes(format)) return false;
+    // Format (default and)
+    // eslint-disable-next-line no-param-reassign
+    format = force.array(format);
+    if (format.length > 0) {
+      for (let i = 0; i < format.length; i += 1) {
+        if (!card.formats.includes(format[i])) {
+          return false;
+        }
+      }
     }
 
     // Mana (exact number)
