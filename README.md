@@ -390,9 +390,12 @@ Each key contains an object with `COMMON`, `RARE`, `EPIC`, and `LEGENDARY`
 ## 🛣 Roadmap
 
 1. ~~Card Universe: Filtering~~
-2. **Interactive Demo of Card Universe**
+2. ~~Interactive Demo of Card Universe~~ _(done but never done)_
 3. Player Collection: Filtering
-4. Interactive Demo of Player Collections
+   1. At least by edition
+4. Get Guild
+5. 🛡 Guild Report
+6. Interactive Demo of Player Collections
 
 ### Task List ☑️
 
