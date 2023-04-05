@@ -7,7 +7,9 @@
 const HOST = {
   LEGACY_API: "https://api.steemmonsters.io",
   MODERN_API: "https://api2.splinterlands.com",
-  QA_API: "https://qa.splinterlands.io",
+  MODERN_VAPI: "https://vapi.splinterlands.com",
+  QA_API: "https://api.mavs-sl.com",
+  QA_VAPI: "https://vapi.mavs-sl.com",
 };
 
 //
@@ -23,16 +25,23 @@ const CORE = {
   },
   ENDPOINT: {
     CARD_DETAILS: `${HOST.LEGACY_API}/cards/get_details`,
+    LAND_DEEDS: `${HOST.MODERN_VAPI}/land/deeds`,
     LEGACY: {
       BATTLE_HISTORY: `${HOST.LEGACY_API}/players/history`,
     },
     QA: {
       CARD_DETAILS: `${HOST.QA_API}/cards/get_details`,
+      LAND_DEEDS: `${HOST.QA_VAPI}/land/deeds`,
     },
   },
   KEY: {
     SPLINTERLIB_FETCH: "SPLINTERLIB_FETCH",
     SPLINTERLIB_FETCH_CARDS: "SPLINTERLIB_FETCH_CARDS",
+  },
+  LAND_DEEDS: {
+    BY_COLLECTION: "collection",
+    BY_MAP: "map",
+    BY_MARKET: "market",
   },
   MODERN_EDITION_FLOOR: 135,
   MODERN_REWARD_FLOOR: 225,

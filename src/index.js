@@ -8,6 +8,7 @@ const battleHistoryAsyncIterator = require("./functions/battleHistoryAsyncIterat
 const cardDetailsApi = require("./apis/cardDetails.api");
 const cardCollectionFilter = require("./functions/cardCollectionFilter.function");
 const cardUniverse = require("./collections/cardUniverse.collection");
+const landDeeds = require("./apis/landDeeds.api");
 
 //
 //
@@ -20,6 +21,7 @@ Splinterlib.battleHistoryAsyncIterator = battleHistoryAsyncIterator;
 Splinterlib.cardDetailsApi = cardDetailsApi;
 Splinterlib.cardCollectionFilter = cardCollectionFilter;
 Splinterlib.cardUniverse = cardUniverse;
+Splinterlib.landDeeds = landDeeds;
 
 //
 //

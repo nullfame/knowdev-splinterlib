@@ -22,6 +22,7 @@
     "test:spec:cardDetails.api": "jest ./src/apis/__tests__/cardDetails.api.spec.js",
     "test:spec:cardUniverse.collection": "jest ./src/collections/__tests__/cardUniverse.collection.spec.js",
     "test:spec:index": "jest ./src/__tests__/index.spec.js",
+    "test:spec:landDeeds.api": "jest ./src/apis/__tests__/landDeeds.api.spec.js",
     "test:spec:siteSettings.collection": "jest ./src/collections/__tests__/siteSettings.collection.spec.js",
     "postversion": "npm publish"
   },
