@@ -5,7 +5,6 @@
 
 // Hosts
 const HOST = {
-  LEGACY_API: "https://api.steemmonsters.io",
   MODERN_API: "https://api2.splinterlands.com",
   MODERN_VAPI: "https://vapi.splinterlands.com",
   QA_API: "https://api.mavs-sl.com",
@@ -24,10 +23,10 @@ const CORE = {
     TYPES: "sm_battle,battle",
   },
   ENDPOINT: {
-    CARD_DETAILS: `${HOST.LEGACY_API}/cards/get_details`,
+    CARD_DETAILS: `${HOST.MODERN_API}/cards/get_details`,
     LAND_DEEDS: `${HOST.MODERN_VAPI}/land/deeds`,
     LEGACY: {
-      BATTLE_HISTORY: `${HOST.LEGACY_API}/players/history`,
+      BATTLE_HISTORY: `${HOST.MODERN_API}/players/history`,
     },
     QA: {
       CARD_DETAILS: `${HOST.QA_API}/cards/get_details`,
