@@ -25,7 +25,6 @@
     "test:spec:landDeeds.api": "jest ./src/apis/__tests__/landDeeds.api.spec.js",
     "test:spec:siteSettings.collection": "jest ./src/collections/__tests__/siteSettings.collection.spec.js",
     "util:test": "jest util/",
-    "util:test:compareArrays": "jest util/functions/__tests__/compareArrays.function.spec.js",
     "util:test:constants": "jest util/tests/constants.test.js",
     "util:test:dataCache": "jest util/tests/dataCache.test.js",
     "postversion": "npm publish"

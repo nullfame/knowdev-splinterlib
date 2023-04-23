@@ -1,5 +1,3 @@
-const compareArrays = require("../functions/compareArrays.function");
-
 const Splinterlib = require("../../src");
 
 //
@@ -33,7 +31,7 @@ describe("Data cache", () => {
         }
       }
     });
-    expect(compareArrays([...abilities], Splinterlib.ALL.ABILITIES)).toBeTrue();
+    expect([...abilities]).toIncludeSameMembers(Splinterlib.ALL.ABILITIES);
   });
   it.todo("Editions are up to date");
   it.todo("Rulesets are up to date");
