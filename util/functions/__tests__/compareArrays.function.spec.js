@@ -8,6 +8,13 @@ describe("compareArrays", () => {
     expect(compareArrays(array1, array2)).toBe(true);
   });
 
+  // Test with two arrays with the same strings
+  it("Returns true for two arrays with the same strings in different order", () => {
+    const array1 = ["a", "b", "c"];
+    const array2 = ["b", "c", "a"];
+    expect(compareArrays(array1, array2)).toBe(true);
+  });
+
   // Test with two arrays with different strings
   it("Returns false for two arrays with different strings", () => {
     const array1 = ["a", "b", "c"];

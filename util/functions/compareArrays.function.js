@@ -4,6 +4,9 @@ module.exports = (array1, array2) => {
   if (array1.length !== array2.length) {
     return false;
   }
+  // Sort the arrays
+  array1.sort();
+  array2.sort();
   // If the arrays are the same length, compare each item in the array
   for (let i = 0; i < array1.length; i += 1) {
     // If the items are not equal, the arrays are not equal
