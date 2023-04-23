@@ -5,7 +5,6 @@
 
 // Hosts
 const HOST = {
-  LEGACY_API: "https://api.steemmonsters.io",
   MODERN_API: "https://api2.splinterlands.com",
   MODERN_VAPI: "https://vapi.splinterlands.com",
   QA_API: "https://api.mavs-sl.com",
@@ -24,10 +23,11 @@ const CORE = {
     TYPES: "sm_battle,battle",
   },
   ENDPOINT: {
-    CARD_DETAILS: `${HOST.LEGACY_API}/cards/get_details`,
+    CARD_DETAILS: `${HOST.MODERN_API}/cards/get_details`,
     LAND_DEEDS: `${HOST.MODERN_VAPI}/land/deeds`,
+    TOP_BATTLES: `${HOST.MODERN_API}/battle/history2`,
     LEGACY: {
-      BATTLE_HISTORY: `${HOST.LEGACY_API}/players/history`,
+      BATTLE_HISTORY: `${HOST.MODERN_API}/players/history`,
     },
     QA: {
       CARD_DETAILS: `${HOST.QA_API}/cards/get_details`,
@@ -45,6 +45,7 @@ const CORE = {
   },
   MODERN_EDITION_FLOOR: 135,
   MODERN_REWARD_FLOOR: 225,
+  TOP_BATTLES_PLAYER: "$top",
 };
 
 //
@@ -63,6 +64,7 @@ const ABILITY = {
   CAMOUFLAGE: "Camouflage",
   CLEANSE: "Cleanse",
   CLOSE_RANGE: "Close Range",
+  CONSCRIPT: "Conscript",
   CRIPPLE: "Cripple",
   DEATHBLOW: "Deathblow",
   DEMORALIZE: "Demoralize",
@@ -73,7 +75,8 @@ const ABILITY = {
   ENRAGE: "Enrage",
   FLYING: "Flying",
   FORCEFIELD: "Forcefield",
-  // GIANT_KILLER: "Giant Killer",
+  FURY: "Fury",
+  GIANT_KILLER: "Giant Killer",
   HALVING: "Halving",
   HEADWINDS: "Headwinds",
   HEAL: "Heal",
@@ -83,6 +86,7 @@ const ABILITY = {
   LAST_STAND: "Last Stand",
   LIFE_LEECH: "Life Leech",
   MAGIC_REFLECT: "Magic Reflect",
+  MARTYR: "Martyr",
   OPPORTUNITY: "Opportunity",
   OPPRESS: "Oppress",
   PHASE: "Phase",
@@ -90,14 +94,16 @@ const ABILITY = {
   POISON: "Poison",
   PROTECT: "Protect",
   REACH: "Reach",
-  // RECHARGE: "Recharge",
+  REBIRTH: "Rebirth",
+  RECHARGE: "Recharge",
   REDEMPTION: "Redemption",
+  REFLECTION_SHIELD: "Reflection Shield",
   REPAIR: "Repair",
   RESURRECT: "Resurrect",
   RETALIATE: "Retaliate",
   RETURN_FIRE: "Return Fire",
   RUST: "Rust",
-  // SCATTERSHOT: "Scattershot",
+  SCATTERSHOT: "Scattershot",
   SCAVENGER: "Scavenger",
   SHATTER: "Shatter",
   SHIELD: "Shield",
@@ -118,6 +124,7 @@ const ABILITY = {
   VOID_ARMOR: "Void Armor",
   VOID: "Void",
   WEAKEN: "Weaken",
+  WEAPONS_TRAINING: "Weapons Training",
 };
 
 // Battle
@@ -153,6 +160,8 @@ const CARD = {
     DICE: "Dice",
     GLADIUS: "Gladius",
     CHAOS_LEGION: "Chaos Legion",
+    RIFTWATCHERS: "Riftwatchers",
+    SOULBOUND_REWARD: "Soulbound Reward",
     INDEX: {
       0: "Alpha",
       "0,1": "Alpha/Beta",
@@ -163,6 +172,8 @@ const CARD = {
       5: "Dice",
       6: "Gladius",
       7: "Chaos Legion",
+      8: "Riftwatchers",
+      10: "Soulbound Reward",
     },
     KEY: {
       ALPHA: 0,
@@ -173,6 +184,8 @@ const CARD = {
       DICE: 5,
       GLADIUS: 6,
       CHAOS_LEGION: 7,
+      RIFTWATCHERS: 8,
+      SOULBOUND_REWARD: 10,
     },
   },
   RARITY: {
@@ -307,6 +320,13 @@ const LEAGUE = {
     Gold: "GOLD",
     Diamond: "DIAMOND",
     Champion: "CHAMPION",
+  },
+  LEADERBOARD: {
+    BRONZE: 0,
+    SILVER: 1,
+    GOLD: 2,
+    DIAMOND: 3,
+    CHAMPION: 4,
   },
   LEVEL: {
     0: "Novice",

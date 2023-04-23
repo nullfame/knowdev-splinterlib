@@ -57,6 +57,7 @@ Splinterlib.setLogger(log);
 * [Direct API](#direct-api-) 🌐
   * [Battle History](#battle-history) (`battleHistoryApi`)
   * [Card Details](#card-details) (`cardDetailsApi`)
+  * [Top Battles](#top-battles) (`topBattlesApi`)
 * [Constants](#constants-) 💬
   * [`ALL`](#all)
   * [`BATTLE`](#battle-constant)
@@ -235,6 +236,20 @@ const results = await Splinterlib.battleHistoryApi(
 const results = await Splinterlib.cardDetailsApi();
 ```
 
+#### Top Battles
+
+``` javascript
+/** Returns object with battles array */
+const results = await Splinterlib.topBattlesApi(
+  {
+    leaderboard,  // Optional integer, defaults to `LEAGUE.LEADERBOARD.CHAMPION`
+    limit,        // Optional integer, number of results (default 50)
+    raw,          // Optional boolean, skip parsing encoded objects and dates in results (default false)
+    queryParams,  // Advanced: optional object of additional parameters to pass to endpoint
+  }
+);
+```
+
 ### Constants 💬
 
 ``` javascript
@@ -374,6 +389,7 @@ Each key contains an object with `COMMON`, `RARE`, `EPIC`, and `LEGENDARY`
 
 ## 📝 Changelog
 
+* (anticipated) 0.8.0: Top battles API
 * 0.7.0: Land deeds API
 * 0.6.6: Fix bug on modern reward definition
 * 0.6.5: Filter on multiple formats
