@@ -25,6 +25,7 @@ const CORE = {
   ENDPOINT: {
     CARD_DETAILS: `${HOST.MODERN_API}/cards/get_details`,
     LAND_DEEDS: `${HOST.MODERN_VAPI}/land/deeds`,
+    TOP_BATTLES: `${HOST.MODERN_API}/battle/history2`,
     LEGACY: {
       BATTLE_HISTORY: `${HOST.MODERN_API}/players/history`,
     },
@@ -44,6 +45,7 @@ const CORE = {
   },
   MODERN_EDITION_FLOOR: 135,
   MODERN_REWARD_FLOOR: 225,
+  TOP_BATTLES_PLAYER: "$top",
 };
 
 //
@@ -318,6 +320,13 @@ const LEAGUE = {
     Gold: "GOLD",
     Diamond: "DIAMOND",
     Champion: "CHAMPION",
+  },
+  LEADERBOARD: {
+    BRONZE: 0,
+    SILVER: 1,
+    GOLD: 2,
+    DIAMOND: 3,
+    CHAMPION: 4,
   },
   LEVEL: {
     0: "Novice",

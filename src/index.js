@@ -9,6 +9,7 @@ const cardDetailsApi = require("./apis/cardDetails.api");
 const cardCollectionFilter = require("./functions/cardCollectionFilter.function");
 const cardUniverse = require("./collections/cardUniverse.collection");
 const landDeeds = require("./apis/landDeeds.api");
+const topBattlesApi = require("./apis/topBattles.api");
 
 //
 //
@@ -22,6 +23,7 @@ Splinterlib.cardDetailsApi = cardDetailsApi;
 Splinterlib.cardCollectionFilter = cardCollectionFilter;
 Splinterlib.cardUniverse = cardUniverse;
 Splinterlib.landDeeds = landDeeds;
+Splinterlib.topBattlesApi = topBattlesApi;
 
 //
 //

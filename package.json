@@ -24,6 +24,7 @@
     "test:spec:index": "jest ./src/__tests__/index.spec.js",
     "test:spec:landDeeds.api": "jest ./src/apis/__tests__/landDeeds.api.spec.js",
     "test:spec:siteSettings.collection": "jest ./src/collections/__tests__/siteSettings.collection.spec.js",
+    "test:spec:topBattles.api": "jest ./src/apis/__tests__/topBattles.api.spec.js",
     "util:test": "jest util/",
     "util:test:constants": "jest util/tests/constants.test.js",
     "util:test:dataCache": "jest util/tests/dataCache.test.js",
