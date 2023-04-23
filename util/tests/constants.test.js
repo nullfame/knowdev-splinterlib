@@ -33,6 +33,16 @@ describe("Data cache", () => {
     });
     expect([...abilities]).toIncludeSameMembers(Splinterlib.ALL.ABILITIES);
   });
-  it.todo("Editions are up to date");
+  it("Editions are up to date", async () => {
+    const response = await Splinterlib.cardDetailsApi();
+    const editions = new Set();
+    response.forEach((card) => {
+      editions.add(card.editions);
+    });
+    // Expand editions and include "0" (key for the alpha edition, not found in this api)
+    expect([...editions, "0"]).toIncludeSameMembers(
+      Object.keys(Splinterlib.CARD.EDITION.INDEX)
+    );
+  });
   it.todo("Rulesets are up to date");
 });

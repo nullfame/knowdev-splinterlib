@@ -158,6 +158,8 @@ const CARD = {
     DICE: "Dice",
     GLADIUS: "Gladius",
     CHAOS_LEGION: "Chaos Legion",
+    RIFTWATCHERS: "Riftwatchers",
+    SOULBOUND_REWARD: "Soulbound Reward",
     INDEX: {
       0: "Alpha",
       "0,1": "Alpha/Beta",
@@ -168,6 +170,8 @@ const CARD = {
       5: "Dice",
       6: "Gladius",
       7: "Chaos Legion",
+      8: "Riftwatchers",
+      10: "Soulbound Reward",
     },
     KEY: {
       ALPHA: 0,
@@ -178,6 +182,8 @@ const CARD = {
       DICE: 5,
       GLADIUS: 6,
       CHAOS_LEGION: 7,
+      RIFTWATCHERS: 8,
+      SOULBOUND_REWARD: 10,
     },
   },
   RARITY: {
